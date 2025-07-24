@@ -22,6 +22,7 @@ import {
   FormLabel,
   FormMessage
 } from "@/components/ui/form"
+import { registerCustomer } from "@/services/authSerivce"
 
 const registerSchema = z.object({
   email: z.email("Invalid email address"),
@@ -38,7 +39,7 @@ export default function Registration() {
   })
 
   function onSubmit(values: z.infer<typeof registerSchema>) {
-    console.log(values)
+    registerCustomer(values)
   }
 
   return (

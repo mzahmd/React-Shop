@@ -1,8 +1,8 @@
 import axios from "axios";
 
-export const saveCustomer = async (customer: {email: string, password: string}) => {
+export const registerCustomer = async (customer: {email: string, password: string}) => {
   return await axios.post(
-    `${import.meta.env.VITE_API_BASE_URL}/customer`,
+    `${import.meta.env.VITE_BASE_URL}/auth/register`,
     JSON.stringify(customer),
     {
       headers: {
