@@ -1,10 +1,9 @@
 import { match } from "ts-pattern"
 
-import { Router } from "./router"
-
+import Home from "./pages/Home"
 import Login from "./pages/Login"
 import Registration from "./pages/Registration"
-import Home from "./pages/Home"
+import { Router } from "./router"
 
 export default function App() {
   const router = Router.useRoute(["Home", "Login", "Registration", "About"])

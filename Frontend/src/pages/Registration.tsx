@@ -1,6 +1,7 @@
-import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Link } from "@swan-io/chicane"
+import { useForm } from "react-hook-form"
+import { z } from "zod"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -11,9 +12,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-
-import { useForm } from "react-hook-form"
 import {
   Form,
   FormControl,
@@ -22,6 +20,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
 import { registerCustomer } from "@/services/authSerivce"
 
 const registerSchema = z.object({
