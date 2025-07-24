@@ -1,0 +1,6 @@
+cors:
+  allow-credentials=true
+  allowed-origins=*
+  allowed-methods=*
+  allowed-headers=*
+  exposed-headers=Authorization
