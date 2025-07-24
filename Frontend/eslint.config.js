@@ -8,7 +8,7 @@ import prettier from "eslint-config-prettier"
 import simplesort from "eslint-plugin-simple-import-sort"
 
 export default tseslint.config([
-  globalIgnores(["dist"]),
+  globalIgnores(["dist", "src/components/ui/**/*.{js,jsx,ts,tsx}"]),
   {
     files: ["**/*.{ts,tsx}"],
     plugins: {
