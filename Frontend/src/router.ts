@@ -1,4 +1,4 @@
-import { createRouter } from "@swan-io/chicane";
+import { createRouter } from "@swan-io/chicane"
 
 export const Router = createRouter({
   Home: "/",
@@ -7,4 +7,4 @@ export const Router = createRouter({
   About: "/about",
   UserList: "/users",
   UserDetail: "/users/:userId",
-});
+})
