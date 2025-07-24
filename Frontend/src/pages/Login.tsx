@@ -82,13 +82,13 @@ export default function Registration() {
                 </FormItem>
               )}
             />
+            <Button type="submit" className="w-full">
+              Login
+            </Button>
           </form>
         </Form>
       </CardContent>
-      <CardFooter className="flex-col gap-2">
-        <Button type="submit" className="w-full">
-          Login
-        </Button>
+      <CardFooter>
         <Link to="/register" className="w-full">
           <Button variant="outline" className="w-full hover:cursor-pointer">
             Don't have an account ?
