@@ -4,6 +4,7 @@ import { Router } from "./router";
 
 import Login from "./pages/Login";
 import Registration from "./pages/Registration";
+import Home from "./pages/Home";
 
 export default function App() {
   const router = Router.useRoute(["Home", "Login", "Registration", "About"]);
@@ -11,7 +12,7 @@ export default function App() {
   return (
     <>
       {match(router)
-        .with({ name: "Home" }, () => <h1>Welcome to the Home Page</h1>)
+        .with({ name: "Home" }, () => <Home />)
         .with({ name: "Login" }, () => <Login />)
         .with({ name: "Registration" }, () => <Registration />)
         .with({ name: "About" }, () => <h1>About Us</h1>)
