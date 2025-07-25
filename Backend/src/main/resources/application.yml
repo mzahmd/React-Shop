@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: "backend"
+
+cors:
+  allowed-origins: "http://localhost:5173"
+  allowed-methods: "*"
+  allowed-headers: "*"
+  exposed-headers: "*"
