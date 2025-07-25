@@ -40,7 +40,11 @@ export default function Registration() {
   function onSubmit(values: z.infer<typeof loginSchema>) {
     loginCustomer(values)
     .then(() => {
+      localStorage.setItem("user", JSON.stringify(values.email))
       Router.push("Home")
+    })
+    .catch((error) => {
+      console.error("Login failed:", error)
     })
   }
 

@@ -41,7 +41,11 @@ export default function Registration() {
   async function onSubmit(values: z.infer<typeof registerSchema>) {
     registerCustomer(values)
     .then(() => {
+      localStorage.setItem("user", JSON.stringify(values.email))
       Router.push("Home")
+    })
+    .catch((error) => {
+      console.error("Registration failed:", error)
     })
   }
 

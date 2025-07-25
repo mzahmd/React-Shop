@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CustomerListDataAccessService implements CustomerDAO {
@@ -16,8 +17,9 @@ public class CustomerListDataAccessService implements CustomerDAO {
     }
 
     @Override
-    public boolean loginCustomer(Customer c) {
-        return customers.stream().anyMatch(customer ->
-                customer.email.equals(c.email) && customer.password.equals(c.password));
+    public Optional<Customer> findCustomerByEmail(Customer c) {
+        return customers.stream()
+                .filter(customer -> customer.email.equals(c.email))
+                .findFirst();
     }
 }
