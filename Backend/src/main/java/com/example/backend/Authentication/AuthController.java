@@ -24,7 +24,6 @@ public class AuthController {
     @PostMapping("/login")
     public void login(@RequestBody Customer c) {
         boolean result = authenticationService.login(c);
-        System.out.println("Login Success: " + result);
     }
 
 }
