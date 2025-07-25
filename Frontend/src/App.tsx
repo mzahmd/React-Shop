@@ -1,5 +1,6 @@
 import { match } from "ts-pattern"
 
+import EnsureAuth from "./components/EnsureAuth"
 import Home from "./pages/Home"
 import Login from "./pages/Login"
 import Registration from "./pages/Registration"
@@ -11,7 +12,7 @@ export default function App() {
   return (
     <>
       {match(router)
-        .with({ name: "Home" }, () => <Home />)
+        .with({ name: "Home" }, () => <EnsureAuth><Home /></EnsureAuth>)
         .with({ name: "Login" }, () => <Login />)
         .with({ name: "Registration" }, () => <Registration />)
         .otherwise(() => (
