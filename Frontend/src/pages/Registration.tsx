@@ -38,8 +38,11 @@ export default function Registration() {
     },
   })
 
-  function onSubmit(values: z.infer<typeof registerSchema>) {
+  async function onSubmit(values: z.infer<typeof registerSchema>) {
     registerCustomer(values)
+    .then(() => {
+      Router.push("Home")
+    })
   }
 
   return (

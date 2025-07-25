@@ -39,6 +39,9 @@ export default function Registration() {
 
   function onSubmit(values: z.infer<typeof loginSchema>) {
     loginCustomer(values)
+    .then(() => {
+      Router.push("Home")
+    })
   }
 
   return (
