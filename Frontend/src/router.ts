@@ -4,7 +4,4 @@ export const Router = createRouter({
   Home: "/",
   Login: "/login",
   Registration: "/register",
-  About: "/about",
-  UserList: "/users",
-  UserDetail: "/users/:userId",
 })

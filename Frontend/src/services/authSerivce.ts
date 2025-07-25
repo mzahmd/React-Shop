@@ -14,3 +14,18 @@ export const registerCustomer = async (customer: {
     },
   )
 }
+
+export const loginCustomer = async (customer: {
+  email: string
+  password: string
+}) => {
+  return await axios.post(
+    `${import.meta.env.VITE_BASE_URL}/auth/login`,
+    JSON.stringify(customer),
+    {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    },
+  )
+}

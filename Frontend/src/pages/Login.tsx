@@ -21,6 +21,7 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import {Router} from "@/router"
+import { loginCustomer } from "@/services/authSerivce"
 
 const loginSchema = z.object({
   email: z.email("Invalid email address"),
@@ -37,7 +38,7 @@ export default function Registration() {
   })
 
   function onSubmit(values: z.infer<typeof loginSchema>) {
-    console.log(values)
+    loginCustomer(values)
   }
 
   return (
