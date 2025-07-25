@@ -21,7 +21,7 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import {Router} from "@/router"
+import { Router } from "@/router"
 import { registerCustomer } from "@/services/authSerivce"
 
 const registerSchema = z.object({

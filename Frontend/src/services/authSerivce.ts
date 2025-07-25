@@ -1,31 +1,19 @@
-import axios from "axios"
+import type { Customer } from "@/interface/Customer"
 
-export const registerCustomer = async (customer: {
-  email: string
-  password: string
-}) => {
-  return await axios.post(
-    `${import.meta.env.VITE_BASE_URL}/auth/register`,
-    JSON.stringify(customer),
-    {
-      headers: {
-        "Content-Type": "application/json",
-      },
+import { apiClient } from "./api-client"
+
+export async function registerCustomer(customer: Customer) {
+  return await apiClient.post(`/auth/register`, JSON.stringify(customer), {
+    headers: {
+      "Content-Type": "application/json",
     },
-  )
+  })
 }
 
-export const loginCustomer = async (customer: {
-  email: string
-  password: string
-}) => {
-  return await axios.post(
-    `${import.meta.env.VITE_BASE_URL}/auth/login`,
-    JSON.stringify(customer),
-    {
-      headers: {
-        "Content-Type": "application/json",
-      },
+export async function loginCustomer(customer: Customer) {
+  return await apiClient.post(`/auth/login`, JSON.stringify(customer), {
+    headers: {
+      "Content-Type": "application/json",
     },
-  )
+  })
 }
