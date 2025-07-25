@@ -21,6 +21,7 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+import {Router} from "@/router"
 import { registerCustomer } from "@/services/authSerivce"
 
 const registerSchema = z.object({
@@ -91,7 +92,7 @@ export default function Registration() {
       </CardContent>
       <CardFooter>
         <CardAction>
-          <Link to="/login">Already have an Account ?</Link>
+          <Link to={Router.Login()}>Already have an Account ?</Link>
         </CardAction>
       </CardFooter>
     </Card>

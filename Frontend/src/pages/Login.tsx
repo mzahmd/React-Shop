@@ -20,6 +20,7 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+import {Router} from "@/router"
 
 const loginSchema = z.object({
   email: z.email("Invalid email address"),
@@ -89,7 +90,7 @@ export default function Registration() {
         </Form>
       </CardContent>
       <CardFooter>
-        <Link to="/register" className="w-full">
+        <Link to={Router.Registration()} className="w-full">
           <Button variant="outline" className="w-full hover:cursor-pointer">
             Don't have an account ?
           </Button>
