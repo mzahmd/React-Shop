@@ -12,12 +12,12 @@ public class AuthenticationService {
         this.customerDAO = customerDAO;
     }
 
-    public void login(Customer c) {
-        customerDAO.registerCustomer(c);
+    public boolean login(Customer c) {
+        return customerDAO.loginCustomer(c);
     }
 
-    public boolean register(Customer c) {
-        return customerDAO.loginCustomer(c);
+    public void register(Customer c) {
+        customerDAO.registerCustomer(c);
     }
 
 }

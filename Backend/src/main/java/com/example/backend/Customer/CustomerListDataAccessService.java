@@ -12,11 +12,12 @@ public class CustomerListDataAccessService implements CustomerDAO {
 
     @Override
     public void registerCustomer(Customer c) {
-        customers.add(new Customer("John", "Doe"));
+        customers.add(c);
     }
 
     @Override
     public boolean loginCustomer(Customer c) {
-        return customers.stream().anyMatch(customer -> customer.password.equals(c.password));
+        return customers.stream().anyMatch(customer ->
+                customer.email.equals(c.email) && customer.password.equals(c.password));
     }
 }

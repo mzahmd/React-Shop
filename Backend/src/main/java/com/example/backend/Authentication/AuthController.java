@@ -18,13 +18,13 @@ public class AuthController {
 
     @PostMapping("/register")
     public void register(@RequestBody Customer c) {
-        boolean result = authenticationService.register(c);
-        System.out.println(result);
+        authenticationService.register(c);
     }
 
     @PostMapping("/login")
     public void login(@RequestBody Customer c) {
-        authenticationService.login(c);
+        boolean result = authenticationService.login(c);
+        System.out.println("Login Success: " + result);
     }
 
 }
