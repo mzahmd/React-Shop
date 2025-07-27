@@ -1,8 +1,11 @@
-export interface Product {
-  id: number
+export interface ProductDTO {
   title: string
-  description: string
   price: number
-  category: string
   image: string
+}
+
+export interface Product extends ProductDTO {
+  id: number
+  description: string
+  category: string
 }
