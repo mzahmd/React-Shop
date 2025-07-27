@@ -1,6 +1,7 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Link } from "@swan-io/chicane"
 import { useForm } from "react-hook-form"
+import { toast } from "sonner"
 import { z } from "zod"
 
 import { Button } from "@/components/ui/button"
@@ -40,13 +41,13 @@ export default function Registration() {
 
   async function onSubmit(values: z.infer<typeof registerSchema>) {
     registerCustomer(values)
-    .then(() => {
-      localStorage.setItem("user", JSON.stringify(values.email))
-      Router.push("Home")
-    })
-    .catch((error) => {
-      console.error("Registration failed:", error)
-    })
+      .then(() => {
+        localStorage.setItem("user", JSON.stringify(values.email))
+        Router.push("Home")
+      })
+      .catch(() => {
+        toast("Registration failed.")
+      })
   }
 
   return (

@@ -1,6 +1,7 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Link } from "@swan-io/chicane"
 import { useForm } from "react-hook-form"
+import { toast } from "sonner"
 import { z } from "zod"
 
 import { Button } from "@/components/ui/button"
@@ -20,8 +21,9 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import {Router} from "@/router"
+import { Router } from "@/router"
 import { loginCustomer } from "@/services/authSerivce"
+
 
 const loginSchema = z.object({
   email: z.email("Invalid email address"),
@@ -39,13 +41,13 @@ export default function Registration() {
 
   function onSubmit(values: z.infer<typeof loginSchema>) {
     loginCustomer(values)
-    .then(() => {
-      localStorage.setItem("user", JSON.stringify(values.email))
-      Router.push("Home")
-    })
-    .catch((error) => {
-      console.error("Login failed:", error)
-    })
+      .then(() => {
+        localStorage.setItem("user", JSON.stringify(values.email))
+        Router.push("Home")
+      })
+      .catch(() => {
+        toast("Login failed.")
+      })
   }
 
   return (
@@ -69,7 +71,6 @@ export default function Registration() {
                 </FormItem>
               )}
             />
-
             <FormField
               control={form.control}
               name="password"
