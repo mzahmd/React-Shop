@@ -1,25 +1,31 @@
 import Header from "@/components/Header";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle
+} from "@/components/ui/card";
 import { useGetProducts } from "@/hooks/useGetProducts";
 
 export default function Home() {
   const products = useGetProducts();
-  console.log("MY products:", products);
 
   return (
     <>
       <Header />
-      <div className="flex items-center justify-center h-screen">
-        {products.map((product) => (
-          <div key={product.id}>
-            <img
-              src={product.image}
-              alt={product.title}
-              className="object-cover"
-            />
-            {/* <p className="text-xl font-bold">{product.category}</p> */}
-            {/* <p className="text-gray-600">{product.description}</p> */}
-            {/* <p className="text-lg font-semibold">${product.price}</p> */}
-          </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+        {products.map(product => (
+          <Card className="w-50 h-fit mt-10 mx-10">
+            <CardHeader>
+              <img src={product.image} alt={product.title} className="size-fit object-cover" />
+              {/* <CardDescription>{product.description}</CardDescription> */}
+              {/* <CardAction>{product.category}</CardAction> */}
+            </CardHeader>
+            <CardContent className="text-center mt-5 space-y-2">
+              <CardTitle>{product.title}</CardTitle>
+              <p>${product.price}</p>
+            </CardContent>
+          </Card>
         ))}
       </div>
     </>
