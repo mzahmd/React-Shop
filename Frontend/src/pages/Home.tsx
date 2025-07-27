@@ -13,7 +13,7 @@ export default function Home() {
   return (
     <>
       <Header />
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 mb-5">
         {products.map(product => (
           <Card className="w-50 h-fit mt-10 mx-10 hover:scale-105 transition-transform duration-300 shadow-lg shadow-gray-300 cursor-pointer" key={product.id}>
             <CardHeader >
