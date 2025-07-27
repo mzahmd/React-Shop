@@ -18,7 +18,7 @@ export default function Home() {
             }}
             fade
             zoom
-            delay={0.5 + index * 0.1}
+            delay={0.3 + index * 0.1}
           >
             <ProductCard
               title={product.title}
