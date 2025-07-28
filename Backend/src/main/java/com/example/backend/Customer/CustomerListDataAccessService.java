@@ -6,14 +6,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 @Service
 public class CustomerListDataAccessService implements CustomerDAO {
 
     private static final List<Customer> customers = new ArrayList<Customer>();
+    private static final Logger logger = LoggerFactory.getLogger(CustomerListDataAccessService.class);
 
     @Override
     public void registerCustomer(Customer c) {
         customers.add(c);
+        logger.info(customers.toString());
     }
 
     @Override
