@@ -16,15 +16,15 @@ public class CustomerListDataAccessService implements CustomerDAO {
     private static final Logger logger = LoggerFactory.getLogger(CustomerListDataAccessService.class);
 
     @Override
-    public void registerCustomer(Customer c) {
-        customers.add(c);
+    public void registerCustomer(Customer registerCustomer) {
+        customers.add(registerCustomer);
         logger.info(customers.toString());
     }
 
     @Override
-    public Optional<Customer> findCustomerByEmail(Customer c) {
+    public Optional<Customer> findCustomerByEmail(String email) {
         return customers.stream()
-                .filter(customer -> customer.email.equals(c.email))
+                .filter(customer -> customer.email.equals(email))
                 .findFirst();
     }
 }

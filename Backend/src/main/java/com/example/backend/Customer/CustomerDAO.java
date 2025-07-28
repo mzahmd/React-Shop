@@ -4,6 +4,6 @@ import java.util.Optional;
 
 public interface CustomerDAO {
 
-    void registerCustomer(Customer c);
-    Optional<Customer> findCustomerByEmail(Customer c);
+    void registerCustomer(Customer newCustomer);
+    Optional<Customer> findCustomerByEmail(String email);
 }

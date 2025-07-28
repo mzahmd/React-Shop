@@ -17,16 +17,16 @@ public class AuthenticationService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public void register(Customer c) {
-        if (customerDAO.findCustomerByEmail(c).isPresent()) {
+    public void register(Customer registerCustomer) {
+        if (customerDAO.findCustomerByEmail(registerCustomer.getEmail()).isPresent()) {
             throw new IllegalStateException("Customer already exists!");
         }
 
-        customerDAO.registerCustomer(new Customer(c.getEmail(), passwordEncoder.encode(c.getPassword())));
+        customerDAO.registerCustomer(new Customer(registerCustomer.getEmail(), passwordEncoder.encode(registerCustomer.getPassword())));
     }
 
     public void login(Customer logCustomer) {
-        Optional<Customer> customer = customerDAO.findCustomerByEmail(logCustomer);
+        Optional<Customer> customer = customerDAO.findCustomerByEmail(logCustomer.getEmail());
 
         if (customer.isEmpty()) {
             throw new IllegalStateException("Customer doesn't exists!");
