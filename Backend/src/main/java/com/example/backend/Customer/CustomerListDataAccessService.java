@@ -27,4 +27,9 @@ public class CustomerListDataAccessService implements CustomerDAO {
                 .filter(customer -> customer.email.equals(email))
                 .findFirst();
     }
+
+    @Override
+    public List<Customer> getAllCustomers() {
+        return customers;
+    }
 }

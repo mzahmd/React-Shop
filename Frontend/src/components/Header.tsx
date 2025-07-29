@@ -1,8 +1,13 @@
+import { Link } from "@swan-io/chicane";
+
+import { Button } from "@/components/ui/button";
 import {
   NavigationMenu,
   NavigationMenuItem,
   NavigationMenuList,
-} from "@/components/ui/navigation-menu"
+} from "@/components/ui/navigation-menu";
+import { Router } from "@/router";
+
 
 export default function Header() {
   return (
@@ -16,6 +21,11 @@ export default function Header() {
             </NavigationMenuItem>
             <NavigationMenuItem>
               About
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <Button asChild variant={"ghost"}>
+                <Link to={Router.Users()}>View Users</Link>
+              </Button>
             </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
