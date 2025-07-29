@@ -3,7 +3,7 @@ import type { User } from "@/interface/User"
 import { apiClient } from "./api-client"
 
 export async function registerCustomer(customer: User) {
-  return await apiClient.post(`/auth/register`, JSON.stringify(customer), {
+  return await apiClient.post(`/user/register`, JSON.stringify(customer), {
     headers: {
       "Content-Type": "application/json",
     },
