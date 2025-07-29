@@ -51,7 +51,7 @@ export default function Registration() {
   }
 
   return (
-    <Card className="w-full max-w-md mx-auto my-auto">
+    <Card className="w-full max-w-md mx-auto mt-10">
       <CardHeader>
         <CardTitle>Login to your account</CardTitle>
       </CardHeader>
