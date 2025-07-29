@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react"
 
-import type { Customer } from "@/interface/Customer"
+import type { User } from "@/interface/User"
 import { apiClient } from "@/services/api-client"
 
-export function useGetUsers(): Customer[] {
-  const [users, setUsers] = useState<Customer[]>([])
+export function useGetUsers(): User[] {
+  const [users, setUsers] = useState<User[]>([])
 
   useEffect(() => {
     async function fetchUsers() {
