@@ -1,12 +1,12 @@
-package com.example.backend.Customer;
+package com.example.backend.User;
 
-public class Customer {
+public class User {
 
     String email;
     String password;
     Roles role;
 
-    public Customer(String email, String password, Roles role) {
+    public User(String email, String password, Roles role) {
         this.email = email;
         this.password = password;
         this.role = role;

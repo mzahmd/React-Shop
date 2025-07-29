@@ -1,4 +1,4 @@
-package com.example.backend.Customer;
+package com.example.backend.User;
 
 public enum Roles {
     ROLE_USER,

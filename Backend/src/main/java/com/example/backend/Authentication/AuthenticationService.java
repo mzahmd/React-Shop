@@ -1,8 +1,8 @@
 package com.example.backend.Authentication;
 
-import com.example.backend.Customer.Customer;
-import com.example.backend.Customer.CustomerDAO;
-import com.example.backend.Customer.Roles;
+import com.example.backend.User.User;
+import com.example.backend.User.UserDAO;
+import com.example.backend.User.Roles;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -10,30 +10,30 @@ import java.util.Optional;
 
 @Service
 public class AuthenticationService {
-    private final CustomerDAO customerDAO;
+    private final UserDAO userDAO;
     private final PasswordEncoder passwordEncoder;
 
-    public AuthenticationService(CustomerDAO customerDAO, PasswordEncoder passwordEncoder) {
-        this.customerDAO = customerDAO;
+    public AuthenticationService(UserDAO userDAO, PasswordEncoder passwordEncoder) {
+        this.userDAO = userDAO;
         this.passwordEncoder = passwordEncoder;
     }
 
-    public void register(Customer registerCustomer) {
-        if (customerDAO.findCustomerByEmail(registerCustomer.getEmail()).isPresent()) {
+    public void register(User registerUser) {
+        if (userDAO.findCustomerByEmail(registerUser.getEmail()).isPresent()) {
             throw new IllegalStateException("Customer already exists!");
         }
 
-        customerDAO.registerCustomer(new Customer(registerCustomer.getEmail(), passwordEncoder.encode(registerCustomer.getPassword()), Roles.ROLE_USER));
+        userDAO.registerCustomer(new User(registerUser.getEmail(), passwordEncoder.encode(registerUser.getPassword()), Roles.ROLE_USER));
     }
 
-    public void login(Customer logCustomer) {
-        Optional<Customer> customer = customerDAO.findCustomerByEmail(logCustomer.getEmail());
+    public void login(User logUser) {
+        Optional<User> customer = userDAO.findCustomerByEmail(logUser.getEmail());
 
         if (customer.isEmpty()) {
             throw new IllegalStateException("Customer doesn't exists!");
         }
 
-        if (!passwordEncoder.matches(logCustomer.getPassword(), customer.get().getPassword())) {
+        if (!passwordEncoder.matches(logUser.getPassword(), customer.get().getPassword())) {
             throw new IllegalStateException("Bad credentials!");
         }
     }

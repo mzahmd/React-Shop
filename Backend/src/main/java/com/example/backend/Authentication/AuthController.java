@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.backend.Customer.Customer;
+import com.example.backend.User.User;
 
 @RestController
 @RequestMapping("/auth")
@@ -17,12 +17,12 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public void register(@RequestBody Customer c) {
+    public void register(@RequestBody User c) {
         authenticationService.register(c);
     }
 
     @PostMapping("/login")
-    public void login(@RequestBody Customer c) {
+    public void login(@RequestBody User c) {
         authenticationService.login(c);
     }
 
