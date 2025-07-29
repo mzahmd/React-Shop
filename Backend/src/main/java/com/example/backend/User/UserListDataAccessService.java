@@ -16,20 +16,20 @@ public class UserListDataAccessService implements UserDAO {
     private static final Logger logger = LoggerFactory.getLogger(UserListDataAccessService.class);
 
     @Override
-    public void registerCustomer(User registerUser) {
+    public void registerUser(User registerUser) {
         USERS.add(registerUser);
         logger.info(USERS.toString());
     }
 
     @Override
-    public Optional<User> findCustomerByEmail(String email) {
+    public Optional<User> findUserByEmail(String email) {
         return USERS.stream()
-                .filter(customer -> customer.email.equals(email))
+                .filter(user -> user.email.equals(email))
                 .findFirst();
     }
 
     @Override
-    public List<User> getAllCustomers() {
+    public List<User> getAllUsers() {
         return USERS;
     }
 }

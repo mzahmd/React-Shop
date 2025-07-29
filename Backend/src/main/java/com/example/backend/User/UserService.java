@@ -16,14 +16,14 @@ public class UserService {
     }
 
     public List<User> getAllCustomers() {
-        return userDAO.getAllCustomers();
+        return userDAO.getAllUsers();
     }
 
     public void register(User registerUser) {
-        if (userDAO.findCustomerByEmail(registerUser.getEmail()).isPresent()) {
+        if (userDAO.findUserByEmail(registerUser.getEmail()).isPresent()) {
             throw new IllegalStateException("Customer already exists!");
         }
 
-        userDAO.registerCustomer(new User(registerUser.getEmail(), passwordEncoder.encode(registerUser.getPassword()), Roles.ROLE_USER));
+        userDAO.registerUser(new User(registerUser.getEmail(), passwordEncoder.encode(registerUser.getPassword()), Roles.ROLE_USER));
     }
 }

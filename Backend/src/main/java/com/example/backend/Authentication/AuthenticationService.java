@@ -18,7 +18,7 @@ public class AuthenticationService {
     }
 
     public void login(User logUser) {
-        Optional<User> customer = userDAO.findCustomerByEmail(logUser.getEmail());
+        Optional<User> customer = userDAO.findUserByEmail(logUser.getEmail());
 
         if (customer.isEmpty()) {
             throw new IllegalStateException("Customer doesn't exists!");

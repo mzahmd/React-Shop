@@ -5,7 +5,7 @@ import java.util.Optional;
 
 public interface UserDAO {
 
-    void registerCustomer(User newUser);
-    Optional<User> findCustomerByEmail(String email);
-    List<User> getAllCustomers();
+    void registerUser(User newUser);
+    Optional<User> findUserByEmail(String email);
+    List<User> getAllUsers();
 }
