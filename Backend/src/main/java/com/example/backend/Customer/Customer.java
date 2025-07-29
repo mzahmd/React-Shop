@@ -38,6 +38,6 @@ public class Customer {
 
     @Override
     public String toString() {
-        return "Customer{" + "email=" + email + ", password=" + password + "role=" + role + "}";
+        return "Customer{" + "email=" + email + ", password=" + password + ", role=" + role + "}";
     }
 }
