@@ -4,10 +4,12 @@ public class Customer {
 
     String email;
     String password;
+    Roles role;
 
-    public Customer(String email, String password) {
+    public Customer(String email, String password, Roles role) {
         this.email = email;
         this.password = password;
+        this.role = role;
     }
 
     public String getEmail() {
@@ -26,8 +28,16 @@ public class Customer {
         this.password = password;
     }
 
+    public Roles getRole() {
+        return role;
+    }
+
+    public void setRole(Roles role) {
+        this.role = role;
+    }
+
     @Override
     public String toString() {
-        return "Customer{" + "email=" + email + ", password=" + password + '}';
+        return "Customer{" + "email=" + email + ", password=" + password + "role=" + role + "}";
     }
 }

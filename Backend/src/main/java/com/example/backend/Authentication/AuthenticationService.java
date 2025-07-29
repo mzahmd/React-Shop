@@ -2,6 +2,7 @@ package com.example.backend.Authentication;
 
 import com.example.backend.Customer.Customer;
 import com.example.backend.Customer.CustomerDAO;
+import com.example.backend.Customer.Roles;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +23,7 @@ public class AuthenticationService {
             throw new IllegalStateException("Customer already exists!");
         }
 
-        customerDAO.registerCustomer(new Customer(registerCustomer.getEmail(), passwordEncoder.encode(registerCustomer.getPassword())));
+        customerDAO.registerCustomer(new Customer(registerCustomer.getEmail(), passwordEncoder.encode(registerCustomer.getPassword()), Roles.ROLE_USER));
     }
 
     public void login(Customer logCustomer) {
