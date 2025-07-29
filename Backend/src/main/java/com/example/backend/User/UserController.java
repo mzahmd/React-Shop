@@ -3,6 +3,7 @@ package com.example.backend.User;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/user")
@@ -21,5 +22,10 @@ public class UserController {
     @PostMapping("/register")
     public void register(@RequestBody User registerUser) {
         userService.register(registerUser);
+    }
+
+    @DeleteMapping
+    public void deleteUser(@RequestBody Map<String, String> body) {
+        userService.deleteUser(body.get("email"));
     }
 }

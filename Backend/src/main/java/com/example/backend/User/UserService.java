@@ -26,4 +26,12 @@ public class UserService {
 
         userDAO.registerUser(new User(registerUser.getEmail(), passwordEncoder.encode(registerUser.getPassword()), Roles.ROLE_USER));
     }
+
+    public void deleteUser(String email) {
+        if (userDAO.findUserByEmail(email).isEmpty()) {
+            throw new IllegalStateException("Customer doesn't exists!");
+        }
+
+        userDAO.deleteUserByEmail(email);
+    }
 }

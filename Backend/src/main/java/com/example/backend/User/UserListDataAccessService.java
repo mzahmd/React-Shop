@@ -23,6 +23,10 @@ public class UserListDataAccessService implements UserDAO {
 
     @Override
     public Optional<User> findUserByEmail(String email) {
+        System.out.println("findUserByEmail");
+        System.out.println(email);
+        System.out.println(USERS);
+
         return USERS.stream()
                 .filter(user -> user.email.equals(email))
                 .findFirst();
@@ -31,5 +35,10 @@ public class UserListDataAccessService implements UserDAO {
     @Override
     public List<User> getAllUsers() {
         return USERS;
+    }
+
+    @Override
+    public void deleteUserByEmail(String email) {
+        USERS.removeIf(user -> user.email.equals(email));
     }
 }
