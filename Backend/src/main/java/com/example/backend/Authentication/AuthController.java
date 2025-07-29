@@ -16,11 +16,6 @@ public class AuthController {
         this.authenticationService = authenticationService;
     }
 
-    @PostMapping("/register")
-    public void register(@RequestBody User c) {
-        authenticationService.register(c);
-    }
-
     @PostMapping("/login")
     public void login(@RequestBody User c) {
         authenticationService.login(c);

@@ -1,8 +1,6 @@
 package com.example.backend.User;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,5 +16,10 @@ public class UserController {
     @GetMapping
     public List<User> getAllCustomers() {
         return userService.getAllCustomers();
+    }
+
+    @PostMapping("/register")
+    public void register(@RequestBody User newCustomer) {
+        userService.register(newCustomer);
     }
 }
