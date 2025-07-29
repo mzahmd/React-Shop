@@ -25,7 +25,7 @@ public class UserController {
     }
 
     @DeleteMapping
-    public void deleteUser(@RequestBody Map<String, String> body) {
-        userService.deleteUser(body.get("email"));
+    public void deleteUser(@RequestParam("email") String email) {
+        userService.deleteUser(email);
     }
 }

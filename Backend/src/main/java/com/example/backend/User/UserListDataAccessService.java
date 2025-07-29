@@ -23,10 +23,6 @@ public class UserListDataAccessService implements UserDAO {
 
     @Override
     public Optional<User> findUserByEmail(String email) {
-        System.out.println("findUserByEmail");
-        System.out.println(email);
-        System.out.println(USERS);
-
         return USERS.stream()
                 .filter(user -> user.email.equalsIgnoreCase(email))
                 .findFirst();
