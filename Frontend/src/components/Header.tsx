@@ -17,10 +17,14 @@ export default function Header() {
         <NavigationMenu>
           <NavigationMenuList className="space-x-4">
             <NavigationMenuItem>
-              Home
+              <Button asChild variant={"ghost"}>
+                <Link to={Router.Home()}>Home</Link>
+              </Button>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              About
+              <Button variant={"ghost"}>
+                About
+              </Button>
             </NavigationMenuItem>
             <NavigationMenuItem>
               <Button asChild variant={"ghost"}>
