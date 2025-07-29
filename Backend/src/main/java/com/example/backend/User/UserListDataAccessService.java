@@ -28,7 +28,7 @@ public class UserListDataAccessService implements UserDAO {
         System.out.println(USERS);
 
         return USERS.stream()
-                .filter(user -> user.email.equals(email))
+                .filter(user -> user.email.equalsIgnoreCase(email))
                 .findFirst();
     }
 
@@ -39,6 +39,6 @@ public class UserListDataAccessService implements UserDAO {
 
     @Override
     public void deleteUserByEmail(String email) {
-        USERS.removeIf(user -> user.email.equals(email));
+        USERS.removeIf(user -> user.email.equalsIgnoreCase(email));
     }
 }
