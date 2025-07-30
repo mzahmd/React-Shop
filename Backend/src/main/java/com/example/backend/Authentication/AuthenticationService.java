@@ -21,7 +21,7 @@ public class AuthenticationService {
         Optional<User> user = userDAO.findUserByEmail(authUser.getEmail());
 
         if (user.isEmpty()) {
-            throw new IllegalStateException("Customer doesn't exists!");
+            throw new IllegalStateException("User doesn't exists!");
         }
 
         if (!passwordEncoder.matches(authUser.getPassword(), user.get().getPassword())) {

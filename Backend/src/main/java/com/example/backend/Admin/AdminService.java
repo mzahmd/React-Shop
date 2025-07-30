@@ -20,7 +20,7 @@ public class AdminService {
 
     public void deleteUserByEmail(String email) {
         if (userDAO.findUserByEmail(email).isEmpty()) {
-            throw new IllegalStateException("Customer doesn't exists!");
+            throw new IllegalStateException("User doesn't exists!");
         }
 
         userDAO.deleteUserByEmail(email);
