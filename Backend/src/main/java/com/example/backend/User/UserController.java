@@ -1,9 +1,9 @@
 package com.example.backend.User;
 
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/user")
@@ -14,19 +14,9 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping
-    public List<User> getAllCustomers() {
-        return userService.getAllCustomers();
-    }
-
     @PostMapping("/register")
     public void register(@RequestBody User registerUser) {
         userService.register(registerUser);
     }
 
-    @DeleteMapping
-    @PreAuthorize("hasAuthority('ADMIN')")
-    public void deleteUser(@RequestParam("email") String email) {
-        userService.deleteUser(email);
-    }
 }

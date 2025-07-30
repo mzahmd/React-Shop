@@ -3,8 +3,6 @@ package com.example.backend.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class UserService {
     private final UserDAO userDAO;
@@ -15,10 +13,6 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public List<User> getAllCustomers() {
-        return userDAO.getAllUsers();
-    }
-
     public void register(User registerUser) {
         if (userDAO.findUserByEmail(registerUser.getEmail()).isPresent()) {
             throw new IllegalStateException("Customer already exists!");
@@ -27,11 +21,4 @@ public class UserService {
         userDAO.registerUser(new User(registerUser.getEmail(), passwordEncoder.encode(registerUser.getPassword()), Roles.ADMIN));
     }
 
-    public void deleteUser(String email) {
-        if (userDAO.findUserByEmail(email).isEmpty()) {
-            throw new IllegalStateException("Customer doesn't exists!");
-        }
-
-        userDAO.deleteUserByEmail(email);
-    }
 }
