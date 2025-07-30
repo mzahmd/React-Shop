@@ -20,6 +20,7 @@ public class SecurityFilterChainConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(HttpMethod.DELETE,"/user").authenticated()
+//                        .hasAuthority("ADMIN")
                         .anyRequest().permitAll())
                 .httpBasic(Customizer.withDefaults());
 

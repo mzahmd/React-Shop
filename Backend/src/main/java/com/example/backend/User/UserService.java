@@ -24,7 +24,7 @@ public class UserService {
             throw new IllegalStateException("Customer already exists!");
         }
 
-        userDAO.registerUser(new User(registerUser.getEmail(), passwordEncoder.encode(registerUser.getPassword()), Roles.ROLE_USER));
+        userDAO.registerUser(new User(registerUser.getEmail(), passwordEncoder.encode(registerUser.getPassword()), Roles.ADMIN));
     }
 
     public void deleteUser(String email) {
