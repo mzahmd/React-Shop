@@ -1,5 +1,6 @@
 package com.example.backend.User;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,6 +25,7 @@ public class UserController {
     }
 
     @DeleteMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public void deleteUser(@RequestParam("email") String email) {
         userService.deleteUser(email);
     }
