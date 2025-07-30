@@ -25,7 +25,7 @@ public class UserController {
     }
 
     @DeleteMapping
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void deleteUser(@RequestParam("email") String email) {
         userService.deleteUser(email);
     }
