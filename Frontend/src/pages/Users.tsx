@@ -11,10 +11,10 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { useGetUsers } from "@/hooks/useGetUsers";
-import type { User } from "@/interface/User";
+import type { IUser } from "@/interface/User";
 
 
-const columns: ColumnDef<User>[] = [
+const columns: ColumnDef<IUser>[] = [
   {
     accessorKey: "email",
     header: "Email",

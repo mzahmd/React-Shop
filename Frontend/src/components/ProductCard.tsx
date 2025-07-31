@@ -1,9 +1,9 @@
-import type { ProductDTO } from "@/interface/Product";
+import type { IProductDTO } from "@/interface/Product";
 
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 
 
-export default function ProductCard({ title, image, price }: ProductDTO) {
+export default function ProductCard({ title, image, price }: IProductDTO) {
   return (
     <Card className="w-50 h-fit mt-10 mx-10 hover:scale-105 transition-transform duration-300 shadow-lg shadow-gray-300 cursor-pointer">
       <CardHeader>

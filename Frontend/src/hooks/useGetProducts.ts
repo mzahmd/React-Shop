@@ -1,10 +1,10 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
 
-import type { Product } from "@/interface/Product"
+import type { IProduct } from "@/interface/Product"
 
-export function useGetProducts(): Product[] {
-  const [products, setProducts] = useState<Product[]>([])
+export function useGetProducts(): IProduct[] {
+  const [products, setProducts] = useState<IProduct[]>([])
 
   useEffect(() => {
     async function fetchProducts() {
