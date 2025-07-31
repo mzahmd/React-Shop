@@ -6,10 +6,13 @@ import {
   NavigationMenuItem,
   NavigationMenuList,
 } from "@/components/ui/navigation-menu";
+import useLogout from "@/hooks/useLogout";
 import { Router } from "@/router";
 
 
 export default function Header() {
+  const { logout } = useLogout();
+  
   return (
     <header className="bg-blue-500 text-white p-4">
       <div className="flex items-center justify-between">
@@ -29,6 +32,11 @@ export default function Header() {
             <NavigationMenuItem>
               <Button asChild variant={"ghost"}>
                 <Link to={Router.Users()}>View Users</Link>
+              </Button>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <Button variant={"ghost"} onClick={logout}>
+                Logout
               </Button>
             </NavigationMenuItem>
           </NavigationMenuList>
