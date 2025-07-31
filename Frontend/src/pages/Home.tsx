@@ -1,5 +1,5 @@
 import { MotionEffect } from '@/components/animate-ui/effects/motion-effect';
-import Header from "@/components/Header";
+import Navbar from '@/components/Navbar';
 import ProductCard from "@/components/ProductCard";
 import { useGetProducts } from "@/hooks/useGetProducts";
 
@@ -8,7 +8,7 @@ export default function Home() {
 
   return (
     <>
-      <Header />
+      <Navbar />
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 mb-5">
         {products.map((product, index) => (
           <MotionEffect

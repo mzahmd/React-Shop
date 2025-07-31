@@ -10,7 +10,7 @@ import useLogout from "@/hooks/useLogout";
 import { Router } from "@/router";
 
 
-export default function Header() {
+export default function Navbar() {
   const { logout } = useLogout();
 
   return (

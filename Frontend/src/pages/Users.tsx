@@ -1,7 +1,7 @@
 import { type ColumnDef, flexRender, getCoreRowModel, useReactTable, type VisibilityState, } from "@tanstack/react-table";
 import { useState } from "react";
 
-import Header from "@/components/Header";
+import Navbar from "@/components/Navbar";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -40,7 +40,7 @@ export default function Users() {
 
   return (
     <>
-      <Header />
+      <Navbar />
       <div className=" w-11/12 mx-auto mt-10 space-y-5">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
