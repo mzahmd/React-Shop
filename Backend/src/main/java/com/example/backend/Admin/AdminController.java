@@ -15,7 +15,7 @@ public class AdminController {
         this.adminService = adminService;
     }
 
-    @GetMapping
+    @GetMapping("/user")
     @PreAuthorize("hasAuthority('ADMIN')")
     public List<User> getAllUsers() {
         return adminService.getAllUsers();
