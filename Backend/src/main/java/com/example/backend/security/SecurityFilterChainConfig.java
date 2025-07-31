@@ -19,6 +19,7 @@ public class SecurityFilterChainConfig {
 
         http
                 .csrf(AbstractHttpConfigurer::disable)
+                .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/user/register", "/auth/login").permitAll()
                         .requestMatchers("/admin/**").hasAuthority("ADMIN")
