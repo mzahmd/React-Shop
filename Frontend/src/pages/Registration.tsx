@@ -23,7 +23,7 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Router } from "@/router"
-import { registerCustomer } from "@/services/authSerivce"
+import { registerUser } from "@/services/authSerivce"
 
 const registerSchema = z.object({
   email: z.email("Invalid email address"),
@@ -40,7 +40,7 @@ export default function Registration() {
   })
 
   async function onSubmit(values: z.infer<typeof registerSchema>) {
-    registerCustomer(values)
+    registerUser(values)
       .then(() => {
         localStorage.setItem("user", JSON.stringify(values.email))
         Router.push("Home")
