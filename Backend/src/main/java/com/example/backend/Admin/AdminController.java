@@ -1,6 +1,7 @@
 package com.example.backend.Admin;
 
 import com.example.backend.User.User;
+import com.example.backend.User.UserDTO;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +18,7 @@ public class AdminController {
 
     @GetMapping("/user")
     @PreAuthorize("hasAuthority('ADMIN')")
-    public List<User> getAllUsers() {
+    public List<UserDTO> getAllUsers() {
         return adminService.getAllUsers();
     }
 

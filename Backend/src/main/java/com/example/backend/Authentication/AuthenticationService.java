@@ -29,7 +29,7 @@ public class AuthenticationService {
 
         SecurityContextHolder.getContext().setAuthentication(authenticationResponse);
 
-        return new UserDTO(authenticationRequest.email(), authenticationRequest.email(), user.get().getRole());
+        return new UserDTO(authenticationRequest.email(), user.get().getRole());
     }
 
 }

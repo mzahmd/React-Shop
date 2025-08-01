@@ -2,9 +2,11 @@ package com.example.backend.Admin;
 
 import com.example.backend.User.User;
 import com.example.backend.User.UserDAO;
+import com.example.backend.User.UserDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class AdminService {
@@ -14,8 +16,10 @@ public class AdminService {
         this.userDAO = userDAO;
     }
 
-    public List<User> getAllUsers() {
-        return userDAO.getAllUsers();
+    public List<UserDTO> getAllUsers() {
+        return userDAO.getAllUsers().stream()
+                .map(user -> new UserDTO(user.getEmail(), user.getRole()))
+                .collect(Collectors.toList());
     }
 
     public void deleteUserByEmail(String email) {
