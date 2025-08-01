@@ -42,8 +42,8 @@ export default function Registration() {
   async function onSubmit(values: z.infer<typeof registerSchema>) {
     registerUser(values)
       .then(() => {
-        localStorage.setItem("user", JSON.stringify(values.email))
-        Router.push("Home")
+        Router.push("AuthLogin")
+        toast("User created")
       })
       .catch(() => {
         toast("Registration failed.")
