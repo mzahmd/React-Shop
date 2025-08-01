@@ -15,8 +15,16 @@ export default function App() {
       {match(router)
         .with({ name: "AuthLogin" }, () => <Login />)
         .with({ name: "AuthRegistration" }, () => <Registration />)
-        .with({ name: "Home" }, () => <EnsureAuth><Home /></EnsureAuth>)
-        .with({ name: "AdminUsers" }, () => <EnsureAuth><Users /></EnsureAuth>)
+        .with({ name: "Home" }, () =>
+          <EnsureAuth>
+            <Home />
+          </EnsureAuth>
+        )
+        .with({ name: "AdminUsers" }, () =>
+          <EnsureAuth>
+            <Users />
+          </EnsureAuth>
+        )
         .otherwise(() => (
           <h1>Page Not Found</h1>
         ))}
