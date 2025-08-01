@@ -1,6 +1,5 @@
 package com.example.backend.Admin;
 
-import com.example.backend.User.User;
 import com.example.backend.User.UserDAO;
 import com.example.backend.User.UserDTO;
 import org.springframework.stereotype.Service;
