@@ -17,7 +17,7 @@ public class UserController {
     }
 
     @GetMapping
-    public User getUser(@RequestParam String email) {
+    public UserDTO getUser(@RequestParam String email) {
         return userService.getUserByEmail(email);
     }
 

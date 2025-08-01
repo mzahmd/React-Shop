@@ -15,13 +15,13 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public User getUserByEmail(String email) {
+    public UserDTO getUserByEmail(String email) {
         Optional<User> user = userDAO.findUserByEmail(email);
         if (user.isEmpty()) {
             throw new IllegalStateException("User already exists!");
         }
 
-        return user.get();
+        return new UserDTO(user.get().getEmail(), user.get().getUsername());
     }
 
     public void register(User registerUser) {
