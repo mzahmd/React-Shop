@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 
-import type { IUser } from "@/interface/User"
+import type { IUser } from "@/interface/IUser"
 import { apiClient } from "@/services/api-client"
 
 export function useGetUsers(): IUser[] {

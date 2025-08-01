@@ -1,4 +1,4 @@
-import type { IUser } from "@/interface/User"
+import type { IUser } from "@/interface/IUser"
 
 import { apiClient } from "./api-client"
 

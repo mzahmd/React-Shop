@@ -1,7 +1,7 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
 
-import type { IProduct } from "@/interface/Product"
+import type { IProduct } from "@/interface/IProduct"
 
 export function useGetProducts(): IProduct[] {
   const [products, setProducts] = useState<IProduct[]>([])

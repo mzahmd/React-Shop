@@ -1,4 +1,4 @@
-import type { IProductDTO } from "@/interface/Product";
+import type { IProductDTO } from "@/interface/IProduct";
 
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 
