@@ -6,6 +6,7 @@ import com.example.backend.User.UserDTO;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -24,7 +25,9 @@ public class AuthenticationService {
         Optional<User> user = userDAO.findUserByEmail(authenticationRequest.email());
 
         Authentication authToken = UsernamePasswordAuthenticationToken.unauthenticated(authenticationRequest.email(), authenticationRequest.password());
-        authenticationManager.authenticate(authToken);
+        Authentication authenticationResponse = authenticationManager.authenticate(authToken);
+
+        SecurityContextHolder.getContext().setAuthentication(authenticationResponse);
 
         return new UserDTO(authenticationRequest.email(), authenticationRequest.email(), user.get().getRole());
     }
