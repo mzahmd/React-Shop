@@ -5,7 +5,7 @@ export default function EnsureAuth({ children }: { children: React.ReactNode }) 
   const isAuthenticated = useAuth();
 
   if (!isAuthenticated) {
-    Router.push("Login");
+    Router.push("AuthLogin");
   }
 
   return <>{children}</>;

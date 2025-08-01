@@ -1,10 +1,10 @@
-import { Router } from "@/router";
+import { Router } from "@/router"
 
 export default function useLogout() {
-  const logout = () => {
-    localStorage.removeItem("user");
-    Router.push("Login");
-  };
+  function logout() {
+    localStorage.removeItem("user")
+    Router.push("AuthLogin")
+  }
 
-  return { logout };
+  return { logout }
 }

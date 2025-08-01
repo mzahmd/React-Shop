@@ -26,11 +26,11 @@ export default function Navbar() {
             </NavigationMenuItem>
             <NavigationMenuItem>
               <Button asChild variant={"ghost"}>
-                <Link to={Router.Users()}>View Users</Link>
+                <Link to={Router.AdminUsers()}>View Users</Link>
               </Button>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <Button variant={"ghost"} onClick={logout}>
+              <Button className="cursor-pointer" variant={"ghost"} onClick={logout}>
                 Logout
               </Button>
             </NavigationMenuItem>

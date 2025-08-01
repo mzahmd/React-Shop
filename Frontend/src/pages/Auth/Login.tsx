@@ -99,7 +99,7 @@ export default function Registration() {
         </Form>
       </CardContent>
       <CardFooter>
-        <Link to={Router.Registration()} className="w-full">
+        <Link to={Router.AuthRegistration()} className="w-full">
           <Button variant="outline" className="w-full hover:cursor-pointer">
             Don't have an account ?
           </Button>

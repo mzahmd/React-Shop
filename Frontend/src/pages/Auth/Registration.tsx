@@ -92,7 +92,7 @@ export default function Registration() {
       </CardContent>
       <CardFooter>
         <CardAction>
-          <Link to={Router.Login()}>Already have an Account ?</Link>
+          <Link to={Router.AuthLogin()}>Already have an Account ?</Link>
         </CardAction>
       </CardFooter>
     </Card>
