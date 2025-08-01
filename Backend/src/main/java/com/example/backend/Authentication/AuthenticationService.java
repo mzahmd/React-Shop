@@ -3,8 +3,6 @@ package com.example.backend.Authentication;
 import com.example.backend.User.User;
 import com.example.backend.User.UserDAO;
 import com.example.backend.User.UserDTO;
-import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -20,10 +18,10 @@ public class AuthenticationService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public UserDTO login(AuthenticationRequest authenticationRequest, HttpServletRequest request) {
-        Optional<User> user = userDAO.findUserByEmail(authenticationRequest.email());
+    public UserDTO login(AuthenticationRequest request) {
+        Optional<User> user = userDAO.findUserByEmail(request.email());
 
-        if (user.isEmpty() || !passwordEncoder.matches(authenticationRequest.password(), user.get().getPassword())) {
+        if (user.isEmpty() || !passwordEncoder.matches(request.password(), user.get().getPassword())) {
             throw new IllegalStateException("Bad credentials!");
         }
 

@@ -1,7 +1,6 @@
 package com.example.backend.Authentication;
 
 import com.example.backend.User.UserDTO;
-import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,8 +18,8 @@ public class AuthenticationController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<UserDTO> login(@RequestBody AuthenticationRequest authenticationRequest, HttpServletRequest request) {
-        UserDTO userDTO = authenticationService.login(authenticationRequest, request);
+    public ResponseEntity<UserDTO> login(@RequestBody AuthenticationRequest request) {
+        UserDTO userDTO = authenticationService.login(request);
 
         return new ResponseEntity<UserDTO>(userDTO, HttpStatus.OK);
     }
