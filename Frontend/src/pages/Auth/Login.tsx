@@ -41,8 +41,8 @@ export default function Registration() {
 
   function onSubmit(values: z.infer<typeof loginSchema>) {
     loginUser(values)
-      .then(() => {
-        localStorage.setItem("user", JSON.stringify(values.email))
+      .then((response) => {
+        localStorage.setItem("user", JSON.stringify(response.data))
         Router.push("Home")
       })
       .catch(() => {
