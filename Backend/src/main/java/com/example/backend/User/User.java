@@ -11,9 +11,9 @@ public class User implements UserDetails {
 
     String email;
     String password;
-    Roles role;
+    Role role;
 
-    public User(String email, String password, Roles role) {
+    public User(String email, String password, Role role) {
         this.email = email;
         this.password = password;
         this.role = role;
@@ -38,11 +38,11 @@ public class User implements UserDetails {
         this.password = password;
     }
 
-    public Roles getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(Roles role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 

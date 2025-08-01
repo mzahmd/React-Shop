@@ -1,6 +1,6 @@
 package com.example.backend.WebConfig;
 
-import static com.example.backend.User.Roles.ADMIN;
+import static com.example.backend.User.Role.ADMIN;
 
 import com.example.backend.User.User;
 import com.example.backend.User.UserDAO;
