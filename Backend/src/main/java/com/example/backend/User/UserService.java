@@ -21,7 +21,7 @@ public class UserService {
             throw new IllegalStateException("User already exists!");
         }
 
-        return new UserDTO(user.get().getEmail(), user.get().getUsername());
+        return new UserDTO(user.get().getEmail(), user.get().getUsername(), user.get().getRole());
     }
 
     public void register(UserRequest userRequest) {
