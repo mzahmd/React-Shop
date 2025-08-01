@@ -3,7 +3,9 @@ package com.example.backend.Authentication;
 import com.example.backend.User.User;
 import com.example.backend.User.UserDAO;
 import com.example.backend.User.UserDTO;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -11,21 +13,20 @@ import java.util.Optional;
 @Service
 public class AuthenticationService {
     private final UserDAO userDAO;
-    private final PasswordEncoder passwordEncoder;
+    private final AuthenticationManager authenticationManager;
 
-    public AuthenticationService(UserDAO userDAO, PasswordEncoder passwordEncoder) {
+    public AuthenticationService(UserDAO userDAO, AuthenticationManager authenticationManager) {
         this.userDAO = userDAO;
-        this.passwordEncoder = passwordEncoder;
+        this.authenticationManager = authenticationManager;
     }
 
-    public UserDTO login(AuthenticationRequest request) {
-        Optional<User> user = userDAO.findUserByEmail(request.email());
+    public UserDTO login(AuthenticationRequest authenticationRequest) {
+        Optional<User> user = userDAO.findUserByEmail(authenticationRequest.email());
 
-        if (user.isEmpty() || !passwordEncoder.matches(request.password(), user.get().getPassword())) {
-            throw new IllegalStateException("Bad credentials!");
-        }
+        Authentication authToken = UsernamePasswordAuthenticationToken.unauthenticated(authenticationRequest.email(), authenticationRequest.password());
+        authenticationManager.authenticate(authToken);
 
-        return new UserDTO(user.get().getEmail(), user.get().getUsername(), user.get().getRole());
+        return new UserDTO(authenticationRequest.email(), authenticationRequest.email(), user.get().getRole());
     }
 
 }
