@@ -5,8 +5,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.backend.User.User;
-
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
@@ -17,8 +15,8 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public void login(@RequestBody AuthRequest authRequest) {
-        authenticationService.login(authRequest);
+    public void login(@RequestBody AuthUser authUser) {
+        authenticationService.login(authUser);
     }
 
 }

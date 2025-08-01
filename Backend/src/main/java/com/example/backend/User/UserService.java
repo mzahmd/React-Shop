@@ -24,14 +24,14 @@ public class UserService {
         return new UserDTO(user.get().getEmail(), user.get().getUsername());
     }
 
-    public void register(User registerUser) {
-        if (userDAO.findUserByEmail(registerUser.getEmail()).isPresent()) {
+    public void register(UserRequest userRequest) {
+        if (userDAO.findUserByEmail(userRequest.email()).isPresent()) {
             throw new IllegalStateException("User already exists!");
         }
 
         userDAO.registerUser(new User(
-                registerUser.getEmail(),
-                passwordEncoder.encode(registerUser.getPassword()),
+                userRequest.email(),
+                passwordEncoder.encode(userRequest.password()),
                 Roles.USER)
         );
     }

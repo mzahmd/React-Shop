@@ -17,14 +17,14 @@ public class AuthenticationService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public void login(AuthRequest authRequest) {
-        Optional<User> user = userDAO.findUserByEmail(authRequest.email());
+    public void login(AuthUser authUser) {
+        Optional<User> user = userDAO.findUserByEmail(authUser.email());
 
         if (user.isEmpty()) {
             throw new IllegalStateException("User doesn't exists!");
         }
 
-        if (!passwordEncoder.matches(authRequest.password(), user.get().getPassword())) {
+        if (!passwordEncoder.matches(authUser.password(), user.get().getPassword())) {
             throw new IllegalStateException("Bad credentials!");
         }
     }
