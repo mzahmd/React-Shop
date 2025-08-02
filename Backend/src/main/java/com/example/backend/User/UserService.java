@@ -32,7 +32,7 @@ public class UserService {
         userDAO.registerUser(new User(
                 userRequest.email(),
                 passwordEncoder.encode(userRequest.password()),
-                Role.ADMIN)
+                Role.USER)
         );
     }
 

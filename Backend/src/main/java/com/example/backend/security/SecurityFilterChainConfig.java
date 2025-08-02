@@ -26,8 +26,7 @@ public class SecurityFilterChainConfig {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/user/register", "/auth/*").permitAll()
                         .requestMatchers("/admin/**").hasAuthority("ADMIN")
-                        .anyRequest().authenticated())
-                .formLogin(Customizer.withDefaults());
+                        .anyRequest().authenticated());
 
         return http.build();
 

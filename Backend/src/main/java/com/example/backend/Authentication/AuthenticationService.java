@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpSession;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
@@ -29,13 +30,15 @@ public class AuthenticationService {
     public UserDTO login(AuthenticationRequest authenticationRequest, HttpServletRequest request) {
         Optional<User> user = userDAO.findUserByEmail(authenticationRequest.email());
 
-        Authentication authToken = UsernamePasswordAuthenticationToken.unauthenticated(authenticationRequest.email(), authenticationRequest.password());
-        Authentication authenticationResponse = authenticationManager.authenticate(authToken);
+        Authentication token = UsernamePasswordAuthenticationToken.unauthenticated(authenticationRequest.email(), authenticationRequest.password());
+        Authentication authentication = authenticationManager.authenticate(token);
 
-        SecurityContextHolder.getContext().setAuthentication(authenticationResponse);
+        SecurityContext context = SecurityContextHolder.createEmptyContext();
+        context.setAuthentication(authentication);
+        SecurityContextHolder.setContext(context);
 
         HttpSession session = request.getSession(true);
-        session.setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY, SecurityContextHolder.getContext());
+        session.setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY, context);
 
         return new UserDTO(authenticationRequest.email(), user.get().getRole());
     }
