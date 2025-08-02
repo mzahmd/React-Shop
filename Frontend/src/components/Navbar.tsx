@@ -6,12 +6,11 @@ import {
   NavigationMenuItem,
   NavigationMenuList,
 } from "@/components/ui/navigation-menu";
-import useLogout from "@/hooks/useLogout";
+import { logout } from "@/lib/utils";
 import { Router } from "@/router";
 
 
 export default function Navbar() {
-  const { logout } = useLogout();
 
   return (
     <header className="bg-blue-500 text-white p-4">
