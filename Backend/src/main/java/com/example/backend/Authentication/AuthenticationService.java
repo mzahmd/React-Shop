@@ -1,7 +1,6 @@
 package com.example.backend.Authentication;
 
 import com.example.backend.User.User;
-import com.example.backend.User.UserDAO;
 import com.example.backend.User.UserDTO;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -15,23 +14,19 @@ import org.springframework.security.web.authentication.logout.SecurityContextLog
 import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
 public class AuthenticationService {
-    private final UserDAO userDAO;
     private final AuthenticationManager authenticationManager;
 
-    public AuthenticationService(UserDAO userDAO, AuthenticationManager authenticationManager) {
-        this.userDAO = userDAO;
+    public AuthenticationService(AuthenticationManager authenticationManager) {
         this.authenticationManager = authenticationManager;
     }
 
     public UserDTO login(AuthenticationRequest authenticationRequest, HttpServletRequest request) {
-        Optional<User> user = userDAO.findUserByEmail(authenticationRequest.email());
-
         Authentication token = UsernamePasswordAuthenticationToken.unauthenticated(authenticationRequest.email(), authenticationRequest.password());
         Authentication authentication = authenticationManager.authenticate(token);
+
+        User loggedUser = (User) authentication.getPrincipal();
 
         SecurityContext context = SecurityContextHolder.createEmptyContext();
         context.setAuthentication(authentication);
@@ -40,7 +35,7 @@ public class AuthenticationService {
         HttpSession session = request.getSession(true);
         session.setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY, context);
 
-        return new UserDTO(authenticationRequest.email(), user.get().getRole());
+        return new UserDTO(loggedUser.getEmail(), loggedUser.getRole());
     }
 
     public void logout(HttpServletRequest request, HttpServletResponse response) {
