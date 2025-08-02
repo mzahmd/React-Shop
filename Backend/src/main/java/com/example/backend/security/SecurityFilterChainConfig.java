@@ -21,6 +21,7 @@ public class SecurityFilterChainConfig {
                 .cors(Customizer.withDefaults())
                 .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(session -> session
+                        .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
                         .maximumSessions(1)
                         .maxSessionsPreventsLogin(true))
                 .authorizeHttpRequests(authorize -> authorize
