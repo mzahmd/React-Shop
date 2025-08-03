@@ -27,7 +27,6 @@ const columns: ColumnDef<IUser>[] = [
 
 export default function Users() {
   const users = useGetUsers();
-  console.log(users);
   
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({})
   const table = useReactTable({
