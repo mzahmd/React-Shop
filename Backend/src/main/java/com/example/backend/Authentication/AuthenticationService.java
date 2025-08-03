@@ -1,6 +1,5 @@
 package com.example.backend.Authentication;
 
-import com.example.backend.User.User;
 import com.example.backend.User.UserDTO;
 import com.example.backend.User.UserDetailsImpl;
 import jakarta.servlet.http.HttpServletRequest;
