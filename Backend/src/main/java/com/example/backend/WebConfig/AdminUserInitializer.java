@@ -1,7 +1,6 @@
 package com.example.backend.WebConfig;
 
-import static com.example.backend.User.Role.ADMIN;
-
+import com.example.backend.User.Role;
 import com.example.backend.User.User;
 import com.example.backend.User.UserDAO;
 import org.springframework.boot.CommandLineRunner;
@@ -18,7 +17,7 @@ public class AdminUserInitializer {
             userDAO.registerUser(new User(
                     "admin@example.com",
                     passwordEncoder.encode("password"),
-                    ADMIN
+                    Role.ADMIN
             ));
         };
     }
