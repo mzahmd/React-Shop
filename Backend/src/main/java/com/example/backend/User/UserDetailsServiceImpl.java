@@ -19,10 +19,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Optional<User> user = userDAO.findUserByEmail(email);
 
-        if(user.isEmpty()) {
+        if (user.isEmpty()) {
             throw new UsernameNotFoundException("User not found");
         }
 
-        return user.get();
+        return new UserDetailsImpl(user.get().getEmail(), user.get().getPassword(), user.get().getRole());
     }
 }

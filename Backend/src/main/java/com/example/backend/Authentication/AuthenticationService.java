@@ -2,6 +2,7 @@ package com.example.backend.Authentication;
 
 import com.example.backend.User.User;
 import com.example.backend.User.UserDTO;
+import com.example.backend.User.UserDetailsImpl;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
@@ -26,7 +27,7 @@ public class AuthenticationService {
         Authentication token = UsernamePasswordAuthenticationToken.unauthenticated(authenticationRequest.email(), authenticationRequest.password());
         Authentication authentication = authenticationManager.authenticate(token);
 
-        User loggedUser = (User) authentication.getPrincipal();
+        UserDetailsImpl loggedUser = (UserDetailsImpl) authentication.getPrincipal();
 
         SecurityContext context = SecurityContextHolder.createEmptyContext();
         context.setAuthentication(authentication);
@@ -35,7 +36,7 @@ public class AuthenticationService {
         HttpSession session = request.getSession(true);
         session.setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY, context);
 
-        return new UserDTO(loggedUser.getEmail(), loggedUser.getRole());
+        return new UserDTO(loggedUser.getUsername(), loggedUser.getRole());
     }
 
     public void logout(HttpServletRequest request, HttpServletResponse response) {

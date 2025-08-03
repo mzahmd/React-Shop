@@ -1,13 +1,6 @@
 package com.example.backend.User;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
-import java.util.Collection;
-import java.util.List;
-
-public class User implements UserDetails {
+public class User {
 
     String email;
     String password;
@@ -17,9 +10,6 @@ public class User implements UserDetails {
         this.email = email;
         this.password = password;
         this.role = role;
-    }
-
-    public User() {
     }
 
     public String getEmail() {
@@ -44,38 +34,6 @@ public class User implements UserDetails {
 
     public void setRole(Role role) {
         this.role = role;
-    }
-
-    @Override
-    public String getUsername() {
-        return this.getEmail();
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return UserDetails.super.isAccountNonExpired();
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return UserDetails.super.isAccountNonLocked();
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return UserDetails.super.isCredentialsNonExpired();
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return UserDetails.super.isEnabled();
-    }
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        SimpleGrantedAuthority authority = new SimpleGrantedAuthority(role.name());
-
-        return List.of(authority);
     }
 
     @Override
