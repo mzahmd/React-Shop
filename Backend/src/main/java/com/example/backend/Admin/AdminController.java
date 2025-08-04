@@ -23,7 +23,7 @@ public class AdminController {
 
     @DeleteMapping("/user")
     @PreAuthorize("hasAuthority('ADMIN')")
-    public void deleteAdmin(@RequestParam("email") String email) {
+    public void deleteUser(@RequestParam("email") String email) {
         adminService.deleteUserByEmail(email);
     }
 }
