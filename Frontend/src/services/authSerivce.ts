@@ -1,3 +1,5 @@
+import { Router } from "@/router"
+
 import { apiClient } from "./api-client"
 interface IRequestUser {
   email: string
@@ -17,5 +19,12 @@ export async function loginUser(user: IRequestUser) {
     headers: {
       "Content-Type": "application/json",
     },
+  })
+}
+
+export function logoutUser() {
+  apiClient.post("/auth/logout").then(() => {
+    localStorage.removeItem("user")
+    Router.push("AuthLogin")
   })
 }

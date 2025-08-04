@@ -6,8 +6,8 @@ import {
   NavigationMenuItem,
   NavigationMenuList,
 } from "@/components/ui/navigation-menu";
-import { logout } from "@/lib/utils";
 import { Router } from "@/router";
+import { logoutUser } from "@/services/authSerivce";
 
 
 export default function Navbar() {
@@ -29,7 +29,7 @@ export default function Navbar() {
               </Button>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <Button className="cursor-pointer" variant={"ghost"} onClick={logout}>
+              <Button className="cursor-pointer" variant={"ghost"} onClick={logoutUser}>
                 Logout
               </Button>
             </NavigationMenuItem>

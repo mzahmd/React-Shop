@@ -10,7 +10,8 @@ export function useGetUsers(): IUser[] {
     async function fetchUsers() {
       try {
         const response = await apiClient.get("/admin/user")
-        setUsers(response.data)
+        const user = response.data as IUser[]
+        setUsers(user)
       } catch (error) {
         console.error("Error fetching users:", error)
         setUsers([])
