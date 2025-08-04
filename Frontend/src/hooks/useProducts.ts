@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 
 import type { IProduct } from "@/interface/IProduct"
 
-export function useGetProducts(): IProduct[] {
+export function useProducts(): IProduct[] {
   const [products, setProducts] = useState<IProduct[]>([])
 
   useEffect(() => {
