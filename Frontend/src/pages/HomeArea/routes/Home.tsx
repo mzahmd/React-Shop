@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 mb-5">
+      <div className="flex flex-wrap flex-row justify-center">
         {products.map((product, index) => (
           <MotionEffect
             key={product.id}
