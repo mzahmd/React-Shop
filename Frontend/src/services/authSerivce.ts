@@ -1,4 +1,4 @@
-import { AuthRouter } from "@/pages/Auth/router"
+import { AuthRouter } from "@/pages/AuthArea/router"
 
 import { apiClient } from "./api-client"
 interface IRequestUser {

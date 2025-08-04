@@ -1,9 +1,9 @@
 import { match } from "ts-pattern"
 
 import EnsureAuth from "./components/EnsureAuth"
-import { AdminArea } from "./pages/AdminArea/AdminArea"
-import { AuthArea } from "./pages/Auth/AuthArea"
-import { HomeArea } from "./pages/HomeArea/HomeArea"
+import { AdminArea } from "./pages/AdminArea/Index"
+import { AuthArea } from "./pages/AuthArea/Index"
+import { HomeArea } from "./pages/HomeArea/Index"
 import { Router } from "./router"
 
 export default function App() {
