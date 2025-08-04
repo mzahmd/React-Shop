@@ -22,8 +22,9 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { Router } from "@/router"
 import { registerUser } from "@/services/authSerivce"
+
+import { AuthRouter } from "../router"
 
 const registerSchema = z.object({
   email: z.email("Invalid email address"),
@@ -42,7 +43,7 @@ export default function Registration() {
   async function onSubmit(values: z.infer<typeof registerSchema>) {
     registerUser(values)
       .then(() => {
-        Router.push("AuthLogin")
+        AuthRouter.push("Login")
         toast("User created")
       })
       .catch(() => {
@@ -92,7 +93,7 @@ export default function Registration() {
       </CardContent>
       <CardFooter>
         <CardAction>
-          <Link to={Router.AuthLogin()}>Already have an Account ?</Link>
+          <Link to={AuthRouter.Login()}>Already have an Account ?</Link>
         </CardAction>
       </CardFooter>
     </Card>

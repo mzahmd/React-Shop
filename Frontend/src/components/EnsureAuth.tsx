@@ -1,11 +1,11 @@
 import { useAuth } from "@/hooks/useAuth";
-import { Router } from "@/router";
+import { AuthRouter } from "@/pages/Auth/router";
 
 export default function EnsureAuth({ children }: { children: React.ReactNode }) {
   const isAuthenticated = useAuth();
 
   if (!isAuthenticated) {
-    Router.push("AuthLogin");
+    AuthRouter.push("Login");
   }
 
   return <>{children}</>;

@@ -24,6 +24,8 @@ import { Input } from "@/components/ui/input"
 import { Router } from "@/router"
 import { loginUser } from "@/services/authSerivce"
 
+import { AuthRouter } from "../router"
+
 
 const loginSchema = z.object({
   email: z.email("Invalid email address"),
@@ -99,7 +101,7 @@ export default function Registration() {
         </Form>
       </CardContent>
       <CardFooter>
-        <Link to={Router.AuthRegistration()} className="w-full">
+        <Link to={AuthRouter.Register()} className="w-full">
           <Button variant="outline" className="w-full hover:cursor-pointer">
             Don't have an account ?
           </Button>

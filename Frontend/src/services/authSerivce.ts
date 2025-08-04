@@ -1,4 +1,4 @@
-import { Router } from "@/router"
+import { AuthRouter } from "@/pages/Auth/router"
 
 import { apiClient } from "./api-client"
 interface IRequestUser {
@@ -25,6 +25,6 @@ export async function loginUser(user: IRequestUser) {
 export function logoutUser() {
   apiClient.post("/auth/logout").then(() => {
     localStorage.removeItem("user")
-    Router.push("AuthLogin")
+    AuthRouter.push("Login")
   })
 }

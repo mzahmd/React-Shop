@@ -1,20 +1,18 @@
 import { match } from "ts-pattern"
 
 import EnsureAuth from "./components/EnsureAuth"
-import Users from "./pages/Admin/Users"
-import Login from "./pages/Auth/Login"
-import Registration from "./pages/Auth/Registration"
-import Home from "./pages/Home/Home"
+import Users from "./pages/AdminArea/Users"
+import { AuthArea } from "./pages/Auth/AuthArea"
+import Home from "./pages/HomeArea/Home"
 import { Router } from "./router"
 
 export default function App() {
-  const router = Router.useRoute(["Home", "AuthLogin", "AuthRegistration", "AdminUsers"])
+  const router = Router.useRoute(["Home", "Auth", "AdminUsers"])
 
   return (
     <>
       {match(router)
-        .with({ name: "AuthLogin" }, () => <Login />)
-        .with({ name: "AuthRegistration" }, () => <Registration />)
+        .with({ name: "Auth" }, () => <AuthArea />)
         .with({ name: "Home" }, () =>
           <EnsureAuth>
             <Home />
