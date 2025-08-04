@@ -29,6 +29,11 @@ export default function Navbar() {
               </Button>
             </NavigationMenuItem>
             <NavigationMenuItem>
+              <Button asChild variant={"ghost"}>
+                <Link to={Router.AdminUsers()}>Profile</Link>
+              </Button>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
               <Button className="cursor-pointer" variant={"ghost"} onClick={logoutUser}>
                 Logout
               </Button>
