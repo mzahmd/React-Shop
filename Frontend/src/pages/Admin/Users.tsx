@@ -10,7 +10,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { useGetUsers } from "@/hooks/useGetUsers";
+import { useGetUsers } from "@/hooks/useUsers";
 import type { IUser } from "@/interface/IUser";
 
 
