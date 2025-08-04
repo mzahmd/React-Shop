@@ -23,7 +23,7 @@ public class AdminController {
 
     @GetMapping("/user")
     @PreAuthorize("hasAuthority('ADMIN')")
-    public List<UserDTO> getUser(@RequestParam String email) {
+    public UserDTO getUser(@RequestParam String email) {
         return adminService.getUserByEmail(email);
     }
 
