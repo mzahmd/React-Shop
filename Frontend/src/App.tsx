@@ -1,13 +1,13 @@
 import { match } from "ts-pattern"
 
 import EnsureAuth from "./components/EnsureAuth"
-import Users from "./pages/AdminArea/Users"
+import { AdminArea } from "./pages/AdminArea/AdminArea"
 import { AuthArea } from "./pages/Auth/AuthArea"
-import Home from "./pages/HomeArea/Home"
+import { HomeArea } from "./pages/HomeArea/HomeArea"
 import { Router } from "./router"
 
 export default function App() {
-  const router = Router.useRoute(["Home", "Auth", "AdminUsers"])
+  const router = Router.useRoute(["Home", "Auth", "Admin"])
 
   return (
     <>
@@ -15,12 +15,12 @@ export default function App() {
         .with({ name: "Auth" }, () => <AuthArea />)
         .with({ name: "Home" }, () =>
           <EnsureAuth>
-            <Home />
+            <HomeArea />
           </EnsureAuth>
         )
-        .with({ name: "AdminUsers" }, () =>
+        .with({ name: "Admin" }, () =>
           <EnsureAuth>
-            <Users />
+            <AdminArea />
           </EnsureAuth>
         )
         .otherwise(() => (

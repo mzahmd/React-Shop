@@ -6,9 +6,9 @@ import {
   NavigationMenuItem,
   NavigationMenuList,
 } from "@/components/ui/navigation-menu";
+import { AdminRouter } from "@/pages/AdminArea/router";
 import { Router } from "@/router";
 import { logoutUser } from "@/services/authSerivce";
-
 
 export default function Navbar() {
 
@@ -25,14 +25,14 @@ export default function Navbar() {
             </NavigationMenuItem>
             <NavigationMenuItem>
               <Button asChild variant={"ghost"}>
-                <Link to={Router.AdminUsers()}>View Users</Link>
+                <Link to={AdminRouter.UsersList()}>View Users</Link>
               </Button>
             </NavigationMenuItem>
-            <NavigationMenuItem>
+            {/* <NavigationMenuItem>
               <Button asChild variant={"ghost"}>
-                <Link to={Router.AdminUsers()}>Profile</Link>
+                <Link to={Router.()}>Profile</Link>
               </Button>
-            </NavigationMenuItem>
+            </NavigationMenuItem> */}
             <NavigationMenuItem>
               <Button className="cursor-pointer" variant={"ghost"} onClick={logoutUser}>
                 Logout
