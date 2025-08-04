@@ -28,6 +28,12 @@ public class UserService {
         return new UserDTO(userDetails.getUsername(), userDetails.getRole());
     }
 
+    public boolean isUserAuthenticated() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        return authentication != null && authentication.isAuthenticated();
+    }
+
     public void register(UserRequest userRequest) {
         if (userDAO.findUserByEmail(userRequest.email()).isPresent()) {
             throw new IllegalStateException("User already exists!");

@@ -20,6 +20,11 @@ public class UserController {
         return userService.getAuthenticatedUser();
     }
 
+    @GetMapping("/authenticated")
+    public boolean isUserAuthenticated() {
+        return userService.isUserAuthenticated();
+    }
+
     @PostMapping("/register")
     public void register(@RequestBody UserRequest userRequest) {
         userService.register(userRequest);
