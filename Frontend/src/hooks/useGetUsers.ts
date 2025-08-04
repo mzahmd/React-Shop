@@ -9,7 +9,7 @@ export function useGetUsers(): IUser[] {
   useEffect(() => {
     async function fetchUsers() {
       try {
-        const response = await apiClient.get("/admin/user")
+        const response = await apiClient.get("/admin/users")
         const user = response.data as IUser[]
         setUsers(user)
       } catch (error) {

@@ -1,10 +1,12 @@
 package com.example.backend.Admin;
 
+import com.example.backend.User.User;
 import com.example.backend.User.UserDAO;
 import com.example.backend.User.UserDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -21,6 +23,16 @@ public class AdminService {
                 .collect(Collectors.toList());
     }
 
+    public UserDTO getUserByEmail(String email) {
+        Optional<User> user = userDAO.findUserByEmail(email);
+
+        if (user.isEmpty()) {
+            throw new IllegalStateException("User already exists!");
+        }
+
+        return new UserDTO(user.get().getEmail(), user.get().getRole());
+    }
+
     public void deleteUserByEmail(String email) {
         if (userDAO.findUserByEmail(email).isEmpty()) {
             throw new IllegalStateException("User doesn't exists!");
@@ -28,4 +40,5 @@ public class AdminService {
 
         userDAO.deleteUserByEmail(email);
     }
+
 }

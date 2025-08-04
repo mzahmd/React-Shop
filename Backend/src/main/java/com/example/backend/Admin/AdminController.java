@@ -15,10 +15,16 @@ public class AdminController {
         this.adminService = adminService;
     }
 
-    @GetMapping("/user")
+    @GetMapping("/users")
     @PreAuthorize("hasAuthority('ADMIN')")
     public List<UserDTO> getAllUsers() {
         return adminService.getAllUsers();
+    }
+
+    @GetMapping("/user")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public List<UserDTO> getUser(@RequestParam String email) {
+        return adminService.getUserByEmail(email);
     }
 
     @DeleteMapping("/user")
