@@ -1,15 +1,15 @@
 'use client';
 
-import * as React from 'react';
 import {
   AnimatePresence,
-  motion,
-  useInView,
   type HTMLMotionProps,
-  type UseInViewOptions,
+  motion,
   type Transition,
+  useInView,
+  type UseInViewOptions,
   type Variant,
 } from 'motion/react';
+import * as React from 'react';
 
 type MotionEffectProps = HTMLMotionProps<'div'> & {
   children: React.ReactNode;

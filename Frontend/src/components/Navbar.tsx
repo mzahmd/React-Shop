@@ -7,7 +7,7 @@ import {
   NavigationMenuList,
 } from "@/components/ui/navigation-menu";
 import { AdminRouter } from "@/pages/AdminArea/router";
-import { Router } from "@/router";
+import { HomeRouter } from "@/pages/HomeArea/router";
 import { logoutUser } from "@/services/authSerivce";
 
 export default function Navbar() {
@@ -20,7 +20,7 @@ export default function Navbar() {
           <NavigationMenuList className="space-x-4">
             <NavigationMenuItem>
               <Button asChild variant={"ghost"}>
-                <Link to={Router.Home()}>Home</Link>
+                <Link to={HomeRouter.Home()}>Home</Link>
               </Button>
             </NavigationMenuItem>
             <NavigationMenuItem>

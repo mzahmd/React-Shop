@@ -1,7 +1,7 @@
 import { match } from "ts-pattern"
 
 import { HomeRouter } from "./router"
-import Home from "./router/Home"
+import Home from "./routes/Home"
 
 export function HomeArea() {
   const router = HomeRouter.useRoute(["Home"])

@@ -1,7 +1,7 @@
 import { match } from "ts-pattern"
 
 import { AdminRouter } from "./router"
-import UsersList from "./router/UsersList"
+import UsersList from "./routes/UsersList"
 
 export function AdminArea() {
   const router = AdminRouter.useRoute(["UsersList"])
