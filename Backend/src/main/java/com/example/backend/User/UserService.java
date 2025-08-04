@@ -1,9 +1,10 @@
 package com.example.backend.User;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 public class UserService {
@@ -15,13 +16,16 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public UserDTO getUserByEmail(String email) {
-        Optional<User> user = userDAO.findUserByEmail(email);
-        if (user.isEmpty()) {
-            throw new IllegalStateException("User already exists!");
+    public UserDTO getAuthenticatedUser() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        if (authentication == null || !authentication.isAuthenticated()) {
+            throw new UsernameNotFoundException("Your not logged in");
         }
 
-        return new UserDTO(user.get().getEmail(), user.get().getRole());
+        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+
+        return new UserDTO(userDetails.getUsername(), userDetails.getRole());
     }
 
     public void register(UserRequest userRequest) {
