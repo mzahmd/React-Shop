@@ -1,18 +1,30 @@
-import { type ColumnDef, flexRender, getCoreRowModel, useReactTable, type VisibilityState, } from "@tanstack/react-table";
-import { useState } from "react";
+import {
+  type ColumnDef,
+  flexRender,
+  getCoreRowModel,
+  useReactTable,
+  type VisibilityState,
+} from "@tanstack/react-table"
+import { useState } from "react"
 
-import Navbar from "@/components/Navbar";
-import { Button } from "@/components/ui/button";
+import Navbar from "@/components/Navbar"
+import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { useGetUsers } from "@/hooks/useUsers";
-import type { IUser } from "@/interface/IUser";
-
+} from "@/components/ui/dropdown-menu"
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table"
+import { useGetUsers } from "@/hooks/useUsers"
+import type { IUser } from "@/interface/IUser"
 
 const columns: ColumnDef<IUser>[] = [
   {
@@ -26,8 +38,8 @@ const columns: ColumnDef<IUser>[] = [
 ]
 
 export default function Users() {
-  const users = useGetUsers();
-  
+  const users = useGetUsers()
+
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({})
   const table = useReactTable({
     data: users,
@@ -35,7 +47,7 @@ export default function Users() {
     getCoreRowModel: getCoreRowModel(),
     onColumnVisibilityChange: setColumnVisibility,
     state: {
-      columnVisibility
+      columnVisibility,
     },
   })
 
@@ -52,9 +64,7 @@ export default function Users() {
           <DropdownMenuContent align="end">
             {table
               .getAllColumns()
-              .filter(
-                (column) => column.getCanHide()
-              )
+              .filter((column) => column.getCanHide())
               .map((column) => {
                 return (
                   <DropdownMenuCheckboxItem
@@ -82,9 +92,9 @@ export default function Users() {
                         {header.isPlaceholder
                           ? null
                           : flexRender(
-                            header.column.columnDef.header,
-                            header.getContext()
-                          )}
+                              header.column.columnDef.header,
+                              header.getContext(),
+                            )}
                       </TableHead>
                     )
                   })}
@@ -100,14 +110,20 @@ export default function Users() {
                   >
                     {row.getVisibleCells().map((cell) => (
                       <TableCell key={cell.id}>
-                        {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                        {flexRender(
+                          cell.column.columnDef.cell,
+                          cell.getContext(),
+                        )}
                       </TableCell>
                     ))}
                   </TableRow>
                 ))
               ) : (
                 <TableRow>
-                  <TableCell colSpan={columns.length} className="h-24 text-center">
+                  <TableCell
+                    colSpan={columns.length}
+                    className="h-24 text-center"
+                  >
                     No results.
                   </TableCell>
                 </TableRow>
@@ -117,5 +133,5 @@ export default function Users() {
         </div>
       </div>
     </>
-  );
+  )
 }

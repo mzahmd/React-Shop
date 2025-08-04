@@ -13,16 +13,16 @@ export default function App() {
     <>
       {match(router)
         .with({ name: "Auth" }, () => <AuthArea />)
-        .with({ name: "Home" }, () =>
+        .with({ name: "Home" }, () => (
           <EnsureAuth>
             <HomeArea />
           </EnsureAuth>
-        )
-        .with({ name: "Admin" }, () =>
+        ))
+        .with({ name: "Admin" }, () => (
           <EnsureAuth>
             <AdminArea />
           </EnsureAuth>
-        )
+        ))
         .otherwise(() => (
           <h1>Page Not Found</h1>
         ))}

@@ -12,8 +12,7 @@ export function HomeArea() {
         .with({ name: "Home" }, () => <Home />)
         .otherwise(() => (
           <>Home Page not found</>
-        ))
-      }
+        ))}
     </>
   )
 }

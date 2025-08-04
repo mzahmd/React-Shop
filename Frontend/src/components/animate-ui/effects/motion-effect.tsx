@@ -1,4 +1,4 @@
-'use client';
+"use client"
 
 import {
   AnimatePresence,
@@ -8,41 +8,41 @@ import {
   useInView,
   type UseInViewOptions,
   type Variant,
-} from 'motion/react';
-import * as React from 'react';
+} from "motion/react"
+import * as React from "react"
 
-type MotionEffectProps = HTMLMotionProps<'div'> & {
-  children: React.ReactNode;
-  className?: string;
-  transition?: Transition;
-  delay?: number;
-  inView?: boolean;
-  inViewMargin?: UseInViewOptions['margin'];
-  inViewOnce?: boolean;
-  blur?: string | boolean;
+type MotionEffectProps = HTMLMotionProps<"div"> & {
+  children: React.ReactNode
+  className?: string
+  transition?: Transition
+  delay?: number
+  inView?: boolean
+  inViewMargin?: UseInViewOptions["margin"]
+  inViewOnce?: boolean
+  blur?: string | boolean
   slide?:
     | {
-        direction?: 'up' | 'down' | 'left' | 'right';
-        offset?: number;
+        direction?: "up" | "down" | "left" | "right"
+        offset?: number
       }
-    | boolean;
-  fade?: { initialOpacity?: number; opacity?: number } | boolean;
+    | boolean
+  fade?: { initialOpacity?: number; opacity?: number } | boolean
   zoom?:
     | {
-        initialScale?: number;
-        scale?: number;
+        initialScale?: number
+        scale?: number
       }
-    | boolean;
-};
+    | boolean
+}
 
 function MotionEffect({
   ref,
   children,
   className,
-  transition = { type: 'spring', stiffness: 200, damping: 20 },
+  transition = { type: "spring", stiffness: 200, damping: 20 },
   delay = 0,
   inView = false,
-  inViewMargin = '0px',
+  inViewMargin = "0px",
   inViewOnce = true,
   blur = false,
   slide = false,
@@ -50,45 +50,44 @@ function MotionEffect({
   zoom = false,
   ...props
 }: MotionEffectProps) {
-  const localRef = React.useRef<HTMLDivElement>(null);
-  React.useImperativeHandle(ref, () => localRef.current as HTMLDivElement);
+  const localRef = React.useRef<HTMLDivElement>(null)
+  React.useImperativeHandle(ref, () => localRef.current as HTMLDivElement)
 
   const inViewResult = useInView(localRef, {
     once: inViewOnce,
     margin: inViewMargin,
-  });
-  const isInView = !inView || inViewResult;
+  })
+  const isInView = !inView || inViewResult
 
-  const hiddenVariant: Variant = {};
-  const visibleVariant: Variant = {};
+  const hiddenVariant: Variant = {}
+  const visibleVariant: Variant = {}
 
   if (slide) {
-    const offset = typeof slide === 'boolean' ? 100 : (slide.offset ?? 100);
+    const offset = typeof slide === "boolean" ? 100 : (slide.offset ?? 100)
     const direction =
-      typeof slide === 'boolean' ? 'left' : (slide.direction ?? 'left');
-    const axis = direction === 'up' || direction === 'down' ? 'y' : 'x';
+      typeof slide === "boolean" ? "left" : (slide.direction ?? "left")
+    const axis = direction === "up" || direction === "down" ? "y" : "x"
     hiddenVariant[axis] =
-      direction === 'left' || direction === 'up' ? -offset : offset;
-    visibleVariant[axis] = 0;
+      direction === "left" || direction === "up" ? -offset : offset
+    visibleVariant[axis] = 0
   }
 
   if (fade) {
     hiddenVariant.opacity =
-      typeof fade === 'boolean' ? 0 : (fade.initialOpacity ?? 0);
-    visibleVariant.opacity =
-      typeof fade === 'boolean' ? 1 : (fade.opacity ?? 1);
+      typeof fade === "boolean" ? 0 : (fade.initialOpacity ?? 0)
+    visibleVariant.opacity = typeof fade === "boolean" ? 1 : (fade.opacity ?? 1)
   }
 
   if (zoom) {
     hiddenVariant.scale =
-      typeof zoom === 'boolean' ? 0.5 : (zoom.initialScale ?? 0.5);
-    visibleVariant.scale = typeof zoom === 'boolean' ? 1 : (zoom.scale ?? 1);
+      typeof zoom === "boolean" ? 0.5 : (zoom.initialScale ?? 0.5)
+    visibleVariant.scale = typeof zoom === "boolean" ? 1 : (zoom.scale ?? 1)
   }
 
   if (blur) {
     hiddenVariant.filter =
-      typeof blur === 'boolean' ? 'blur(10px)' : `blur(${blur})`;
-    visibleVariant.filter = 'blur(0px)';
+      typeof blur === "boolean" ? "blur(10px)" : `blur(${blur})`
+    visibleVariant.filter = "blur(0px)"
   }
 
   return (
@@ -97,7 +96,7 @@ function MotionEffect({
         ref={localRef}
         data-slot="motion-effect"
         initial="hidden"
-        animate={isInView ? 'visible' : 'hidden'}
+        animate={isInView ? "visible" : "hidden"}
         exit="hidden"
         variants={{
           hidden: hiddenVariant,
@@ -113,7 +112,7 @@ function MotionEffect({
         {children}
       </motion.div>
     </AnimatePresence>
-  );
+  )
 }
 
-export { MotionEffect, type MotionEffectProps };
+export { MotionEffect, type MotionEffectProps }

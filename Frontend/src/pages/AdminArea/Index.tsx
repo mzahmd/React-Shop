@@ -12,8 +12,7 @@ export function AdminArea() {
         .with({ name: "UsersList" }, () => <UsersList />)
         .otherwise(() => (
           <>Admin Page not found</>
-        ))
-      }
+        ))}
     </>
   )
 }

@@ -1,17 +1,16 @@
-import { Link } from "@swan-io/chicane";
+import { Link } from "@swan-io/chicane"
 
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/button"
 import {
   NavigationMenu,
   NavigationMenuItem,
   NavigationMenuList,
-} from "@/components/ui/navigation-menu";
-import { AdminRouter } from "@/pages/AdminArea/router";
-import { HomeRouter } from "@/pages/HomeArea/router";
-import { logoutUser } from "@/services/authSerivce";
+} from "@/components/ui/navigation-menu"
+import { AdminRouter } from "@/pages/AdminArea/router"
+import { HomeRouter } from "@/pages/HomeArea/router"
+import { logoutUser } from "@/services/authSerivce"
 
 export default function Navbar() {
-
   return (
     <header className="bg-blue-500 text-white p-4">
       <div className="flex items-center justify-between">
@@ -34,7 +33,11 @@ export default function Navbar() {
               </Button>
             </NavigationMenuItem> */}
             <NavigationMenuItem>
-              <Button className="cursor-pointer" variant={"ghost"} onClick={logoutUser}>
+              <Button
+                className="cursor-pointer"
+                variant={"ghost"}
+                onClick={logoutUser}
+              >
                 Logout
               </Button>
             </NavigationMenuItem>
@@ -42,5 +45,5 @@ export default function Navbar() {
         </NavigationMenu>
       </div>
     </header>
-  );
+  )
 }

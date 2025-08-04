@@ -1,7 +1,6 @@
-import type { IProductDTO } from "@/interface/IProduct";
+import type { IProductDTO } from "@/interface/IProduct"
 
-import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
-
+import { Card, CardContent, CardHeader, CardTitle } from "./ui/card"
 
 export default function ProductCard({ title, image, price }: IProductDTO) {
   return (
@@ -14,5 +13,5 @@ export default function ProductCard({ title, image, price }: IProductDTO) {
         <p>${price}</p>
       </CardContent>
     </Card>
-  );
+  )
 }

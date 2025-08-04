@@ -1,10 +1,10 @@
-import { MotionEffect } from '@/components/animate-ui/effects/motion-effect';
-import Navbar from '@/components/Navbar';
-import ProductCard from "@/components/ProductCard";
-import { useProducts } from "@/hooks/useProducts";
+import { MotionEffect } from "@/components/animate-ui/effects/motion-effect"
+import Navbar from "@/components/Navbar"
+import ProductCard from "@/components/ProductCard"
+import { useProducts } from "@/hooks/useProducts"
 
 export default function Home() {
-  const products = useProducts();
+  const products = useProducts()
 
   return (
     <>
@@ -14,7 +14,7 @@ export default function Home() {
           <MotionEffect
             key={product.id}
             slide={{
-              direction: 'down',
+              direction: "down",
             }}
             fade
             zoom
