@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/navigation-menu"
 import { AdminRouter } from "@/pages/AdminArea/router"
 import { HomeRouter } from "@/pages/HomeArea/router"
-import { logoutUser } from "@/services/authSerivce"
+import { logoutUser } from "@/services/authClient"
 
 export default function Navbar() {
   return (

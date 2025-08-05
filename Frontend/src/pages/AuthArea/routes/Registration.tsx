@@ -22,7 +22,7 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { registerUser } from "@/services/authSerivce"
+import { registerUser } from "@/services/authClient"
 
 import { AuthRouter } from "../router"
 

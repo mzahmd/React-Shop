@@ -22,7 +22,7 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Router } from "@/router"
-import { loginUser } from "@/services/authSerivce"
+import { loginUser } from "@/services/authClient"
 
 import { AuthRouter } from "../router"
 
@@ -42,8 +42,7 @@ export default function Registration() {
 
   function onSubmit(values: z.infer<typeof loginSchema>) {
     loginUser(values)
-      .then((response) => {
-        localStorage.setItem("user", JSON.stringify(response.data))
+      .then(() => {
         Router.push("Home")
       })
       .catch(() => {

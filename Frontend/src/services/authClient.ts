@@ -24,7 +24,6 @@ export async function loginUser(user: IRequestUser) {
 
 export function logoutUser() {
   apiClient.post("/auth/logout").then(() => {
-    localStorage.removeItem("user")
     AuthRouter.push("Login")
   })
 }
