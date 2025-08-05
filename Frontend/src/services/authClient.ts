@@ -1,5 +1,3 @@
-import { AuthRouter } from "@/pages/AuthArea/router"
-
 import { apiClient } from "./api-client"
 
 interface IRequestUser {
@@ -20,11 +18,5 @@ export async function loginUser(user: IRequestUser) {
     headers: {
       "Content-Type": "application/json",
     },
-  })
-}
-
-export function logoutUser() {
-  apiClient.post("/auth/logout").then(() => {
-    AuthRouter.push("Login")
   })
 }

@@ -9,10 +9,9 @@ import {
 import { useUserContext } from "@/hooks/useUserContext"
 import { AdminRouter } from "@/pages/AdminArea/router"
 import { HomeRouter } from "@/pages/HomeArea/router"
-import { logoutUser } from "@/services/authClient"
 
 export default function Navbar() {
-  const { user } = useUserContext();
+  const { user, logoutUser } = useUserContext();
 
   return (
     <header className="bg-blue-500 text-white p-4">
