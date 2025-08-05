@@ -21,6 +21,7 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+import { useUserContext } from "@/hooks/useUserContext"
 import { Router } from "@/router"
 import { loginUser } from "@/services/authClient"
 
@@ -32,6 +33,7 @@ const loginSchema = z.object({
 })
 
 export default function Registration() {
+  const userContext = useUserContext()
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
@@ -40,9 +42,10 @@ export default function Registration() {
     },
   })
 
-  function onSubmit(values: z.infer<typeof loginSchema>) {
-    loginUser(values)
-      .then(() => {
+  function onSubmit(credentials: z.infer<typeof loginSchema>) {
+    loginUser(credentials)
+      .then((response) => {
+        userContext.setUser(response.data)
         Router.push("Home")
       })
       .catch(() => {

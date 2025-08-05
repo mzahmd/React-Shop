@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import type { IUser } from "@/interface/IUser"
 import { apiClient } from "@/services/api-client"
 
-export function useGetUsers(): IUser[] {
+export function useUsers(): IUser[] {
   const [users, setUsers] = useState<IUser[]>([])
 
   useEffect(() => {
