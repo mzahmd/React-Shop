@@ -9,13 +9,14 @@ import {
 import { useUserContext } from "@/hooks/useUserContext"
 import { AdminRouter } from "@/pages/AdminArea/router"
 import { HomeRouter } from "@/pages/HomeArea/router"
+import { UserRouter } from "@/pages/UserArea/router"
 import { Router } from "@/router"
 
 
 export default function Navbar() {
   const { user, logoutUser } = useUserContext();
 
-  const currentRoute = Router.getRoute(["Home", "Admin"])?.name
+  const currentRoute = Router.getRoute(["Home", "Admin", "User"])?.name
 
   return (
     <header className="bg-blue-500 text-white p-4">
@@ -36,8 +37,8 @@ export default function Navbar() {
               </NavigationMenuItem>
             }
             <NavigationMenuItem>
-              <Button asChild variant={"ghost"}>
-                <Link to="2">Profile</Link>
+              <Button asChild variant={"ghost"} className={`${currentRoute === "User" && "underline"}`}>
+                <Link to={UserRouter.User()}>Profile</Link>
               </Button>
             </NavigationMenuItem>
             <NavigationMenuItem>
