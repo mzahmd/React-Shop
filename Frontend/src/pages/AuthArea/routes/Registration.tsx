@@ -52,50 +52,52 @@ export default function Registration() {
   }
 
   return (
-    <Card className="w-full max-w-md mx-auto mt-10">
-      <CardHeader>
-        <CardTitle>Create your Account</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-            <FormField
-              control={form.control}
-              name="email"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Email</FormLabel>
-                  <FormControl>
-                    <Input placeholder="m@example.com" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="password"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Password</FormLabel>
-                  <FormControl>
-                    <Input type="password" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <Button type="submit" className="w-full">
-              Register
-            </Button>
-          </form>
-        </Form>
-      </CardContent>
-      <CardFooter>
-        <CardAction>
-          <Link to={AuthRouter.Login()}>Already have an Account ?</Link>
-        </CardAction>
-      </CardFooter>
-    </Card>
+    <div className="flex justify-center items-center min-h-screen">
+      <Card className="w-full max-w-md">
+        <CardHeader>
+          <CardTitle>Create your Account</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Email</FormLabel>
+                    <FormControl>
+                      <Input placeholder="m@example.com" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="password"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Password</FormLabel>
+                    <FormControl>
+                      <Input type="password" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <Button type="submit" className="w-full">
+                Register
+              </Button>
+            </form>
+          </Form>
+        </CardContent>
+        <CardFooter>
+          <CardAction>
+            <Link to={AuthRouter.Login()} className="hover:underline">Already have an Account ?</Link>
+          </CardAction>
+        </CardFooter>
+      </Card>
+    </div>
   )
 }

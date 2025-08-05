@@ -54,60 +54,62 @@ export default function Registration() {
   }
 
   return (
-    <Card className="w-full max-w-md mx-auto mt-10">
-      <CardHeader>
-        <CardTitle>Login to your account</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-            <FormField
-              control={form.control}
-              name="email"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Email</FormLabel>
-                  <FormControl>
-                    <Input placeholder="m@example.com" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="password"
-              render={({ field }) => (
-                <FormItem>
-                  <div className="flex items-center">
-                    <FormLabel>Password</FormLabel>
-                    <a
-                      href="#"
-                      className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
-                    >
-                      Forgot your password?
-                    </a>
-                  </div>
-                  <FormControl>
-                    <Input type="password" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <Button type="submit" className="w-full">
-              Login
+    <div className="flex justify-center items-center min-h-screen">
+      <Card className="w-full max-w-md">
+        <CardHeader>
+          <CardTitle>Login to your account</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Email</FormLabel>
+                    <FormControl>
+                      <Input placeholder="m@example.com" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="password"
+                render={({ field }) => (
+                  <FormItem>
+                    <div className="flex items-center">
+                      <FormLabel>Password</FormLabel>
+                      <a
+                        href="#"
+                        className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
+                      >
+                        Forgot your password?
+                      </a>
+                    </div>
+                    <FormControl>
+                      <Input type="password" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <Button type="submit" className="w-full">
+                Login
+              </Button>
+            </form>
+          </Form>
+        </CardContent>
+        <CardFooter>
+          <Link to={AuthRouter.Register()} className="w-full">
+            <Button variant="outline" className="w-full hover:cursor-pointer">
+              Don't have an account ?
             </Button>
-          </form>
-        </Form>
-      </CardContent>
-      <CardFooter>
-        <Link to={AuthRouter.Register()} className="w-full">
-          <Button variant="outline" className="w-full hover:cursor-pointer">
-            Don't have an account ?
-          </Button>
-        </Link>
-      </CardFooter>
-    </Card>
+          </Link>
+        </CardFooter>
+      </Card>
+    </div>
   )
 }
