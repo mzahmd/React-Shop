@@ -9,9 +9,13 @@ import {
 import { useUserContext } from "@/hooks/useUserContext"
 import { AdminRouter } from "@/pages/AdminArea/router"
 import { HomeRouter } from "@/pages/HomeArea/router"
+import { Router } from "@/router"
+
 
 export default function Navbar() {
   const { user, logoutUser } = useUserContext();
+
+  const currentRoute = Router.getRoute(["Home", "Admin"])?.name
 
   return (
     <header className="bg-blue-500 text-white p-4">
@@ -20,22 +24,22 @@ export default function Navbar() {
         <NavigationMenu>
           <NavigationMenuList className="space-x-4">
             <NavigationMenuItem>
-              <Button asChild variant={"ghost"}>
+              <Button asChild variant={"ghost"} className={`${currentRoute === "Home" && "underline"}`}>
                 <Link to={HomeRouter.Home()}>Home</Link>
               </Button>
             </NavigationMenuItem>
             {user?.role === "ADMIN" &&
               <NavigationMenuItem>
-                <Button asChild variant={"ghost"}>
+                <Button asChild variant={"ghost"} className={`${currentRoute === "Admin" && "underline"}`}>
                   <Link to={AdminRouter.UsersList()}>View Users</Link>
                 </Button>
               </NavigationMenuItem>
             }
-            {/* <NavigationMenuItem>
+            <NavigationMenuItem>
               <Button asChild variant={"ghost"}>
-                <Link to={Router.()}>Profile</Link>
+                <Link to="2">Profile</Link>
               </Button>
-            </NavigationMenuItem> */}
+            </NavigationMenuItem>
             <NavigationMenuItem>
               <Button
                 className="cursor-pointer"
