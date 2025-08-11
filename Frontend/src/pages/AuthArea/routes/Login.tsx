@@ -24,7 +24,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { useUserContext } from "@/hooks/useUserContext"
 import { Router } from "@/router"
-import { loginUser } from "@/services/authClient"
+import { loginUser } from "@/services/authservice"
 
 import { AuthRouter } from "../router"
 

@@ -23,7 +23,7 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { registerUser } from "@/services/authClient"
+import { registerUser } from "@/services/authservice"
 
 import { AuthRouter } from "../router"
 

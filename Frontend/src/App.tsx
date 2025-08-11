@@ -4,11 +4,12 @@ import EnsureAuth from "./components/EnsureAuth"
 import { AdminArea } from "./pages/AdminArea/Index"
 import { AuthArea } from "./pages/AuthArea/Index"
 import { HomeArea } from "./pages/HomeArea/Index"
+import { ProductArea } from "./pages/ProductArea/Index"
 import { UserArea } from "./pages/UserArea/Index"
 import { Router } from "./router"
 
 export default function App() {
-  const router = Router.useRoute(["Home", "Auth", "Admin", "User"])
+  const router = Router.useRoute(["Home", "Auth", "Admin", "User", "Products"])
 
   return (
     <>
@@ -27,6 +28,11 @@ export default function App() {
         .with({ name: "User" }, () => (
           <EnsureAuth>
             <UserArea />
+          </EnsureAuth>
+        ))
+        .with({ name: "Products" }, () => (
+          <EnsureAuth>
+            <ProductArea />
           </EnsureAuth>
         ))
         .otherwise(() => (

@@ -5,4 +5,5 @@ export const Router = createRouter({
   Auth: "/auth/*",
   Admin: "/admin/*",
   User: "/user/*",
+  Products: "/products/*",
 })
