@@ -45,19 +45,17 @@ function HomeHeader() {
 function HomeContent() {
   return (
     <div className="bg-slate-100">
-      <div className="text-center pt-5 mb-5 space-y-10">
+      <div className="text-center pt-5 mb-10 space-y-10">
         <h2 className="text-4xl font-semibold">Featured Products</h2>
         <span>
           Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
           <br />
-          sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-          <br />
-          sed diam voluptua.
+          sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.
         </span>
       </div>
-      <div>
+      <div className="flex flex-row justify-center gap-10">
         <div>Text</div>
-        <div>Images</div>
+        <div>Image</div>
       </div>
     </div>
   )
