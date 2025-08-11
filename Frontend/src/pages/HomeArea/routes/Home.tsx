@@ -44,10 +44,22 @@ function HomeHeader() {
 
 function HomeContent() {
   return (
-    <>
-      <h2 className="text-3xl font-bold">Welcome to the Home Page</h2>
-      <p className="mt-4">Here you can find a variety of products to suit your needs.</p>
-    </>
+    <div className="bg-slate-100">
+      <div className="text-center pt-5 mb-5 space-y-10">
+        <h2 className="text-4xl font-semibold">Featured Products</h2>
+        <span>
+          Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+          <br />
+          sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
+          <br />
+          sed diam voluptua.
+        </span>
+      </div>
+      <div>
+        <div>Text</div>
+        <div>Images</div>
+      </div>
+    </div>
   )
 }
 
