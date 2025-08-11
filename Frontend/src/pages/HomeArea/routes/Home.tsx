@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <div className="flex flex-wrap flex-row justify-center">
+      <div className="flex flex-wrap flex-row justify-center from-gray-50 to-gray-200 bg-gradient-to-b">
         {products.map((product, index) => (
           <MotionEffect
             key={product.id}
