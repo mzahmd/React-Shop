@@ -84,10 +84,10 @@ export default function Users() {
           </DropdownMenu>
         </div>
         <div className="overflow-hidden md:w-4xl mx-auto">
-          <Table className="bg-table-background table-background">
+          <Table className="bg-table-background table-background md:text-xl">
             <TableHeader>
               {table.getHeaderGroups().map((headerGroup) => (
-                <TableRow key={headerGroup.id}>
+                <TableRow key={headerGroup.id} className="hover:bg-gray-300">
                   {headerGroup.headers.map((header) => {
                     return (
                       <TableHead key={header.id}>
@@ -109,15 +109,18 @@ export default function Users() {
                   <TableRow
                     key={row.id}
                     data-state={row.getIsSelected() && "selected"}
+                    className="hover:bg-gray-300"
                   >
-                    {row.getVisibleCells().map((cell) => (
-                      <TableCell key={cell.id}>
-                        {flexRender(
-                          cell.column.columnDef.cell,
-                          cell.getContext(),
-                        )}
-                      </TableCell>
-                    ))}
+                    {
+                      row.getVisibleCells().map((cell) => (
+                        <TableCell key={cell.id}>
+                          {flexRender(
+                            cell.column.columnDef.cell,
+                            cell.getContext(),
+                          )}
+                        </TableCell>
+                      ))
+                    }
                   </TableRow>
                 ))
               ) : (
@@ -133,7 +136,7 @@ export default function Users() {
             </TableBody>
           </Table>
         </div>
-      </div>
+      </div >
     </>
   )
 }
