@@ -87,7 +87,6 @@ function HomeCard() {
 export default function Home() {
   return (
     <>
-      <Navbar />
       <HomeHeader />
       <HomeContent />
     </>

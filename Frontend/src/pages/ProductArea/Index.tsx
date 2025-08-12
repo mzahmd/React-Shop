@@ -1,5 +1,7 @@
 import { match } from "ts-pattern"
 
+import Navbar from "@/components/Navbar"
+
 import { ProductRouter } from "./router"
 import Products from "./routes/Products"
 
@@ -9,7 +11,12 @@ export function ProductArea() {
   return (
     <>
       {match(router)
-        .with({ name: "Products" }, () => <Products />)
+        .with({ name: "Products" }, () =>
+          <>
+            <Navbar />
+            <Products />
+          </>
+        )
         .otherwise(() => (
           <>Product Page not found</>
         ))}

@@ -7,7 +7,6 @@ import {
 } from "@tanstack/react-table"
 import { useState } from "react"
 
-import Navbar from "@/components/Navbar"
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -51,9 +50,12 @@ export default function Users() {
     },
   })
 
+  if (!users || users.length === 0) {
+    return <span>No users found</span>
+  }
+
   return (
     <>
-      <Navbar />
       <div className="mx-auto mt-6 space-y-3 p-2">
         <div className="md:w-1/3 ms-auto">
           <DropdownMenu>

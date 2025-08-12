@@ -1,4 +1,3 @@
-import Navbar from "@/components/Navbar";
 import {
   Card,
   CardContent,
@@ -10,9 +9,12 @@ import { useUserContext } from "@/hooks/useUserContext";
 export default function Profile() {
   const { user } = useUserContext()
 
+  if (!user) {
+    return <span>Loading...</span>
+  }
+
   return (
     <div className="flex flex-col min-h-screen">
-      <Navbar />
       <div className="flex-grow flex items-center justify-center">
         <Card>
           <CardHeader>

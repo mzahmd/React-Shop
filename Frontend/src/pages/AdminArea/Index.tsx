@@ -1,5 +1,7 @@
 import { match } from "ts-pattern"
 
+import Navbar from "@/components/Navbar"
+
 import { AdminRouter } from "./router"
 import UsersList from "./routes/UsersList"
 
@@ -9,7 +11,12 @@ export function AdminArea() {
   return (
     <>
       {match(router)
-        .with({ name: "UsersList" }, () => <UsersList />)
+        .with({ name: "UsersList" }, () =>
+          <>
+            <Navbar />
+            <UsersList />
+          </>
+        )
         .otherwise(() => (
           <>Admin Page not found</>
         ))}
