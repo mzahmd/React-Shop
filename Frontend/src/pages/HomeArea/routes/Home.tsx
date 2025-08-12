@@ -1,6 +1,5 @@
 import illustration1 from "@/assets/illustration1.svg"
 import { RollingText } from "@/components/animate-ui/text/rolling"
-import Navbar from "@/components/Navbar"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 
 function HomeHeader() {
