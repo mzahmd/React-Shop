@@ -54,9 +54,9 @@ export default function Registration() {
 
   return (
     <div className="flex justify-center items-center min-h-screen">
-      <HexagonBackground className="absolute inset-0 flex items-center justify-center rounded-xl z-0 bg-background">
+      <HexagonBackground className="absolute inset-0 flex items-center justify-center rounded-xl z-0 bg-primary">
         <div className="relative z-20">
-          <Card className="w-full md:w-xl bg-transparent backdrop-blur-md">
+          <Card className="w-full md:w-xl bg-transparent backdrop-blur-xl">
             <CardHeader>
               <CardTitle>Create your Account</CardTitle>
             </CardHeader>
