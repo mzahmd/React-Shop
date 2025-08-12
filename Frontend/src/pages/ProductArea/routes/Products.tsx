@@ -9,7 +9,7 @@ export default function Products() {
   return (
     <>
       <Navbar />
-      <div className="flex flex-wrap flex-row justify-center from-gray-50 to-gray-200 bg-gradient-to-b">
+      <div className="flex flex-wrap flex-row justify-center bg-gradient-to-b from-white via-slate-50 to-slate-100">
         {products.map((product, index) => (
           <MotionEffect
             key={product.id}
