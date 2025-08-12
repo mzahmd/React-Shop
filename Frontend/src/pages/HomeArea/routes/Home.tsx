@@ -56,6 +56,7 @@ function HomeContent() {
       <div className="flex flex-row justify-center gap-10">
         <div>Text</div>
         <div>Image</div>
+        <div>Image</div>
       </div>
     </div>
   )
