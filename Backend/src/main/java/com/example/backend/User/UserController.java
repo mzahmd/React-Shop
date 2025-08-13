@@ -1,5 +1,8 @@
 package com.example.backend.User;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -32,8 +35,8 @@ public class UserController {
     }
 
     @DeleteMapping
-    public void deleteUser() {
-        userService.deleteAuthenticatedUser();
+    public void deleteUser(HttpServletRequest request, HttpServletResponse  response) {
+        userService.deleteAuthenticatedUser(request, response);
     }
 
 }

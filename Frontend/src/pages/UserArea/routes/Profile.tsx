@@ -17,6 +17,18 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import { useUserContext } from "@/hooks/useUserContext";
+import { AuthRouter } from "@/pages/AuthArea/router";
+import { deleteUser } from "@/services/userservice";
+
+function deleteUserAndRouteToAuth() {
+  deleteUser()
+    .then(() => {
+      AuthRouter.push("Login");
+    })
+    .catch((error) => {
+      console.error("Error deleting user:", error);
+    });
+}
 
 export default function Profile() {
   const { user } = useUserContext()
@@ -56,7 +68,7 @@ export default function Profile() {
               </DialogHeader>
               <DialogFooter className="sm:justify-start">
                 <DialogClose asChild>
-                  <Button variant="destructive" className="cursor-pointer mx-auto">
+                  <Button variant="destructive" className="cursor-pointer mx-auto" onClick={deleteUserAndRouteToAuth}>
                     Delete Profile
                   </Button>
                 </DialogClose>
