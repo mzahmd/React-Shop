@@ -45,7 +45,7 @@ function HomeHeader() {
 
 function HomeContent() {
   return (
-    <div className="bg-gradient-to-b from-white via-slate-50 to-slate-100 p-5">
+    <div className="bg-gradient-to-b from-white via-slate-50 to-slate-100 p-5 mb-10">
       <div className="text-center pt-5 mb-10 space-y-10">
         <h2 className="text-4xl font-semibold">Featured Products</h2>
         <span>

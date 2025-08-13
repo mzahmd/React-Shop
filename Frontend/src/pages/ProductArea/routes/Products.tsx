@@ -25,7 +25,7 @@ export default function Products() {
 
   return (
     <>
-      <div className="flex flex-col-reverse md:flex-row justify-center gap-5 md:gap-0 bg-gradient-to-b from-white via-slate-50 to-slate-100 mt-10">
+      <div className="flex flex-col-reverse md:flex-row justify-center gap-5 md:gap-0 bg-gradient-to-b from-white via-slate-50 to-slate-100 my-10 pb-5">
         <div className="flex flex-wrap flex-row justify-center gap-5">
           {products.map((product) => (
             <ProductCard
