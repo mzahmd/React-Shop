@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { useProducts } from "@/hooks/useProducts"
 import type { IProductDTO } from "@/interface/IProduct"
@@ -5,12 +6,18 @@ import type { IProductDTO } from "@/interface/IProduct"
 function ProductCard({ title, image, price }: IProductDTO) {
   return (
     <Card className="w-3xs hover:scale-105 transition-transform duration-300 shadow-lg shadow-gray-300 cursor-pointer">
-      <CardHeader>
-        <img src={image} alt={title} className="object-cover" />
+      <CardHeader className="flex justify-center">
+        <img src={image} alt={title} className="object-cover" width={100}/>
       </CardHeader>
       <CardContent className="text-center mt-auto space-y-2">
         <CardTitle>{title}</CardTitle>
-        <p>${price}</p>
+        <div className="flex flex-row justify-between items-end mt-4">
+          <div>
+            <p className="text-muted-foreground">Price</p>
+            <p>${price}</p>
+          </div>
+          <Button>Add to Cart</Button>
+        </div>
       </CardContent>
     </Card>
   )
