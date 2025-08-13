@@ -28,7 +28,7 @@ export default function Profile() {
   return (
     <div className="flex-grow flex items-center justify-center mb-10 mt-20">
       <Card>
-        <CardHeader className="text-center text-xl">
+        <CardHeader className="text-center text-xl md:w-xs">
           <CardTitle>Profile</CardTitle>
         </CardHeader>
         <CardContent>
@@ -44,7 +44,7 @@ export default function Profile() {
         <CardFooter>
 
           <Dialog>
-            <DialogTrigger asChild>
+            <DialogTrigger asChild className="w-full">
               <Button variant="destructive" className="cursor-pointer">Delete Profile</Button>
             </DialogTrigger>
             <DialogContent className="sm:max-w-md">
