@@ -9,4 +9,5 @@ public interface UserDAO {
     Optional<User> findUserByEmail(String email);
     List<User> getAllUsers();
     void deleteUserByEmail(String email);
+    void deleteAuthenticatedUser(UserDTO user);
 }

@@ -46,4 +46,18 @@ public class UserService {
         );
     }
 
+    public void deleteAuthenticatedUser() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        if (authentication == null || !(authentication.getPrincipal() instanceof UserDetailsImpl userDetails)) {
+            throw new IllegalStateException("No authenticated User");
+        }
+
+        UserDTO userDTO = new UserDTO(userDetails.getUsername(), userDetails.getRole());
+
+        userDAO.deleteAuthenticatedUser(userDTO);
+
+        SecurityContextHolder.clearContext();
+    }
+
 }

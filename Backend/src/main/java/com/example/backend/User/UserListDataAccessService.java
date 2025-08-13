@@ -1,13 +1,12 @@
 package com.example.backend.User;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 @Service
 public class UserListDataAccessService implements UserDAO {
@@ -30,11 +29,18 @@ public class UserListDataAccessService implements UserDAO {
 
     @Override
     public List<User> getAllUsers() {
+        logger.info(USERS.toString());
         return USERS;
     }
 
     @Override
     public void deleteUserByEmail(String email) {
         USERS.removeIf(user -> user.email.equalsIgnoreCase(email));
+    }
+
+    @Override
+    public void deleteAuthenticatedUser(UserDTO userDTO) {
+        USERS.removeIf(user -> user.email.equalsIgnoreCase(userDTO.email()));
+        logger.info(USERS.toString());
     }
 }
