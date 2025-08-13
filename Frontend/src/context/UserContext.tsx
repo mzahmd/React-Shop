@@ -9,6 +9,7 @@ interface IUserContextType {
   user: IUser | null
   setUser: (user: IUser | null) => void
   logoutUser: () => void
+  deleteUser: () => void
 }
 
 const UserContext = createContext<IUserContextType | null>(null)
@@ -51,11 +52,24 @@ function UserContextProvider({ children }: UserProviderProps) {
       })
   }
 
+  function deleteUser() {
+    apiClient.delete("/user")
+      .then(() => {
+        setUser(null)
+        localStorage.removeItem("user")
+        AuthRouter.push("Login")
+      })
+      .catch(() => {
+        toast("Delete failed")
+      })
+  }
+
   return (
     <UserContext.Provider value={{
       user,
       setUser,
-      logoutUser
+      logoutUser,
+      deleteUser
     }}
     >
       {children}
