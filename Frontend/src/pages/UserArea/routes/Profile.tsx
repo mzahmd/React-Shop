@@ -6,6 +6,16 @@ import {
   CardHeader,
   CardTitle
 } from "@/components/ui/card";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
 import { useUserContext } from "@/hooks/useUserContext";
 
 export default function Profile() {
@@ -32,9 +42,27 @@ export default function Profile() {
           </p>
         </CardContent>
         <CardFooter>
-          <Button variant={"destructive"} className="w-full">
-            Delete Profile
-          </Button>
+
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button variant="destructive" className="cursor-pointer">Delete Profile</Button>
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-md">
+              <DialogHeader>
+                <DialogTitle>Delete Profile</DialogTitle>
+                <DialogDescription>
+                  Are you sure you want to delete your profile? This action cannot be undone.
+                </DialogDescription>
+              </DialogHeader>
+              <DialogFooter className="sm:justify-start">
+                <DialogClose asChild>
+                  <Button variant="destructive" className="cursor-pointer mx-auto">
+                    Delete Profile
+                  </Button>
+                </DialogClose>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
         </CardFooter>
       </Card>
     </div>
