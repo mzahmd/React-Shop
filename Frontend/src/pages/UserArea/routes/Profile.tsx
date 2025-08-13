@@ -33,7 +33,7 @@ export default function Profile() {
         </CardContent>
         <CardFooter>
           <Button variant={"destructive"} className="w-full">
-            Profil Löschen
+            Delete Profile
           </Button>
         </CardFooter>
       </Card>
