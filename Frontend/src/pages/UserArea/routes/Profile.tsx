@@ -1,6 +1,8 @@
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
+  CardFooter,
   CardHeader,
   CardTitle
 } from "@/components/ui/card";
@@ -14,22 +16,27 @@ export default function Profile() {
   }
 
   return (
-    <div className="flex flex-col min-h-screen">
-      <div className="flex-grow flex items-center justify-center">
-        <Card>
-          <CardHeader>
-            <CardTitle>My Profile</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p>
-              Email: {user?.email}
-            </p>
-            <p>
-              Rolle: {user?.role}
-            </p>
-          </CardContent>
-        </Card>
-      </div>
+    <div className="flex-grow flex items-center justify-center mb-10 mt-20">
+      <Card>
+        <CardHeader className="text-center text-xl">
+          <CardTitle>Profile</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <p>
+            <span className="font-bold"> Email: </span>
+            {user?.email}
+          </p>
+          <p>
+            <span className="font-bold"> Rolle: </span>
+            {user?.role}
+          </p>
+        </CardContent>
+        <CardFooter>
+          <Button variant={"destructive"} className="w-full">
+            Profil Löschen
+          </Button>
+        </CardFooter>
+      </Card>
     </div>
   )
 }
