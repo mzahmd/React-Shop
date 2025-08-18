@@ -6,10 +6,10 @@ import type { IProductDTO } from "@/interface/IProduct"
 function ProductCard({ title, image, price }: IProductDTO) {
   return (
     <Card className="w-3xs hover:scale-105 transition-transform duration-300 shadow-lg shadow-gray-300 cursor-pointer">
-      <CardHeader className="flex justify-center">
+      <CardHeader className="flex justify-center items-center">
         <img src={image} alt={title} className="object-cover" width={100}/>
       </CardHeader>
-      <CardContent className="text-center mt-auto space-y-2">
+      <CardContent className="text-center mt-auto">
         <CardTitle>{title}</CardTitle>
         <div className="flex flex-row justify-between items-end mt-4">
           <div>
