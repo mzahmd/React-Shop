@@ -22,7 +22,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-import { useUsers } from "@/hooks/useUsers"
+import { useGetAllUsers } from "@/hooks/useGetAllUsers"
 import type { IUser } from "@/interface/IUser"
 
 const columns: ColumnDef<IUser>[] = [
@@ -37,7 +37,7 @@ const columns: ColumnDef<IUser>[] = [
 ]
 
 export default function Users() {
-  const users = useUsers()
+  const users = useGetAllUsers()
 
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({})
   const table = useReactTable({

@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 
-import { useUserAuthenticated } from "@/hooks/useUserAuthenticated"
+import { useIsUserAuthenticated } from "@/hooks/useIsUserAuthenticated"
 import { AuthRouter } from "@/pages/AuthArea/router"
 
 interface EnsureAuthProps {
@@ -8,7 +8,7 @@ interface EnsureAuthProps {
 }
 
 export default function EnsureAuth({ children }: EnsureAuthProps) {
-  const isAuthenticated = useUserAuthenticated()
+  const isAuthenticated = useIsUserAuthenticated()
 
   useEffect(() => {
     if (isAuthenticated === false) {

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 
 import { apiClient } from "@/services/api-client"
 
-export function useUserAuthenticated() {
+export function useIsUserAuthenticated() {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null)
 
   useEffect(() => {
