@@ -1,6 +1,7 @@
 import { match } from "ts-pattern"
 
 import EnsureAuth from "./components/EnsureAuth"
+import EnsureIsAdmin from "./components/EnsureIsAdmin"
 import { AdminArea } from "./pages/AdminArea/Index"
 import { AuthArea } from "./pages/AuthArea/Index"
 import { HomeArea } from "./pages/HomeArea/Index"
@@ -22,7 +23,9 @@ export default function App() {
         ))
         .with({ name: "Admin" }, () => (
           <EnsureAuth>
-            <AdminArea />
+            <EnsureIsAdmin>
+              <AdminArea />
+            </EnsureIsAdmin>
           </EnsureAuth>
         ))
         .with({ name: "User" }, () => (

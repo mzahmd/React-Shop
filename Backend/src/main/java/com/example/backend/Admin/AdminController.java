@@ -8,6 +8,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/admin")
+@PreAuthorize("hasAuthority('ADMIN')")
 public class AdminController {
     AdminService adminService;
 
@@ -16,19 +17,16 @@ public class AdminController {
     }
 
     @GetMapping("/users")
-    @PreAuthorize("hasAuthority('ADMIN')")
     public List<UserDTO> getAllUsers() {
         return adminService.getAllUsers();
     }
 
     @GetMapping("/user")
-    @PreAuthorize("hasAuthority('ADMIN')")
     public UserDTO getUser(@RequestParam String email) {
         return adminService.getUserByEmail(email);
     }
 
     @DeleteMapping("/user")
-    @PreAuthorize("hasAuthority('ADMIN')")
     public void deleteUser(@RequestParam("email") String email) {
         adminService.deleteUserByEmail(email);
     }
