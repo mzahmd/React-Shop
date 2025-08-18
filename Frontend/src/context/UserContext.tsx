@@ -58,6 +58,7 @@ function UserContextProvider({ children }: UserProviderProps) {
         setUser(null)
         localStorage.removeItem("user")
         AuthRouter.push("Login")
+        toast("Your profile has been deleted")
       })
       .catch(() => {
         toast("Delete failed")
