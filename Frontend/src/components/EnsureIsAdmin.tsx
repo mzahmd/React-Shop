@@ -6,7 +6,6 @@ import { HomeRouter } from "@/pages/HomeArea/router"
 interface EnsureIsAdminProps {
   children: React.ReactNode
 }
-// http://localhost:5173/admin/user
 export default function EnsureIsAdmin({ children }: EnsureIsAdminProps) {
   const { user } = useUserContext()
 
