@@ -23,7 +23,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-import { useGetAllUsers } from "@/hooks/useGetAllUsers"
+import { useUsers } from "@/hooks/useUsers"
 import type { IUser } from "@/interface/IUser"
 
 const columns: ColumnDef<IUser>[] = [
@@ -38,7 +38,7 @@ const columns: ColumnDef<IUser>[] = [
 ]
 
 export default function Users() {
-  const users = useGetAllUsers()
+  const users = useUsers()
 
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({})
   const table = useReactTable({
@@ -54,7 +54,7 @@ export default function Users() {
   if (!users || users.length === 0) {
     return <Spinner />
   }
-  
+
   return (
     <div className="mx-auto mt-6 space-y-3 p-2 mb-10">
       <div className="md:w-1/3 ms-auto">
