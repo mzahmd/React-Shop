@@ -1,3 +1,4 @@
+import Spinner from "@/components/Spinner";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -22,7 +23,7 @@ export default function Profile() {
   const { user, deleteUser } = useUserContext()
 
   if (!user) {
-    return <span>Loading...</span>
+    return <Spinner />
   }
 
   return (

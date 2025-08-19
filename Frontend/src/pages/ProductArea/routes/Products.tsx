@@ -1,3 +1,4 @@
+import Spinner from "@/components/Spinner"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { useProducts } from "@/hooks/useProducts"
@@ -7,7 +8,7 @@ function ProductCard({ title, image, price }: IProductDTO) {
   return (
     <Card className="w-3xs hover:scale-105 transition-transform duration-300 shadow-lg shadow-gray-300 cursor-pointer">
       <CardHeader className="flex justify-center items-center">
-        <img src={image} alt={title} className="object-cover" width={100}/>
+        <img src={image} alt={title} className="object-cover" width={100} />
       </CardHeader>
       <CardContent className="text-center mt-auto">
         <CardTitle>{title}</CardTitle>
@@ -27,7 +28,7 @@ export default function Products() {
   const products = useProducts()
 
   if (!products || products.length === 0) {
-    return <span>No products found</span>
+    return <Spinner />
   }
 
   return (
