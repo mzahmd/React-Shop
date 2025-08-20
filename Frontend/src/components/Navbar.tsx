@@ -1,5 +1,5 @@
 import { Link } from "@swan-io/chicane"
-import { LogOut, Menu } from "lucide-react"
+import { LogOut, Menu, UserPlus } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -12,16 +12,18 @@ import {
   SheetContent,
   SheetTrigger
 } from "@/components/ui/sheet"
+import { useAuthenticated } from "@/hooks/useAuthenticated"
 import { useUserContext } from "@/hooks/useUserContext"
 import { AdminRouter } from "@/pages/AdminArea/router"
+import { AuthRouter } from "@/pages/AuthArea/router"
 import { HomeRouter } from "@/pages/HomeArea/router"
 import { ProductRouter } from "@/pages/ProductArea/router"
 import { UserRouter } from "@/pages/UserArea/router"
 import { Router } from "@/router"
 
-
 export default function Navbar() {
   const { user, logoutUser } = useUserContext();
+  const isAuthenticated = useAuthenticated()
 
   const currentRoute = Router.getRoute(["Home", "Admin", "User", "Products"])?.name
 
@@ -44,33 +46,60 @@ export default function Navbar() {
                 <Link className="text-xl rounded-xl" to={ProductRouter.Products()}>Products</Link>
               </Button>
             </NavigationMenuItem>
-            {user?.role === "ADMIN" &&
+            {isAuthenticated && user?.role === "ADMIN" &&
               <NavigationMenuItem>
                 <Button asChild variant={"ghost"} className={`${currentRoute === "Admin" && "underline"}`}>
                   <Link className="text-xl rounded-xl" to={AdminRouter.UsersList()}>View Users</Link>
                 </Button>
               </NavigationMenuItem>
             }
-            <NavigationMenuItem>
-              <Button asChild variant={"ghost"} className={`${currentRoute === "User" && "underline"}`}>
-                <Link className="text-xl rounded-xl" to={UserRouter.User()}>Profile</Link>
-              </Button>
-            </NavigationMenuItem>
+            {isAuthenticated &&
+              <NavigationMenuItem>
+                <Button asChild variant={"ghost"} className={`${currentRoute === "User" && "underline"}`}>
+                  <Link className="text-xl rounded-xl" to={UserRouter.User()}>Profile</Link>
+                </Button>
+              </NavigationMenuItem>
+            }
           </NavigationMenuList>
         </NavigationMenu>
-        <NavigationMenu className="hidden md:block">
-          <NavigationMenuList className="mx-0">
-            <NavigationMenuItem>
-              <Button
-                className="cursor-pointer text-xl"
-                variant={"ghost"}
-                onClick={logoutUser}
-              >
-                <LogOut /> Logout
-              </Button>
-            </NavigationMenuItem>
-          </NavigationMenuList>
-        </NavigationMenu>
+        {isAuthenticated ?
+          <NavigationMenu className="hidden md:block">
+            <NavigationMenuList className="mx-0">
+              <NavigationMenuItem>
+                <Button
+                  className="cursor-pointer text-xl"
+                  variant={"ghost"}
+                  onClick={logoutUser}
+                >
+                  <LogOut /> Logout
+                </Button>
+              </NavigationMenuItem>
+            </NavigationMenuList>
+          </NavigationMenu>
+          :
+          <NavigationMenu className="hidden md:block">
+            <NavigationMenuList className="mx-0">
+              <NavigationMenuItem>
+                <Button
+                  className="cursor-pointer text-xl"
+                  variant={"ghost"}
+                  onClick={() => AuthRouter.push("Login")}
+                >
+                  <LogOut /> Login
+                </Button>
+              </NavigationMenuItem>
+              <NavigationMenuItem>
+                <Button
+                  className="cursor-pointer text-xl"
+                  variant={"ghost"}
+                  onClick={() => AuthRouter.push("Register")}
+                >
+                  <UserPlus />Sign Up
+                </Button>
+              </NavigationMenuItem>
+            </NavigationMenuList>
+          </NavigationMenu>
+        }
 
         {/* Mobile Navbar */}
         <div className="md:hidden">
@@ -93,12 +122,33 @@ export default function Navbar() {
                     View Users
                   </Link>
                 )}
-                <Link to={UserRouter.User()} className={`text-lg ${currentRoute === "User" && "underline"}`}>
-                  Profile
-                </Link>
-                <Button variant="ghost" className="text-lg mt-4" onClick={logoutUser}>
-                  <LogOut /> Logout
-                </Button>
+                {isAuthenticated &&
+                  <Link to={UserRouter.User()} className={`text-lg ${currentRoute === "User" && "underline"}`}>
+                    Profile
+                  </Link>
+                }
+                {isAuthenticated ?
+                  <Button variant="ghost" className="text-lg mt-4" onClick={logoutUser}>
+                    <LogOut /> Logout
+                  </Button>
+                  :
+                  <>
+                    <Button
+                      className="cursor-pointer text-xl"
+                      variant={"ghost"}
+                      onClick={() => AuthRouter.push("Login")}
+                    >
+                      <LogOut /> Login
+                    </Button>
+                    <Button
+                      className="cursor-pointer text-xl"
+                      variant={"ghost"}
+                      onClick={() => AuthRouter.push("Register")}
+                    >
+                      <UserPlus />Sign Up
+                    </Button>
+                  </>
+                }
               </nav>
             </SheetContent>
           </Sheet>

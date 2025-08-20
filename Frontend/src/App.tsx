@@ -17,9 +17,7 @@ export default function App() {
       {match(router)
         .with({ name: "Auth" }, () => <AuthArea />)
         .with({ name: "Home" }, () => (
-          <EnsureAuth>
-            <HomeArea />
-          </EnsureAuth>
+          <HomeArea />
         ))
         .with({ name: "Admin" }, () => (
           <EnsureAuth>
@@ -34,9 +32,7 @@ export default function App() {
           </EnsureAuth>
         ))
         .with({ name: "Products" }, () => (
-          <EnsureAuth>
-            <ProductArea />
-          </EnsureAuth>
+          <ProductArea />
         ))
         .otherwise(() => (
           <h1>Page Not Found</h1>

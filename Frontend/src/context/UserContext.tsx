@@ -2,7 +2,7 @@ import { createContext, useEffect, useState } from "react"
 import { toast } from "sonner"
 
 import type { IUser } from "@/interface/IUser"
-import { AuthRouter } from "@/pages/AuthArea/router"
+import { HomeRouter } from "@/pages/HomeArea/router"
 import { apiClient } from "@/services/api-client"
 
 interface IUserContextType {
@@ -45,7 +45,7 @@ function UserContextProvider({ children }: UserProviderProps) {
       .then(() => {
         setUser(null)
         localStorage.removeItem("user")
-        AuthRouter.push("Login")
+        HomeRouter.push("Home")
       })
       .catch(() => {
         toast("Logout failed")
@@ -57,7 +57,7 @@ function UserContextProvider({ children }: UserProviderProps) {
       .then(() => {
         setUser(null)
         localStorage.removeItem("user")
-        AuthRouter.push("Login")
+        HomeRouter.push("Home")
         toast("Your profile has been deleted")
       })
       .catch(() => {
