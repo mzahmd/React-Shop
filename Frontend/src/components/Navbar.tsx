@@ -1,4 +1,5 @@
 import { Link } from "@swan-io/chicane"
+import { LogOut, Menu } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -6,6 +7,11 @@ import {
   NavigationMenuItem,
   NavigationMenuList,
 } from "@/components/ui/navigation-menu"
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger
+} from "@/components/ui/sheet"
 import { useUserContext } from "@/hooks/useUserContext"
 import { AdminRouter } from "@/pages/AdminArea/router"
 import { HomeRouter } from "@/pages/HomeArea/router"
@@ -22,8 +28,11 @@ export default function Navbar() {
   return (
     <header className="bg-gradient-to-r from-gray-100 via-gray-200 to-gray-100 p-4">
       <div className="flex items-center justify-between flex-wrap">
+
         <h1 className="text-3xl font-bold">React Shop</h1>
-        <NavigationMenu className="mx-auto">
+
+        {/* Desktop Navbar */}
+        <NavigationMenu className="hidden md:block">
           <NavigationMenuList className="space-x-4 border-2 border-black rounded-xl">
             <NavigationMenuItem>
               <Button asChild variant={"ghost"} className={`${currentRoute === "Home" && "underline"}`}>
@@ -49,7 +58,7 @@ export default function Navbar() {
             </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
-        <NavigationMenu>
+        <NavigationMenu className="hidden md:block">
           <NavigationMenuList className="mx-0">
             <NavigationMenuItem>
               <Button
@@ -57,12 +66,46 @@ export default function Navbar() {
                 variant={"ghost"}
                 onClick={logoutUser}
               >
-                Logout
+                <LogOut /> Logout
               </Button>
             </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
+
+        {/* Mobile Navbar */}
+        <div className="md:hidden">
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button variant="ghost" size="icon">
+                <Menu />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="left" className="w-64">
+              <nav className="flex flex-col gap-4 mt-8 p-5">
+                <Link to="/" className={`text-lg ${currentRoute === "Home" && "underline"}`}>
+                  Home
+                </Link>
+                <Link to="/products" className={`text-lg ${currentRoute === "Products" && "underline"}`}>
+                  Products
+                </Link>
+                {user?.role === "ADMIN" && (
+                  <Link to="/admin/users" className={`text-lg ${currentRoute === "Admin" && "underline"}`}>
+                    View Users
+                  </Link>
+                )}
+                <Link to="/user" className={`text-lg ${currentRoute === "User" && "underline"}`}>
+                  Profile
+                </Link>
+                <Button variant="ghost" className="text-lg mt-4" onClick={logoutUser}>
+                  <LogOut /> Logout
+                </Button>
+              </nav>
+            </SheetContent>
+          </Sheet>
+        </div>
+
       </div>
-    </header>
+    </header >
+
   )
 }
