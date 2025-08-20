@@ -82,18 +82,18 @@ export default function Navbar() {
             </SheetTrigger>
             <SheetContent side="left" className="w-64">
               <nav className="flex flex-col gap-4 mt-8 p-5">
-                <Link to="/" className={`text-lg ${currentRoute === "Home" && "underline"}`}>
+                <Link to={HomeRouter.Home()} className={`text-lg ${currentRoute === "Home" && "underline"}`}>
                   Home
                 </Link>
-                <Link to="/products" className={`text-lg ${currentRoute === "Products" && "underline"}`}>
+                <Link to={ProductRouter.Products()} className={`text-lg ${currentRoute === "Products" && "underline"}`}>
                   Products
                 </Link>
                 {user?.role === "ADMIN" && (
-                  <Link to="/admin/users" className={`text-lg ${currentRoute === "Admin" && "underline"}`}>
+                  <Link to={AdminRouter.UsersList()} className={`text-lg ${currentRoute === "Admin" && "underline"}`}>
                     View Users
                   </Link>
                 )}
-                <Link to="/user" className={`text-lg ${currentRoute === "User" && "underline"}`}>
+                <Link to={UserRouter.User()} className={`text-lg ${currentRoute === "User" && "underline"}`}>
                   Profile
                 </Link>
                 <Button variant="ghost" className="text-lg mt-4" onClick={logoutUser}>
