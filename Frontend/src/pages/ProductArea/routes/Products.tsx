@@ -27,9 +27,9 @@ function ProductCard({ title, image, price }: IProductDTO) {
 }
 
 export default function Products() {
-  const products = useProducts()
   const category = ProductRouter.getRoute(["Products"])?.params.category
-
+  const products = useProducts(category)
+  
   if (!products || products.length === 0) {
     return <Spinner />
   }
