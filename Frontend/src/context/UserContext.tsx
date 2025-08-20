@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react"
+import { createContext, useState } from "react"
 import { toast } from "sonner"
 
 import type { IUser } from "@/interface/IUser"
@@ -21,22 +21,7 @@ interface UserProviderProps {
 function UserContextProvider({ children }: UserProviderProps) {
   const [user, setUserState] = useState<IUser | null>(null)
 
-  useEffect(() => {
-    const storedUser = localStorage.getItem("user")
-    if (storedUser) {
-      setUserState(JSON.parse(storedUser))
-    }
-    else {
-      localStorage.removeItem("user")
-    }
-  }, [])
-
   function setUser(user: IUser | null) {
-    if (user) {
-      localStorage.setItem("user", JSON.stringify(user))
-    } else {
-      localStorage.removeItem("user")
-    }
     setUserState(user)
   }
 
@@ -44,7 +29,6 @@ function UserContextProvider({ children }: UserProviderProps) {
     apiClient.post("/auth/logout")
       .then(() => {
         setUser(null)
-        localStorage.removeItem("user")
         HomeRouter.push("Home")
       })
       .catch(() => {
@@ -56,7 +40,6 @@ function UserContextProvider({ children }: UserProviderProps) {
     apiClient.delete("/user")
       .then(() => {
         setUser(null)
-        localStorage.removeItem("user")
         HomeRouter.push("Home")
         toast("Your profile has been deleted")
       })
