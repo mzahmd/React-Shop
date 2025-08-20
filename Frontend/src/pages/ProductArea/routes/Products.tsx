@@ -28,6 +28,7 @@ function ProductCard({ title, image, price }: IProductDTO) {
 
 export default function Products() {
   const products = useProducts()
+  const category = ProductRouter.getRoute(["Products"])?.params.category
 
   if (!products || products.length === 0) {
     return <Spinner />
@@ -49,27 +50,27 @@ export default function Products() {
         <Card className="w-3xs shadow-lg shadow-gray-300">
           <CardHeader>Categories</CardHeader>
           <CardContent className="text-center space-y-2 px-0">
-            <div className="text-left bg-gradient-to-r from-gray-200 via-slate-200 to-slate-50 p-2 cursor-pointer" onClick={() => {
+            <div className={`text-left bg-gradient-to-r from-gray-200 via-slate-200 to-slate-50 p-2 cursor-pointer ${category ? "" : "border-l-2 border-l-primary"}`} onClick={() => {
               ProductRouter.push("Products")
             }}>
               All
             </div>
-            <div className="text-left bg-gradient-to-r from-gray-200 via-slate-200 to-slate-50 p-2 cursor-pointer" onClick={() => {
+            <div className={`text-left bg-gradient-to-r from-gray-200 via-slate-200 to-slate-50 p-2 cursor-pointer ${category === "men's clothing" ? "border-l-2 border-l-primary" : ""}`} onClick={() => {
               ProductRouter.push("Products", { category: "men's clothing" })
             }}>
               men's clothing
             </div>
-            <div className="text-left bg-gradient-to-r from-gray-200 via-slate-200 to-slate-50 p-2 cursor-pointer" onClick={() => {
+            <div className={`text-left bg-gradient-to-r from-gray-200 via-slate-200 to-slate-50 p-2 cursor-pointer ${category === "women's clothing" ? "border-l-2 border-l-primary" : ""}`} onClick={() => {
               ProductRouter.push("Products", { category: "women's clothing" })
             }}>
               women's clothing
             </div>
-            <div className="text-left bg-gradient-to-r from-gray-200 via-slate-200 to-slate-50 p-2 cursor-pointer" onClick={() => {
+            <div className={`text-left bg-gradient-to-r from-gray-200 via-slate-200 to-slate-50 p-2 cursor-pointer ${category === "jewelery" ? "border-l-2 border-l-primary" : ""}`} onClick={() => {
               ProductRouter.push("Products", { category: "jewelery" })
             }}>
               jewelery
             </div>
-            <div className="text-left bg-gradient-to-r from-gray-200 via-slate-200 to-slate-50 p-2 cursor-pointer" onClick={() => {
+            <div className={`text-left bg-gradient-to-r from-gray-200 via-slate-200 to-slate-50 p-2 cursor-pointer ${category === "electronics" ? "border-l-2 border-l-primary" : ""}`} onClick={() => {
               ProductRouter.push("Products", { category: "electronics" })
             }}>
               electronics
