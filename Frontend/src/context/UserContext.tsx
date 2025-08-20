@@ -19,11 +19,7 @@ interface UserProviderProps {
 }
 
 function UserContextProvider({ children }: UserProviderProps) {
-  const [user, setUserState] = useState<IUser | null>(null)
-
-  function setUser(user: IUser | null) {
-    setUserState(user)
-  }
+  const [user, setUser] = useState<IUser | null>(null)
 
   function logoutUser() {
     apiClient.post("/auth/logout")
