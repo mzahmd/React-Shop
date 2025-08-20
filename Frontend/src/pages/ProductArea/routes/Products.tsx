@@ -1,10 +1,10 @@
-import { useState } from "react"
-
 import Spinner from "@/components/Spinner"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { useProducts } from "@/hooks/useProducts"
 import type { IProductDTO } from "@/interface/IProduct"
+
+import { ProductRouter } from "../router"
 
 function ProductCard({ title, image, price }: IProductDTO) {
   return (
@@ -27,8 +27,7 @@ function ProductCard({ title, image, price }: IProductDTO) {
 }
 
 export default function Products() {
-  const [categoryQuery, setCategoryQuery] = useState<string>("")
-  const products = useProducts(categoryQuery)
+  const products = useProducts()
 
   if (!products || products.length === 0) {
     return <Spinner />
@@ -50,19 +49,29 @@ export default function Products() {
         <Card className="w-3xs shadow-lg shadow-gray-300">
           <CardHeader>Categories</CardHeader>
           <CardContent className="text-center space-y-2 px-0">
-            <div className="text-left bg-gradient-to-r from-gray-200 via-slate-200 to-slate-50 p-2 cursor-pointer" onClick={() => setCategoryQuery("")}>
+            <div className="text-left bg-gradient-to-r from-gray-200 via-slate-200 to-slate-50 p-2 cursor-pointer" onClick={() => {
+              ProductRouter.push("Products")
+            }}>
               All
             </div>
-            <div className="text-left bg-gradient-to-r from-gray-200 via-slate-200 to-slate-50 p-2 cursor-pointer" onClick={() => setCategoryQuery("men's clothing")}>
+            <div className="text-left bg-gradient-to-r from-gray-200 via-slate-200 to-slate-50 p-2 cursor-pointer" onClick={() => {
+              ProductRouter.push("Products", { category: "men's clothing" })
+            }}>
               men's clothing
             </div>
-            <div className="text-left bg-gradient-to-r from-gray-200 via-slate-200 to-slate-50 p-2 cursor-pointer" onClick={() => setCategoryQuery("women's clothing")}>
+            <div className="text-left bg-gradient-to-r from-gray-200 via-slate-200 to-slate-50 p-2 cursor-pointer" onClick={() => {
+              ProductRouter.push("Products", { category: "women's clothing" })
+            }}>
               women's clothing
             </div>
-            <div className="text-left bg-gradient-to-r from-gray-200 via-slate-200 to-slate-50 p-2 cursor-pointer" onClick={() => setCategoryQuery("jewelery")}>
+            <div className="text-left bg-gradient-to-r from-gray-200 via-slate-200 to-slate-50 p-2 cursor-pointer" onClick={() => {
+              ProductRouter.push("Products", { category: "jewelery" })
+            }}>
               jewelery
             </div>
-            <div className="text-left bg-gradient-to-r from-gray-200 via-slate-200 to-slate-50 p-2 cursor-pointer" onClick={() => setCategoryQuery("electronics")}>
+            <div className="text-left bg-gradient-to-r from-gray-200 via-slate-200 to-slate-50 p-2 cursor-pointer" onClick={() => {
+              ProductRouter.push("Products", { category: "electronics" })
+            }}>
               electronics
             </div>
           </CardContent>
