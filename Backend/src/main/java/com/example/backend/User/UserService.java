@@ -5,6 +5,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -39,7 +40,9 @@ public class UserService {
     public boolean isUserAuthenticated() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
-        return authentication != null && authentication.isAuthenticated();
+        return authentication != null
+                && authentication.isAuthenticated()
+                && (!(authentication instanceof AnonymousAuthenticationToken));
     }
 
     public void register(UserRequest userRequest) {

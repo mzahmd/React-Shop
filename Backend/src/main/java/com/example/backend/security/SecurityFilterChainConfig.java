@@ -25,7 +25,7 @@ public class SecurityFilterChainConfig {
                         .maximumSessions(1)
                         .maxSessionsPreventsLogin(true))
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/user/register", "/auth/*").permitAll()
+                        .requestMatchers("/user/register", "/user/authenticated", "/products", "/auth/*").permitAll()
                         .requestMatchers("/admin/**").hasAuthority("ADMIN")
                         .anyRequest().authenticated());
 
