@@ -35,8 +35,8 @@ export default function Products() {
   }
 
   return (
-    <div className="w-full flex flex-col-reverse justify-between  md:flex-row gap-5 bg-gradient-to-b from-white via-slate-50 to-slate-100 my-10 pb-5 md:px-10">
-      <div className="flex flex-wrap flex-row justify-start gap-5">
+    <div className="w-full flex flex-col-reverse justify-between md:flex-row gap-5 bg-gradient-to-b from-white via-slate-50 to-slate-100 my-10 pb-5 md:px-10">
+      <div className="flex flex-wrap flex-row justify-center md:justify-start gap-5">
         {products.map((product) => (
           <ProductCard
             key={product.id}
