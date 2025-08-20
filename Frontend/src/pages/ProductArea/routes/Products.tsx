@@ -1,3 +1,5 @@
+import { useState } from "react"
+
 import Spinner from "@/components/Spinner"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -25,48 +27,47 @@ function ProductCard({ title, image, price }: IProductDTO) {
 }
 
 export default function Products() {
-  const products = useProducts()
+  const [categoryQuery, setCategoryQuery] = useState<string>("")
+  const products = useProducts(categoryQuery)
 
   if (!products || products.length === 0) {
     return <Spinner />
   }
 
   return (
-    <>
-      <div className="flex flex-col-reverse md:flex-row justify-center gap-5 md:gap-0 bg-gradient-to-b from-white via-slate-50 to-slate-100 my-10 pb-5">
-        <div className="flex flex-wrap flex-row justify-center gap-5">
-          {products.map((product) => (
-            <ProductCard
-              key={product.id}
-              title={product.title}
-              image={product.image}
-              price={product.price}
-            />
-          ))}
-        </div>
-        <div className="md:mr-10 text-center self-center md:self-start">
-          <Card className="w-3xs shadow-lg shadow-gray-300">
-            <CardHeader>Categories</CardHeader>
-            <CardContent className="text-center space-y-2 px-0">
-              <div className="text-left bg-gradient-to-r from-gray-200 via-slate-200 to-slate-50 p-2">
-                All
-              </div>
-              <div className="text-left bg-gradient-to-r from-gray-200 via-slate-200 to-slate-50 p-2">
-                men's clothing
-              </div>
-              <div className="text-left bg-gradient-to-r from-gray-200 via-slate-200 to-slate-50 p-2">
-                women's clothing
-              </div>
-              <div className="text-left bg-gradient-to-r from-gray-200 via-slate-200 to-slate-50 p-2">
-                jewelery
-              </div>
-              <div className="text-left bg-gradient-to-r from-gray-200 via-slate-200 to-slate-50 p-2">
-                electronics
-              </div>
-            </CardContent>
-          </Card>
-        </div>
+    <div className="w-full flex flex-col-reverse justify-between  md:flex-row gap-5 bg-gradient-to-b from-white via-slate-50 to-slate-100 my-10 pb-5 md:px-10">
+      <div className="flex flex-wrap flex-row justify-start gap-5">
+        {products.map((product) => (
+          <ProductCard
+            key={product.id}
+            title={product.title}
+            image={product.image}
+            price={product.price}
+          />
+        ))}
       </div>
-    </>
+      <div className="text-center self-center md:self-start">
+        <Card className="w-3xs shadow-lg shadow-gray-300">
+          <CardHeader>Categories</CardHeader>
+          <CardContent className="text-center space-y-2 px-0">
+            <div className="text-left bg-gradient-to-r from-gray-200 via-slate-200 to-slate-50 p-2 cursor-pointer" onClick={() => setCategoryQuery("")}>
+              All
+            </div>
+            <div className="text-left bg-gradient-to-r from-gray-200 via-slate-200 to-slate-50 p-2 cursor-pointer" onClick={() => setCategoryQuery("men's clothing")}>
+              men's clothing
+            </div>
+            <div className="text-left bg-gradient-to-r from-gray-200 via-slate-200 to-slate-50 p-2 cursor-pointer" onClick={() => setCategoryQuery("women's clothing")}>
+              women's clothing
+            </div>
+            <div className="text-left bg-gradient-to-r from-gray-200 via-slate-200 to-slate-50 p-2 cursor-pointer" onClick={() => setCategoryQuery("jewelery")}>
+              jewelery
+            </div>
+            <div className="text-left bg-gradient-to-r from-gray-200 via-slate-200 to-slate-50 p-2 cursor-pointer" onClick={() => setCategoryQuery("electronics")}>
+              electronics
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    </div>
   )
 }
