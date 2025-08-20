@@ -4,16 +4,16 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card"
 
 function HomeHeader() {
   return (
-    <div className="bg-linear-to-r from-indigo-500 via-purple-500 to-pink-500 p-10">
+    <div className="bg-linear-to-r from-indigo-500 via-purple-500 to-pink-500 p-5 px-2 md:p-10">
       <div className="flex justify-center">
-        <h2 className="text-5xl uppercase">
+        <h2 className="text-4xl md:text-5xl uppercase">
           <span className="font-bold">Find Your </span>
           <br />
-          <RollingText className="text-4xl" text="Dream Product" />
+          <RollingText className="text-3xl md:text-4xl" text="Dream Product" />
         </h2>
       </div>
-      <div className="flex flex-row justify-center mt-20 gap-10 text-2xl font-semibold md:h-24 lg:h-32">
-        <Card className="rounded-2xl cursor-pointer border-indigo-500 text-indigo-500">
+      <div className="flex flex-row flex-wrap  justify-center mt-20 gap-10 text-2xl font-semibold ">
+        <Card className="rounded-2xl cursor-pointer text-center border-indigo-500 text-indigo-500">
           <CardContent className="my-auto">
             Clothes
           </CardContent>
@@ -54,25 +54,25 @@ function HomeContent() {
           sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.
         </span>
       </div>
-      <div className="flex flex-row justify-center align-middle gap-10">
+      <div className="flex flex-col md:flex-row justify-center items-center gap-10">
         <div className="md:w-2xl">
           <h5 className="text-xl font-bold">Nice Design</h5>
           <p className="mt-2 text-gray-600">Discover the beauty of our curated collection.</p>
           <p className="mt-2">
             Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.
           </p>
-          <HomeCard />
-          <HomeCard />
+          <FeatureCard />
+          <FeatureCard />
         </div>
-        <div className="md:w-xs self-end">
-          <img src={illustration1} alt="illustration 1" className="" />
+        <div className="w-3xs md:w-xs md:self-end">
+          <img src={illustration1} alt={"illustration 1"} />
         </div>
       </div>
     </div>
   )
 }
 
-function HomeCard() {
+function FeatureCard() {
   return (
     <Card className="text-center md:w-lg mt-5 border-violet-500 border-2 shadow-md shadow-violet-500">
       <CardHeader className="font-bold text-2xl">Feature</CardHeader>
