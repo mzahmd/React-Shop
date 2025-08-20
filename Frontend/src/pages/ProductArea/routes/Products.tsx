@@ -1,6 +1,7 @@
 import Spinner from "@/components/Spinner"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { CATEGORIES } from "@/data/category"
 import { useProducts } from "@/hooks/useProducts"
 import type { IProductDTO } from "@/interface/IProduct"
 
@@ -29,7 +30,7 @@ function ProductCard({ title, image, price }: IProductDTO) {
 export default function Products() {
   const category = ProductRouter.getRoute(["Products"])?.params.category
   const products = useProducts(category)
-  
+
   if (!products || products.length === 0) {
     return <Spinner />
   }
@@ -55,26 +56,13 @@ export default function Products() {
             }}>
               All
             </div>
-            <div className={`text-left bg-gradient-to-r from-gray-200 via-slate-200 to-slate-50 p-2 cursor-pointer ${category === "men's clothing" ? "border-l-2 border-l-primary" : ""}`} onClick={() => {
-              ProductRouter.push("Products", { category: "men's clothing" })
-            }}>
-              men's clothing
-            </div>
-            <div className={`text-left bg-gradient-to-r from-gray-200 via-slate-200 to-slate-50 p-2 cursor-pointer ${category === "women's clothing" ? "border-l-2 border-l-primary" : ""}`} onClick={() => {
-              ProductRouter.push("Products", { category: "women's clothing" })
-            }}>
-              women's clothing
-            </div>
-            <div className={`text-left bg-gradient-to-r from-gray-200 via-slate-200 to-slate-50 p-2 cursor-pointer ${category === "jewelery" ? "border-l-2 border-l-primary" : ""}`} onClick={() => {
-              ProductRouter.push("Products", { category: "jewelery" })
-            }}>
-              jewelery
-            </div>
-            <div className={`text-left bg-gradient-to-r from-gray-200 via-slate-200 to-slate-50 p-2 cursor-pointer ${category === "electronics" ? "border-l-2 border-l-primary" : ""}`} onClick={() => {
-              ProductRouter.push("Products", { category: "electronics" })
-            }}>
-              electronics
-            </div>
+            {CATEGORIES.map((CATEGORY) => (
+              <div key={CATEGORY.id} className={`text-left bg-gradient-to-r from-gray-200 via-slate-200 to-slate-50 p-2 cursor-pointer ${CATEGORY.name === category ? "border-l-2 border-l-primary" : ""}`} onClick={() => {
+                ProductRouter.push("Products", { category: CATEGORY.name })
+              }}>
+                {CATEGORY.name}
+              </div>
+            ))}
           </CardContent>
         </Card>
       </div>
