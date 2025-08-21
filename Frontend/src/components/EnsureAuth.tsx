@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 
 import { useAuthenticated } from "@/hooks/useAuthenticated"
-import { AuthRouter } from "@/pages/AuthArea/router"
+import { HomeRouter } from "@/pages/HomeArea/router"
 
 interface EnsureAuthProps {
   children: React.ReactNode
@@ -12,7 +12,7 @@ export default function EnsureAuth({ children }: EnsureAuthProps) {
 
   useEffect(() => {
     if (isAuthenticated === false) {
-      AuthRouter.push("Login")
+      HomeRouter.push("Home")
     }
   }, [isAuthenticated])
 
