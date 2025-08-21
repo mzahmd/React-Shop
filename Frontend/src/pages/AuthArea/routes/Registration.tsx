@@ -5,6 +5,7 @@ import { toast } from "sonner"
 import { z } from "zod"
 
 import { HexagonBackground } from "@/components/animate-ui/backgrounds/hexagon"
+import Navbar from "@/components/Navbar"
 import { Button } from "@/components/ui/button"
 import {
   Card,
@@ -53,9 +54,10 @@ export default function Registration() {
   }
 
   return (
-    <div className="flex justify-center items-center min-h-screen">
-      <HexagonBackground className="absolute inset-0 flex items-center justify-center rounded-xl z-0 bg-accent">
-        <div className="w-full md:w-xl relative z-20">
+    <HexagonBackground className="absolute inset-0 flex justify-center rounded-xl z-0 bg-accent">
+      <div className="flex flex-col justify-between w-dvw">
+        <Navbar />
+        <div className="w-full md:w-xl relative z-2 m-auto">
           <Card className="bg-transparent backdrop-blur-xl">
             <CardHeader>
               <CardTitle>Create your Account</CardTitle>
@@ -102,7 +104,7 @@ export default function Registration() {
             </CardFooter>
           </Card>
         </div>
-      </HexagonBackground>
-    </div>
+      </div>
+    </HexagonBackground>
   )
 }

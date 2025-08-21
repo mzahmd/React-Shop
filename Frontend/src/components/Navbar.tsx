@@ -26,7 +26,7 @@ export default function Navbar() {
   const currentRoute = Router.getRoute(["Home", "Admin", "User", "Products"])?.name
 
   return (
-    <header className="bg-gradient-to-r from-gray-100 via-gray-200 to-gray-100 p-4">
+    <header className="bg-gradient-to-r from-gray-100 via-gray-200 to-gray-100 z-2 p-4">
       <div className="flex items-center justify-between flex-wrap">
 
         <h1 className="text-3xl font-bold">React Shop</h1>
