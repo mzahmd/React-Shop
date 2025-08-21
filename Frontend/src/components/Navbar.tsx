@@ -12,7 +12,6 @@ import {
   SheetContent,
   SheetTrigger
 } from "@/components/ui/sheet"
-import { useAuthenticated } from "@/hooks/useAuthenticated"
 import { useUserContext } from "@/hooks/useUserContext"
 import { AdminRouter } from "@/pages/AdminArea/router"
 import { AuthRouter } from "@/pages/AuthArea/router"
@@ -23,7 +22,6 @@ import { Router } from "@/router"
 
 export default function Navbar() {
   const { user, logoutUser } = useUserContext();
-  const isAuthenticated = useAuthenticated()
 
   const currentRoute = Router.getRoute(["Home", "Admin", "User", "Products"])?.name
 
@@ -46,14 +44,14 @@ export default function Navbar() {
                 <Link className="text-xl rounded-xl" to={ProductRouter.Products()}>Products</Link>
               </Button>
             </NavigationMenuItem>
-            {isAuthenticated && user?.role === "ADMIN" &&
+            {user?.role === "ADMIN" &&
               <NavigationMenuItem>
                 <Button asChild variant={"ghost"} className={`${currentRoute === "Admin" && "underline"}`}>
                   <Link className="text-xl rounded-xl" to={AdminRouter.UsersList()}>View Users</Link>
                 </Button>
               </NavigationMenuItem>
             }
-            {isAuthenticated &&
+            {user &&
               <NavigationMenuItem>
                 <Button asChild variant={"ghost"} className={`${currentRoute === "User" && "underline"}`}>
                   <Link className="text-xl rounded-xl" to={UserRouter.User()}>Profile</Link>
@@ -62,7 +60,7 @@ export default function Navbar() {
             }
           </NavigationMenuList>
         </NavigationMenu>
-        {isAuthenticated ?
+        {user ?
           <NavigationMenu className="hidden md:block">
             <NavigationMenuList className="mx-0">
               <NavigationMenuItem>
@@ -122,12 +120,12 @@ export default function Navbar() {
                     View Users
                   </Link>
                 )}
-                {isAuthenticated &&
+                {user &&
                   <Link to={UserRouter.User()} className={`text-lg ${currentRoute === "User" && "underline"}`}>
                     Profile
                   </Link>
                 }
-                {isAuthenticated ?
+                {user ?
                   <Button variant="ghost" className="text-lg mt-4" onClick={logoutUser}>
                     <LogOut /> Logout
                   </Button>
