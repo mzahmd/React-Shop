@@ -18,7 +18,7 @@ public class UserListDataAccessService implements UserDAO {
     @Override
     public Optional<User> findUserByEmail(String email) {
         return USERS.stream()
-                .filter(user -> user.email.equalsIgnoreCase(email))
+                .filter(user -> user.getEmail().equalsIgnoreCase(email))
                 .findFirst();
     }
 
@@ -29,11 +29,11 @@ public class UserListDataAccessService implements UserDAO {
 
     @Override
     public void deleteUserByEmail(String email) {
-        USERS.removeIf(user -> user.email.equalsIgnoreCase(email));
+        USERS.removeIf(user -> user.getEmail().equalsIgnoreCase(email));
     }
 
     @Override
     public void deleteAuthenticatedUser(UserDTO userDTO) {
-        USERS.removeIf(user -> user.email.equalsIgnoreCase(userDTO.email()));
+        USERS.removeIf(user -> user.getEmail().equalsIgnoreCase(userDTO.email()));
     }
 }
