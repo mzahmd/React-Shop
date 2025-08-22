@@ -8,7 +8,7 @@ import java.util.Optional;
 
 @Service
 public class UserListDataAccessService implements UserDAO {
-    private static final List<User> USERS = new ArrayList<>();
+    private final List<User> USERS = new ArrayList<>();
 
     @Override
     public void registerUser(User registerUser) {
