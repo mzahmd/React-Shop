@@ -50,11 +50,12 @@ public class UserService {
             throw new IllegalStateException("User already exists!");
         }
 
-        userDAO.registerUser(new User(
+        User registerUser = new User(
                 userRequest.email(),
                 passwordEncoder.encode(userRequest.password()),
-                Role.USER)
-        );
+                Role.USER);
+
+        userDAO.registerUser(registerUser);
 
         logger.info("User registered successfully!");
     }
