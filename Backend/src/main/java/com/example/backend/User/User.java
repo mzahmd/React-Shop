@@ -1,15 +1,30 @@
 package com.example.backend.User;
 
 public class User {
-
+    int id;
     String email;
     String password;
     Role role;
+
+    public User(int id, String email, String password, Role role) {
+        this.id = id;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+    }
 
     public User(String email, String password, Role role) {
         this.email = email;
         this.password = password;
         this.role = role;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getEmail() {
@@ -38,6 +53,6 @@ public class User {
 
     @Override
     public String toString() {
-        return "Customer{" + "email=" + email + ", role=" + role + "}";
+        return "Customer{" + "id=" + id + ", email=" + email + ", role=" + role + "}";
     }
 }

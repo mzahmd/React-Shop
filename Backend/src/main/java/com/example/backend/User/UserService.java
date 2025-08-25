@@ -18,6 +18,7 @@ public class UserService {
     private final UserDAO userDAO;
     private final PasswordEncoder passwordEncoder;
 
+    private static int id = 1;
     private static final Logger logger = LoggerFactory.getLogger(UserService.class);
 
     public UserService(UserDAO userDAO, PasswordEncoder passwordEncoder) {
@@ -51,12 +52,14 @@ public class UserService {
         }
 
         User registerUser = new User(
+                id,
                 userRequest.email(),
                 passwordEncoder.encode(userRequest.password()),
                 Role.USER);
 
         userDAO.registerUser(registerUser);
 
+        id++;
         logger.info("User registered successfully!");
     }
 
