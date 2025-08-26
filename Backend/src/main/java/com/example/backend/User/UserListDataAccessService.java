@@ -1,5 +1,6 @@
 package com.example.backend.User;
 
+import com.example.backend.Order.Order;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -23,6 +24,13 @@ public class UserListDataAccessService implements UserDAO {
     }
 
     @Override
+    public Optional<User> findUserById(int id) {
+        return USERS.stream()
+                .filter(user -> user.getId() == id)
+                .findFirst();
+    }
+
+    @Override
     public List<User> getAllUsers() {
         return USERS;
     }
@@ -35,5 +43,10 @@ public class UserListDataAccessService implements UserDAO {
     @Override
     public void deleteAuthenticatedUser(UserDTO userDTO) {
         USERS.removeIf(user -> user.getEmail().equalsIgnoreCase(userDTO.email()));
+    }
+
+    @Override
+    public void addOrder(User user, Order order) {
+        user.getOrders().add(order);
     }
 }
