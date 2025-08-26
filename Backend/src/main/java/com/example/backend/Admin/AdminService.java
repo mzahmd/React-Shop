@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class AdminService {
-    UserDAO userDAO;
+    private final UserDAO userDAO;
 
     public AdminService(UserDAO userDAO) {
         this.userDAO = userDAO;

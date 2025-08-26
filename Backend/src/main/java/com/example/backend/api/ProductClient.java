@@ -8,7 +8,6 @@ import reactor.core.publisher.Flux;
 
 @Component
 public class ProductClient {
-
     private final WebClient webClient;
 
     public ProductClient(@Value("#{'${product.url}'}") String PRODUCT_URL, WebClient.Builder builder) {

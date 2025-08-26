@@ -6,7 +6,6 @@ import reactor.core.publisher.Flux;
 
 @Service
 public class ProductService {
-
     private final ProductClient productClient;
 
     public ProductService(ProductClient productClient) {

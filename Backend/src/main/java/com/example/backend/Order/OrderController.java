@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 public class OrderController {
-    OrderService orderService;
+    private final OrderService orderService;
 
     public OrderController(OrderService orderService) {
         this.orderService = orderService;

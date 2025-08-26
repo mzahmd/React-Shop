@@ -9,8 +9,7 @@ import reactor.core.publisher.Flux;
 @RestController
 @RequestMapping("/products")
 public class ProductController {
-
-    ProductService productService;
+    private final ProductService productService;
 
     public ProductController(ProductService productService) {
         this.productService = productService;

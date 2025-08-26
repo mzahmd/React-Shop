@@ -8,7 +8,6 @@ import java.util.Collection;
 import java.util.List;
 
 public class UserDetailsImpl implements UserDetails {
-
     public String email;
     public String password;
     public Role role;
