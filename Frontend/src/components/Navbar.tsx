@@ -74,6 +74,9 @@ export default function Navbar() {
                   <LogOut /> Logout
                 </Button>
               </NavigationMenuItem>
+              <NavigationMenuItem>
+                <ModeToggle />
+              </NavigationMenuItem>
             </NavigationMenuList>
           </NavigationMenu>
           :
@@ -113,6 +116,7 @@ export default function Navbar() {
               </Button>
             </SheetTrigger>
             <SheetContent side="left" className="w-64">
+              <ModeToggle />
               <nav className="flex flex-col gap-4 mt-8 p-5">
                 <Link to={HomeRouter.Home()} className={`text-lg ${currentRoute === "Home" && "underline"}`}>
                   Home
