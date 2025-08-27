@@ -27,6 +27,32 @@ function ProductCard({ title, image, price }: IProductDTO) {
   )
 }
 
+interface CategoryCardProps {
+  category: string | undefined;
+}
+
+function CategoryCard({ category }: CategoryCardProps) {
+  return (
+    <Card className="w-3xs shadow-lg shadow-gray-300">
+      <CardHeader>Categories</CardHeader>
+      <CardContent className="text-center space-y-2 px-0">
+        <div className={`text-left bg-gradient-to-r from-slate-50 dark:from-slate-900 via-slate-200 dark:via-slate-700 to-slate-50 dark:to-slate-700 p-2 cursor-pointer ${category ? "" : "border-l-2 border-l-primary"}`} onClick={() => {
+          ProductRouter.push("Products")
+        }}>
+          All
+        </div>
+        {CATEGORIES.map((CATEGORY) => (
+          <div key={CATEGORY.id} className={`text-left bg-gradient-to-r from-slate-50 dark:from-slate-900 via-slate-200 to-slate-50 dark:via-slate-700 dark:to-slate-700 p-2 cursor-pointer ${CATEGORY.name === category ? "border-l-2 border-l-primary" : ""}`} onClick={() => {
+            ProductRouter.push("Products", { category: CATEGORY.name })
+          }}>
+            {CATEGORY.name}
+          </div>
+        ))}
+      </CardContent>
+    </Card>
+  )
+}
+
 export default function Products() {
   const category = ProductRouter.getRoute(["Products"])?.params.category
   const products = useProducts(category)
@@ -48,23 +74,7 @@ export default function Products() {
         ))}
       </div>
       <div className="text-center self-center md:self-start">
-        <Card className="w-3xs shadow-lg shadow-gray-300">
-          <CardHeader>Categories</CardHeader>
-          <CardContent className="text-center space-y-2 px-0">
-            <div className={`text-left bg-gradient-to-r from-slate-50 dark:from-slate-900 via-slate-200 dark:via-slate-700 to-slate-50 dark:to-slate-700 p-2 cursor-pointer ${category ? "" : "border-l-2 border-l-primary"}`} onClick={() => {
-              ProductRouter.push("Products")
-            }}>
-              All
-            </div>
-            {CATEGORIES.map((CATEGORY) => (
-              <div key={CATEGORY.id} className={`text-left bg-gradient-to-r from-slate-50 dark:from-slate-900 via-slate-200 to-slate-50 dark:via-slate-700 dark:to-slate-700 p-2 cursor-pointer ${CATEGORY.name === category ? "border-l-2 border-l-primary" : ""}`} onClick={() => {
-                ProductRouter.push("Products", { category: CATEGORY.name })
-              }}>
-                {CATEGORY.name}
-              </div>
-            ))}
-          </CardContent>
-        </Card>
+        <CategoryCard category={category} />
       </div>
     </div>
   )
