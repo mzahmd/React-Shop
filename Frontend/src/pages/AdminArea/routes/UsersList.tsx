@@ -89,7 +89,7 @@ export default function Users() {
         <Table className="bg-table-background table-background md:text-xl">
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
-              <TableRow key={headerGroup.id} className="hover:bg-gray-300">
+              <TableRow key={headerGroup.id} className="hover:bg-table-hover">
                 {headerGroup.headers.map((header) => {
                   return (
                     <TableHead key={header.id}>
@@ -111,7 +111,7 @@ export default function Users() {
                 <TableRow
                   key={row.id}
                   data-state={row.getIsSelected() && "selected"}
-                  className="hover:bg-gray-300"
+                  className="hover:bg-table-hover"
                 >
                   {
                     row.getVisibleCells().map((cell) => (

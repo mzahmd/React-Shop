@@ -37,6 +37,7 @@
   --sidebar-border: oklch(0.92 0.004 286.32);
   --sidebar-ring: oklch(0.606 0.25 292.717);
 
+  --table-hover: oklch(0.92 0.004 286.32);
   --table-background: oklch(1 0 0);
   --button-background: oklch(1 0 0);
 }
@@ -78,6 +79,7 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 
+  --color-table-hover: var(--table-hover);
   --color-table-background: var(--table-background);
   --color-button-background: var(--button-background);
 }
@@ -114,6 +116,10 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.541 0.281 293.009);
+
+  --table-hover: oklch(1 0 0 / 15%);
+  --table-background: oklch(0.21 0.006 285.885);
+  --button-background: oklch(0.21 0.006 285.885);
 }
 
 @layer base {

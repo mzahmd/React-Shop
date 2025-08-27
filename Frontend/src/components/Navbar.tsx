@@ -20,20 +20,22 @@ import { ProductRouter } from "@/pages/ProductArea/router"
 import { UserRouter } from "@/pages/UserArea/router"
 import { Router } from "@/router"
 
+import { ModeToggle } from "./mode-toggle"
+
 export default function Navbar() {
   const { user, logoutUser } = useUserContext();
 
   const currentRoute = Router.getRoute(["Home", "Admin", "User", "Products"])?.name
 
   return (
-    <header className="bg-gradient-to-r from-gray-100 via-gray-200 to-gray-100 z-2 p-4">
+    <header className="bg-gradient-to-r from-muted via-gray-200 dark:via-gray-600 to-muted z-2 p-4">
       <div className="flex items-center justify-between flex-wrap">
 
         <h1 className="text-3xl font-bold">React Shop</h1>
 
         {/* Desktop Navbar */}
         <NavigationMenu className="hidden md:block">
-          <NavigationMenuList className="space-x-4 border-2 border-black rounded-xl">
+          <NavigationMenuList className="space-x-4 border-2 border-accent-foreground rounded-xl">
             <NavigationMenuItem>
               <Button asChild variant={"ghost"} className={`${currentRoute === "Home" && "underline"}`}>
                 <Link className="text-xl rounded-xl" to={HomeRouter.Home()}>Home</Link>
@@ -94,6 +96,9 @@ export default function Navbar() {
                 >
                   <UserPlus />Sign Up
                 </Button>
+              </NavigationMenuItem>
+              <NavigationMenuItem>
+                <ModeToggle />
               </NavigationMenuItem>
             </NavigationMenuList>
           </NavigationMenu>

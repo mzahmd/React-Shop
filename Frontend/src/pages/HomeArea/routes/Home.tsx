@@ -45,7 +45,7 @@ function HomeHeader() {
 
 function HomeContent() {
   return (
-    <div className="bg-gradient-to-b from-white via-slate-50 to-slate-100 p-5 mb-10">
+    <div className="bg-gradient-to-b from-background via-slate-50 dark:via-slate-700 to-slate-100 dark:to-slate-800 p-5 mb-10">
       <div className="text-center pt-5 mb-10 space-y-10">
         <h2 className="text-4xl font-semibold">Featured Products</h2>
         <span>
@@ -57,7 +57,7 @@ function HomeContent() {
       <div className="flex flex-col md:flex-row justify-center items-center gap-10">
         <div className="md:w-2xl">
           <h5 className="text-xl font-bold">Nice Design</h5>
-          <p className="mt-2 text-gray-600">Discover the beauty of our curated collection.</p>
+          <p className="mt-2 text-muted-foreground">Discover the beauty of our curated collection.</p>
           <p className="mt-2">
             Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.
           </p>

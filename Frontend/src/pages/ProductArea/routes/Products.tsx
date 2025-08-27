@@ -9,7 +9,7 @@ import { ProductRouter } from "../router"
 
 function ProductCard({ title, image, price }: IProductDTO) {
   return (
-    <Card className="w-3xs hover:scale-105 transition-transform duration-300 shadow-lg shadow-gray-300 cursor-pointer">
+    <Card className="w-3xs hover:scale-105 transition-transform duration-300 shadow-md shadow-gray-300 cursor-pointer">
       <CardHeader className="flex justify-center items-center">
         <img src={image} alt={title} className="object-cover" width={100} />
       </CardHeader>
@@ -36,7 +36,7 @@ export default function Products() {
   }
 
   return (
-    <div className="w-full flex flex-col-reverse justify-between md:flex-row gap-5 bg-gradient-to-b from-white via-slate-50 to-slate-100 my-10 pb-5 md:px-10">
+    <div className="w-full flex flex-col-reverse justify-between md:flex-row gap-5 bg-gradient-to-b from-background via-slate-50 dark:via-slate-700 to-slate-100 dark:to-slate-800 my-10 pb-5 md:px-10">
       <div className="flex flex-wrap flex-row justify-center md:justify-start gap-5">
         {products.map((product) => (
           <ProductCard
@@ -51,13 +51,13 @@ export default function Products() {
         <Card className="w-3xs shadow-lg shadow-gray-300">
           <CardHeader>Categories</CardHeader>
           <CardContent className="text-center space-y-2 px-0">
-            <div className={`text-left bg-gradient-to-r from-gray-200 via-slate-200 to-slate-50 p-2 cursor-pointer ${category ? "" : "border-l-2 border-l-primary"}`} onClick={() => {
+            <div className={`text-left bg-gradient-to-r from-slate-50 dark:from-slate-900 via-slate-200 dark:via-slate-700 to-slate-50 dark:to-slate-700 p-2 cursor-pointer ${category ? "" : "border-l-2 border-l-primary"}`} onClick={() => {
               ProductRouter.push("Products")
             }}>
               All
             </div>
             {CATEGORIES.map((CATEGORY) => (
-              <div key={CATEGORY.id} className={`text-left bg-gradient-to-r from-gray-200 via-slate-200 to-slate-50 p-2 cursor-pointer ${CATEGORY.name === category ? "border-l-2 border-l-primary" : ""}`} onClick={() => {
+              <div key={CATEGORY.id} className={`text-left bg-gradient-to-r from-slate-50 dark:from-slate-900 via-slate-200 to-slate-50 dark:via-slate-700 dark:to-slate-700 p-2 cursor-pointer ${CATEGORY.name === category ? "border-l-2 border-l-primary" : ""}`} onClick={() => {
                 ProductRouter.push("Products", { category: CATEGORY.name })
               }}>
                 {CATEGORY.name}
