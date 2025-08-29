@@ -1,5 +1,5 @@
 import { Link } from "@swan-io/chicane"
-import { LogOut, Menu, UserPlus } from "lucide-react"
+import { LogOut, Menu, ShoppingCart, UserPlus } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -65,6 +65,15 @@ export default function Navbar() {
         {user ?
           <NavigationMenu className="hidden md:block">
             <NavigationMenuList className="mx-0">
+              <NavigationMenuItem>
+                <Button
+                  className="cursor-pointer"
+                  variant={"ghost"}
+                  onClick={() => ProductRouter.push("Checkout")}
+                >
+                  <ShoppingCart />
+                </Button>
+              </NavigationMenuItem>
               <NavigationMenuItem>
                 <Button
                   className="cursor-pointer text-xl"
