@@ -4,17 +4,22 @@ import {
   getCoreRowModel,
   useReactTable,
   type VisibilityState,
-} from "@tanstack/react-table"
-import { useState } from "react"
+} from "@tanstack/react-table";
+import { useState } from "react";
 
-// import Spinner from "@/components/Spinner"
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle
+} from "@/components/ui/card";
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+} from "@/components/ui/dropdown-menu";
 import {
   Table,
   TableBody,
@@ -22,9 +27,9 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table"
-import { useShoppingCartContext } from "@/hooks/useShopCarts"
-import type { IShopcart } from "@/interface/IShopCart"
+} from "@/components/ui/table";
+import { useShoppingCartContext } from "@/hooks/useShopCarts";
+import type { IShopcart } from "@/interface/IShopCart";
 
 const columns: ColumnDef<IShopcart>[] = [
   {
@@ -40,6 +45,49 @@ const columns: ColumnDef<IShopcart>[] = [
     header: "Quantity",
   },
 ]
+
+interface CheckoutTotalProps {
+  cartItems: IShopcart[]
+}
+
+function CheckoutTotal({ cartItems }: CheckoutTotalProps) {
+  let sum = 0;
+  let quantity = 0;
+
+  cartItems.forEach(item => {
+    sum += item.product.price * item.quantity;
+    quantity += item.quantity;
+  });
+
+  const checkoutTotal = {
+    sum,
+    quantity,
+  }
+
+  if (checkoutTotal.quantity === 0) {
+    return null;
+  }
+
+  return (
+    <div className="overflow-hidden w-fit mx-auto">
+      <Card>
+        <CardHeader className="text-center text-xl md:w-xs">
+          <CardTitle>Checkout</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <p>
+            <span className="font-bold"> Quantity </span>
+            {checkoutTotal.quantity}
+          </p>
+          <p>
+            <span className="font-bold"> Total Price </span>
+            {checkoutTotal.sum} €
+          </p>
+        </CardContent>
+      </Card>
+    </div>
+  )
+}
 
 export default function Checkout() {
   const { cartItems } = useShoppingCartContext()
@@ -132,13 +180,14 @@ export default function Checkout() {
                     colSpan={columns.length}
                     className="h-24 text-center"
                   >
-                    No results.
+                    No Order made.
                   </TableCell>
                 </TableRow>
               )}
             </TableBody>
           </Table>
         </div>
+        <CheckoutTotal cartItems={Object.values(cartItems)} />
       </div >
     </div>
   )
