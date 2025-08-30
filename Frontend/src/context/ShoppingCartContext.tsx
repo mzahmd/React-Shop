@@ -3,7 +3,7 @@ import { createContext, useState } from "react";
 import { type IShopcart } from "@/interface/IShopCart";
 
 interface ShoppingCartContextType {
-  cartItems: IShopcart[];
+  cartItems: Record<number, IShopcart>;
   addToCart: (cartItem: IShopcart) => void;
   removeFromCart: (productId: number) => void;
   clearCart: () => void;
@@ -16,18 +16,25 @@ interface ShoppingCartProps {
 }
 
 function ShoppingCartContextProvider({ children }: ShoppingCartProps) {
-  const [cartItems, setCartItems] = useState<IShopcart[]>([]);
+  const [cartItems, setCartItems] = useState<Record<number, IShopcart>>({});
 
   const addToCart = (cartItem: IShopcart) => {
-    setCartItems((prev) => [...prev, cartItem]);
+    setCartItems((prev) => ({
+      ...prev,
+      [cartItem.product.id]: { ...cartItem, quantity: (prev[cartItem.product.id]?.quantity || 0) + cartItem.quantity }
+    }));
   };
 
   const removeFromCart = (productId: number) => {
-    setCartItems((prev) => prev.filter((cartItem) => cartItem.product.id !== productId));
+    setCartItems((prev) => {
+      const newCartItems = { ...prev };
+      delete newCartItems[productId];
+      return newCartItems;
+    });
   };
 
   const clearCart = () => {
-    setCartItems([]);
+    setCartItems({});
   };
 
   return (

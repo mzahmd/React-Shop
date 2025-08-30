@@ -46,7 +46,7 @@ export default function Checkout() {
 
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({})
   const table = useReactTable({
-    data: cartItems,
+    data: Object.values(cartItems),
     columns,
     getCoreRowModel: getCoreRowModel(),
     onColumnVisibilityChange: setColumnVisibility,
