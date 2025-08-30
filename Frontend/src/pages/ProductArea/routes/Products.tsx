@@ -3,24 +3,31 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { CATEGORIES } from "@/data/category"
 import { useProducts } from "@/hooks/useProducts"
-import type { IProductDTO } from "@/interface/IProduct"
+import { useShoppingCartContext } from "@/hooks/useShopCarts"
+import type { IProduct } from "@/interface/IProduct"
 
 import { ProductRouter } from "../router"
 
-function ProductCard({ title, image, price }: IProductDTO) {
+interface ProductCardProps {
+  product: IProduct
+}
+
+function ProductCard({ product }: ProductCardProps) {
+  const { addToCart } = useShoppingCartContext()
+
   return (
     <Card className="w-3xs hover:scale-105 transition-transform duration-300 shadow-md shadow-gray-300 cursor-pointer">
       <CardHeader className="flex justify-center items-center">
-        <img src={image} alt={title} className="object-cover" width={100} />
+        <img src={product.image} alt={product.title} className="object-cover" width={100} />
       </CardHeader>
       <CardContent className="text-center mt-auto">
-        <CardTitle>{title}</CardTitle>
+        <CardTitle>{product.title}</CardTitle>
         <div className="flex flex-row justify-between items-end mt-4">
           <div>
             <p className="text-muted-foreground">Price</p>
-            <p>${price}</p>
+            <p>${product.price}</p>
           </div>
-          <Button>Add to Cart</Button>
+          <Button onClick={() => addToCart({ product, quantity: 1 })}>Add to Cart</Button>
         </div>
       </CardContent>
     </Card>
@@ -67,9 +74,7 @@ export default function Products() {
         {products.map((product) => (
           <ProductCard
             key={product.id}
-            title={product.title}
-            image={product.image}
-            price={product.price}
+            product={product}
           />
         ))}
       </div>
