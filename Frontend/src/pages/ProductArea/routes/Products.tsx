@@ -1,9 +1,12 @@
+import { toast } from "sonner"
+
 import Spinner from "@/components/Spinner"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { CATEGORIES } from "@/data/category"
 import { useProducts } from "@/hooks/useProducts"
 import { useShoppingCartContext } from "@/hooks/useShopCarts"
+import { useUserContext } from "@/hooks/useUserContext"
 import type { IProduct } from "@/interface/IProduct"
 
 import { ProductRouter } from "../router"
@@ -14,6 +17,15 @@ interface ProductCardProps {
 
 function ProductCard({ product }: ProductCardProps) {
   const { addToCart } = useShoppingCartContext()
+  const { user } = useUserContext()
+
+  function onClickToAddToCart() {
+    if (user) {
+      addToCart({ product, quantity: 1 })
+    } else {
+      toast.info("You must be logged in to add products to the cart")
+    }
+  }
 
   return (
     <Card className="w-3xs hover:scale-105 transition-transform duration-300 shadow-md shadow-gray-300 cursor-pointer">
@@ -27,7 +39,7 @@ function ProductCard({ product }: ProductCardProps) {
             <p className="text-muted-foreground">Price</p>
             <p>${product.price}</p>
           </div>
-          <Button onClick={() => addToCart({ product, quantity: 1 })}>Add to Cart</Button>
+          <Button onClick={onClickToAddToCart}>Add to Cart</Button>
         </div>
       </CardContent>
     </Card>
