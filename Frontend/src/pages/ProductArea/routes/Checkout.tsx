@@ -1,19 +1,145 @@
-import { useShoppingCartContext } from "@/hooks/useShopCarts"
+import {
+  type ColumnDef,
+  flexRender,
+  getCoreRowModel,
+  useReactTable,
+  type VisibilityState,
+} from "@tanstack/react-table"
+import { useState } from "react"
 
+// import Spinner from "@/components/Spinner"
+import { Button } from "@/components/ui/button"
+import {
+  DropdownMenu,
+  DropdownMenuCheckboxItem,
+  DropdownMenuContent,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table"
+import { useShoppingCartContext } from "@/hooks/useShopCarts"
+import type { IShopcart } from "@/interface/IShopCart"
+
+const columns: ColumnDef<IShopcart>[] = [
+  {
+    accessorKey: "product.title",
+    header: "Product",
+  },
+  {
+    accessorKey: "product.price",
+    header: "Price",
+  },
+  {
+    accessorKey: "quantity",
+    header: "Quantity",
+  },
+]
 
 export default function Checkout() {
   const { cartItems } = useShoppingCartContext()
 
+  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({})
+  const table = useReactTable({
+    data: cartItems,
+    columns,
+    getCoreRowModel: getCoreRowModel(),
+    onColumnVisibilityChange: setColumnVisibility,
+    state: {
+      columnVisibility,
+    },
+  })
+
   return (
     <div className="w-full flex flex-col-reverse justify-between md:flex-row gap-5 bg-gradient-to-b from-background via-slate-50 dark:via-slate-700 to-slate-100 dark:to-slate-800 my-10 pb-5 md:px-10">
-      <div className="flex flex-wrap flex-row justify-center md:justify-start gap-5">
-        Checkout
-        {cartItems.map((item) => (
-          <div key={item.product.id} className="border-b border-b-muted py-2">
-            {item.product.title} - {item.quantity}
-          </div>
-        ))}
-      </div>
+      <div className="mx-auto mt-6 space-y-3 p-2 mb-10">
+        <div className="md:w-1/3 ms-auto">
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="outline" className="bg-button-background">
+                Columns
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              {table
+                .getAllColumns()
+                .filter((column) => column.getCanHide())
+                .map((column) => {
+                  return (
+                    <DropdownMenuCheckboxItem
+                      key={column.id}
+                      className="capitalize"
+                      checked={column.getIsVisible()}
+                      onCheckedChange={(value) =>
+                        column.toggleVisibility(!!value)
+                      }
+                    >
+                      {column.id}
+                    </DropdownMenuCheckboxItem>
+                  )
+                })}
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
+        <div className="overflow-hidden md:w-4xl mx-auto">
+          <Table className="bg-table-background table-background md:text-xl">
+            <TableHeader>
+              {table.getHeaderGroups().map((headerGroup) => (
+                <TableRow key={headerGroup.id} className="hover:bg-table-hover">
+                  {headerGroup.headers.map((header) => {
+                    return (
+                      <TableHead key={header.id}>
+                        {header.isPlaceholder
+                          ? null
+                          : flexRender(
+                            header.column.columnDef.header,
+                            header.getContext(),
+                          )}
+                      </TableHead>
+                    )
+                  })}
+                </TableRow>
+              ))}
+            </TableHeader>
+            <TableBody>
+              {table.getRowModel().rows?.length ? (
+                table.getRowModel().rows.map((row) => (
+                  <TableRow
+                    key={row.id}
+                    data-state={row.getIsSelected() && "selected"}
+                    className="hover:bg-table-hover"
+                  >
+                    {
+                      row.getVisibleCells().map((cell) => (
+                        <TableCell key={cell.id}>
+                          {flexRender(
+                            cell.column.columnDef.cell,
+                            cell.getContext(),
+                          )}
+                        </TableCell>
+                      ))
+                    }
+                  </TableRow>
+                ))
+              ) : (
+                <TableRow>
+                  <TableCell
+                    colSpan={columns.length}
+                    className="h-24 text-center"
+                  >
+                    No results.
+                  </TableCell>
+                </TableRow>
+              )}
+            </TableBody>
+          </Table>
+        </div>
+      </div >
     </div>
   )
 }
