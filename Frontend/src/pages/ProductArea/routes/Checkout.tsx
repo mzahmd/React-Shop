@@ -50,25 +50,26 @@ const columns: ColumnDef<IShopcart>[] = [
 
 interface CheckoutTotalProps {
   cartItems: IShopcart[]
+  clearCart: () => void
 }
 
-function CheckoutTotal({ cartItems }: CheckoutTotalProps) {
-  let sum = 0;
-  let quantity = 0;
-
-  const checkoutRequest: IShopcart[] = cartItems.map(cartItem => ({
-    product: cartItem.product,
-    quantity: cartItem.quantity,
-  }))
+function CheckoutTotal({ cartItems, clearCart }: CheckoutTotalProps) {
+  const checkoutTotal = {
+    sum: 0,
+    quantity: 0,
+  }
 
   cartItems.forEach(item => {
-    sum += item.product.price * item.quantity;
-    quantity += item.quantity;
+    checkoutTotal.sum += item.product.price * item.quantity;
+    checkoutTotal.quantity += item.quantity;
   });
 
-  const checkoutTotal = {
-    sum,
-    quantity,
+  function handleCheckout(cartItems: IShopcart[]) {
+    createOrder(cartItems).then(() => {
+      clearCart();
+      checkoutTotal.sum = 0;
+      checkoutTotal.quantity = 0;
+    });
   }
 
   if (checkoutTotal.quantity === 0) {
@@ -92,7 +93,7 @@ function CheckoutTotal({ cartItems }: CheckoutTotalProps) {
           </p>
         </CardContent>
         <CardFooter>
-          <Button className="w-full" onClick={() => createOrder(checkoutRequest)}>Checkout</Button>
+          <Button className="w-full" onClick={() => handleCheckout(cartItems)}>Checkout</Button>
         </CardFooter>
       </Card>
     </div>
@@ -100,7 +101,7 @@ function CheckoutTotal({ cartItems }: CheckoutTotalProps) {
 }
 
 export default function Checkout() {
-  const { cartItems } = useShoppingCartContext()
+  const { cartItems, clearCart } = useShoppingCartContext()
 
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({})
   const table = useReactTable({
@@ -197,7 +198,7 @@ export default function Checkout() {
             </TableBody>
           </Table>
         </div>
-        <CheckoutTotal cartItems={Object.values(cartItems)} />
+        <CheckoutTotal cartItems={Object.values(cartItems)} clearCart={clearCart} />
       </div >
     </div>
   )
