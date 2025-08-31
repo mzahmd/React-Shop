@@ -3,7 +3,6 @@ package com.example.backend.Order;
 import com.example.backend.User.User;
 import com.example.backend.User.UserDAO;
 import com.example.backend.User.UserDetailsImpl;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -15,9 +14,6 @@ import java.util.Optional;
 public class OrderService {
     private final OrderDAO orderDAO;
     private final UserDAO userDAO;
-
-    @Value("#{'${product.url}'}")
-    private String PRODUCT_URL;
 
     public OrderService(OrderDAO orderDAO, UserDAO userDAO) {
         this.orderDAO = orderDAO;

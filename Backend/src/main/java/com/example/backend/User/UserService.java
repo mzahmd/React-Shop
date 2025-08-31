@@ -43,7 +43,7 @@ public class UserService {
 
         return authentication != null
                 && authentication.isAuthenticated()
-                && (!(authentication instanceof AnonymousAuthenticationToken));
+                && !(authentication instanceof AnonymousAuthenticationToken);
     }
 
     public void register(UserRequest userRequest) {
