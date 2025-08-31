@@ -12,5 +12,4 @@ public interface UserDAO {
     List<User> getAllUsers();
     void deleteUserByEmail(String email);
     void deleteAuthenticatedUser(UserDTO user);
-    void addOrder(User user, Order order);
 }

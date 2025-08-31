@@ -18,8 +18,8 @@ public class OrderListDataAccessService implements OrderDAO {
     }
 
     @Override
-    public void createOrder(Order order) {
-        orders.add(order);
+    public void createOrder(List<Order> order) {
+        orders.addAll(order);
     }
 
 }

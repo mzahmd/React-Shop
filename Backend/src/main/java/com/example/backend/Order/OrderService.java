@@ -1,16 +1,12 @@
 package com.example.backend.Order;
 
-import com.example.backend.Product.Product;
 import com.example.backend.User.User;
 import com.example.backend.User.UserDAO;
 import com.example.backend.User.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.reactive.function.client.WebClient;
-import reactor.core.publisher.Mono;
 
 import java.util.List;
 import java.util.Optional;
@@ -46,27 +42,21 @@ public class OrderService {
         return orderDAO.getOrdersFromUser(user.get().getId());
     }
 
-    public void createOrder(OrderRequest orderRequest) {
+    public void createOrder(List<OrderRequest> orderRequest) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
-        User user = userDAO.findUserById(orderRequest.getUserId())
-                .orElseThrow(() -> new IllegalArgumentException("User not found"));
+        if (authentication == null || !authentication.isAuthenticated()) {
+            throw new IllegalArgumentException("Authentication required");
+        }
 
-        WebClient.Builder builder = WebClient.builder();
+        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
 
-        Mono<List<Product>> productList = builder.build()
-                .get()
-                .uri(PRODUCT_URL)
-                .accept(MediaType.APPLICATION_JSON)
-                .retrieve()
-                .bodyToFlux(Product.class)
-                .filter(product -> product.getId() == orderRequest.getProductId())
-                .collectList();
+        User user = userDAO.findUserByEmail(userDetails.getUsername()).orElseThrow(() -> new IllegalArgumentException("User not found"));
 
-        List<Product> products = productList.block();
-        Product product = products != null && !products.isEmpty() ? products.get(0) : null;
+        List<Order> orders = orderRequest.stream()
+                .map(order -> new Order(user, order.getProduct(), order.quantity))
+                .toList();
 
-        Order order = new Order(user, product, orderRequest.getQuantity());
-
-        orderDAO.createOrder(order);
+        orderDAO.createOrder(orders);
     }
 }

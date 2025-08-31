@@ -1,24 +1,17 @@
 package com.example.backend.Order;
 
+import com.example.backend.Product.Product;
+
 public class OrderRequest {
-    public int userId;
-    public int productId;
+    public Product product;
     public int quantity;
 
-    public int getUserId() {
-        return userId;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
-    public int getProductId() {
-        return productId;
-    }
-
-    public void setProductId(int productId) {
-        this.productId = productId;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     public int getQuantity() {
@@ -32,8 +25,7 @@ public class OrderRequest {
     @Override
     public String toString() {
         return "OrderRequest{" +
-                "userId=" + userId +
-                ", productId=" + productId +
+                "product=" + product +
                 ", quantity=" + quantity +
                 '}';
     }

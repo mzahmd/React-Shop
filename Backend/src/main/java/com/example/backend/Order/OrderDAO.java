@@ -4,5 +4,5 @@ import java.util.List;
 
 public interface OrderDAO {
     List<Order> getOrdersFromUser(int userId);
-    void createOrder(Order order);
+    void createOrder(List<Order> order);
 }

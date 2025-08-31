@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
+  CardFooter,
   CardHeader,
   CardTitle
 } from "@/components/ui/card";
@@ -30,6 +31,7 @@ import {
 } from "@/components/ui/table";
 import { useShoppingCartContext } from "@/hooks/useShopCarts";
 import type { IShopcart } from "@/interface/IShopCart";
+import { createOrder } from "@/services/orderserivce";
 
 const columns: ColumnDef<IShopcart>[] = [
   {
@@ -53,6 +55,11 @@ interface CheckoutTotalProps {
 function CheckoutTotal({ cartItems }: CheckoutTotalProps) {
   let sum = 0;
   let quantity = 0;
+
+  const checkoutRequest: IShopcart[] = cartItems.map(cartItem => ({
+    product: cartItem.product,
+    quantity: cartItem.quantity,
+  }))
 
   cartItems.forEach(item => {
     sum += item.product.price * item.quantity;
@@ -81,9 +88,12 @@ function CheckoutTotal({ cartItems }: CheckoutTotalProps) {
           </p>
           <p>
             <span className="font-bold"> Total Price </span>
-            {checkoutTotal.sum} €
+            ${checkoutTotal.sum}
           </p>
         </CardContent>
+        <CardFooter>
+          <Button className="w-full" onClick={() => createOrder(checkoutRequest)}>Checkout</Button>
+        </CardFooter>
       </Card>
     </div>
   )
