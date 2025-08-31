@@ -55,7 +55,8 @@ public class UserService {
                 id,
                 userRequest.email(),
                 passwordEncoder.encode(userRequest.password()),
-                Role.USER);
+                Role.USER
+        );
 
         userDAO.registerUser(registerUser);
 
