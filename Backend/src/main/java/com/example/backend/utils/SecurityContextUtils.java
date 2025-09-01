@@ -22,9 +22,9 @@ public class SecurityContextUtils {
 
     public static boolean isUserContextAuthenticated(Authentication authentication) {
 
-        return authentication != null
-                && authentication.isAuthenticated()
-                && !(authentication instanceof AnonymousAuthenticationToken);
+        return !(authentication == null
+                || !authentication.isAuthenticated()
+                || authentication instanceof AnonymousAuthenticationToken);
     }
 
     public static UserDTO getCurrentUser() {
@@ -41,7 +41,7 @@ public class SecurityContextUtils {
         return new UserDTO(userDetails.getUsername(), userDetails.getRole());
     }
 
-    public static UserDTO getCurrentUser( Authentication authentication) {
+    public static UserDTO getCurrentUser(Authentication authentication) {
 
         if (!isUserContextAuthenticated(authentication)) {
             throw new SecurityException("User is not authenticated");
