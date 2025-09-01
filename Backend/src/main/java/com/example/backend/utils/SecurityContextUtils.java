@@ -22,9 +22,9 @@ public class SecurityContextUtils {
 
     public static boolean isUserContextAuthenticated(Authentication authentication) {
 
-        return !(authentication == null
-                || !authentication.isAuthenticated()
-                || authentication instanceof AnonymousAuthenticationToken);
+        return authentication != null
+                && authentication.isAuthenticated()
+                && !(authentication instanceof AnonymousAuthenticationToken);
     }
 
     public static UserDTO getCurrentUser() {
