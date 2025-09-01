@@ -1,14 +1,11 @@
 package com.example.backend.User;
 
+import com.example.backend.utils.SecurityContextUtils;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Service;
@@ -27,23 +24,11 @@ public class UserService {
     }
 
     public UserDTO getAuthenticatedUser() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-
-        if (authentication == null || !authentication.isAuthenticated()) {
-            throw new UsernameNotFoundException("Your not logged in");
-        }
-
-        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
-
-        return new UserDTO(userDetails.getUsername(), userDetails.getRole());
+        return SecurityContextUtils.getCurrentUser();
     }
 
     public boolean isUserAuthenticated() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-
-        return authentication != null
-                && authentication.isAuthenticated()
-                && !(authentication instanceof AnonymousAuthenticationToken);
+        return SecurityContextUtils.isUserContextAuthenticated();
     }
 
     public void register(UserRequest userRequest) {
@@ -65,17 +50,14 @@ public class UserService {
     }
 
     public void deleteAuthenticatedUser(HttpServletRequest request, HttpServletResponse response) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-
-        if (authentication == null || !(authentication.getPrincipal() instanceof UserDetailsImpl userDetails)) {
-            throw new IllegalStateException("No authenticated User");
-        }
-
-        UserDTO userDTO = new UserDTO(userDetails.getUsername(), userDetails.getRole());
+        Authentication authentication = SecurityContextUtils.getSecurityContextAuthentication();
+        UserDTO userDTO = SecurityContextUtils.getCurrentUser(authentication);
 
         userDAO.deleteAuthenticatedUser(userDTO);
 
-        new SecurityContextLogoutHandler().logout(request, response, authentication);
+        SecurityContextLogoutHandler securityContextLogoutHandler = new SecurityContextLogoutHandler();
+
+        securityContextLogoutHandler.logout(request, response, authentication);
     }
 
 }
