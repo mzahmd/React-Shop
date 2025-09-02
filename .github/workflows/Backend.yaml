@@ -17,8 +17,8 @@ jobs:
           distribution: 'temurin'
       - name: Build with Maven
         run: |
-        cd Backend
-        ./mvnw clean install
+          cd Backend
+          ./mvnw clean install
       - name: Run Tests
         run: |
           cd Backend
