@@ -1,0 +1,20 @@
+name: CI for Backend
+
+on:
+  push:
+    branches:
+      - main
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out Repository
+        uses: actions/checkout@v4
+      - name: Set up JDK 11
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+      - name: Build with Maven
+        run: ./mvnw clean install
+      - name: Run Tests
+        run: ./mvnw test
