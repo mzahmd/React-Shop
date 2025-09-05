@@ -54,5 +54,4 @@ public class SecurityContextUtils {
         return new UserDTO(userDetails.getUsername(), userDetails.getRole());
     }
 
-
 }
