@@ -20,7 +20,7 @@ class UserListDataAccessServiceTest {
     @Test
     public void shouldRegisterOneUser() {
         // Given
-        User user = new User("admin@example.com", "password", Role.ADMIN);
+        User user = new User(1,"admin@example.com", "password", Role.ADMIN);
 
         // When
         underTest.registerUser(user);
@@ -33,7 +33,7 @@ class UserListDataAccessServiceTest {
     @Test
     public void shouldFindUserByEmail() {
         // Given
-        User user = new User("admin@example.com", "password", Role.ADMIN);
+        User user = new User(1, "admin@example.com", "password", Role.ADMIN);
         underTest.registerUser(user);
 
         // When
@@ -49,8 +49,8 @@ class UserListDataAccessServiceTest {
     @Test
     public void shouldGetAllUsers() {
         // Given
-        User user1 = new User("admin@example.com", "password", Role.ADMIN);
-        User user2 = new User("user@example.com", "password123", Role.USER);
+        User user1 = new User(1, "admin@example.com", "password", Role.ADMIN);
+        User user2 = new User(1, "user@example.com", "password123", Role.USER);
         underTest.registerUser(user1);
         underTest.registerUser(user2);
 
@@ -71,7 +71,7 @@ class UserListDataAccessServiceTest {
     @Test
     public void shouldDeleteUserByEmail() {
         // Given
-        User user = new User("admin@example.com", "password", Role.ADMIN);
+        User user = new User(1, "admin@example.com", "password", Role.ADMIN);
         underTest.registerUser(user);
 
         // When
@@ -85,7 +85,7 @@ class UserListDataAccessServiceTest {
     public void shouldDeleteAuthenticatedUser() {
         // Given
         UserDTO userDTO = new UserDTO("admin@example.com", Role.ADMIN);
-        underTest.registerUser(new User(userDTO.email(), "password", userDTO.role()));
+        underTest.registerUser(new User(1, userDTO.getEmail(), "password", userDTO.getRole()));
 
         // When
         underTest.deleteAuthenticatedUser(userDTO);

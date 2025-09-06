@@ -41,7 +41,7 @@ public class UserListDataAccessService implements UserDAO {
 
     @Override
     public void deleteAuthenticatedUser(UserDTO userDTO) {
-        USERS.removeIf(user -> user.getEmail().equalsIgnoreCase(userDTO.email()));
+        USERS.removeIf(user -> user.getEmail().equalsIgnoreCase(userDTO.getEmail()));
     }
 
 }

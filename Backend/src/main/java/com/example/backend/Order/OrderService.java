@@ -20,7 +20,7 @@ public class OrderService {
 
     public List<Order> getOrdersFromUser() {
         UserDTO userDTO = SecurityContextUtils.getCurrentUser();
-        User user = userDAO.findUserByEmail(userDTO.email())
+        User user = userDAO.findUserByEmail(userDTO.getEmail())
                 .orElseThrow(() -> new IllegalArgumentException("User not found"));
 
         return orderDAO.getOrdersFromUser(user.getId());
@@ -28,7 +28,7 @@ public class OrderService {
 
     public void createOrder(List<OrderRequest> orderRequest) {
         UserDTO userDTO = SecurityContextUtils.getCurrentUser();
-        User user = userDAO.findUserByEmail(userDTO.email())
+        User user = userDAO.findUserByEmail(userDTO.getEmail())
                 .orElseThrow(() -> new IllegalArgumentException("User not found"));
 
         List<Order> orders = orderRequest.stream()

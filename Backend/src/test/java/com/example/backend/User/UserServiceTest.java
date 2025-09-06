@@ -32,17 +32,17 @@ public class UserServiceTest {
         UserRequest userRequest = new UserRequest("user@example.com", "password");
         final String encodedPassword = "encodedPassword";
 
-        when(userDAO.findUserByEmail(userRequest.email())).thenReturn(Optional.empty());
-        when(passwordEncoder.encode(userRequest.password())).thenReturn(encodedPassword);
+        when(userDAO.findUserByEmail(userRequest.getEmail())).thenReturn(Optional.empty());
+        when(passwordEncoder.encode(userRequest.getPassword())).thenReturn(encodedPassword);
 
         // When
         underTest.register(userRequest);
 
         // Then
-        verify(userDAO, times(1)).findUserByEmail(userRequest.email());
-        verify(passwordEncoder, times(1)).encode(userRequest.password());
+        verify(userDAO, times(1)).findUserByEmail(userRequest.getEmail());
+        verify(passwordEncoder, times(1)).encode(userRequest.getPassword());
         verify(userDAO).registerUser(argThat(user ->
-                user.getEmail().equals(userRequest.email()) &&
+                user.getEmail().equals(userRequest.getEmail()) &&
                         user.getPassword().equals(encodedPassword) &&
                         user.getRole() == Role.USER
         ));
