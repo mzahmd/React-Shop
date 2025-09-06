@@ -1,5 +1,6 @@
 package com.example.backend.User;
 
+import com.example.backend.mapper.UserMapper;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -26,14 +27,20 @@ public class UserServiceTest {
     @Mock
     PasswordEncoder passwordEncoder;
 
+    @Mock
+    UserMapper usermapper;
+
     @Test
     void shouldRegisterUser() {
         // Given
         UserRequest userRequest = new UserRequest("user@example.com", "password");
         final String encodedPassword = "encodedPassword";
 
+        User returnedUser = new User(1, "user@example.com", "password", Role.USER);
+
         when(userDAO.findUserByEmail(userRequest.getEmail())).thenReturn(Optional.empty());
         when(passwordEncoder.encode(userRequest.getPassword())).thenReturn(encodedPassword);
+        when(usermapper.toUser(userRequest)).thenReturn(returnedUser);
 
         // When
         underTest.register(userRequest);
