@@ -23,7 +23,7 @@ public class AuthenticationService {
     }
 
     public UserDTO login(AuthenticationRequest authenticationRequest, HttpServletRequest request) {
-        Authentication token = UsernamePasswordAuthenticationToken.unauthenticated(authenticationRequest.email(), authenticationRequest.password());
+        Authentication token = UsernamePasswordAuthenticationToken.unauthenticated(authenticationRequest.getEmail(), authenticationRequest.getPassword());
         Authentication authentication = authenticationManager.authenticate(token);
 
         UserDetailsImpl loggedUser = (UserDetailsImpl) authentication.getPrincipal();

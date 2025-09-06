@@ -35,13 +35,13 @@ public class UserService {
     }
 
     public void register(UserRequest userRequest) {
-        if (userDAO.findUserByEmail(userRequest.email()).isPresent()) {
+        if (userDAO.findUserByEmail(userRequest.getEmail()).isPresent()) {
             throw new IllegalStateException("User already exists!");
         }
 
         User registerUser = userMapper.toUser(userRequest);
         registerUser.setId(id);
-        registerUser.setPassword(passwordEncoder.encode(userRequest.password()));
+        registerUser.setPassword(passwordEncoder.encode(userRequest.getPassword()));
         registerUser.setRole(Role.USER);
 
         userDAO.registerUser(registerUser);
