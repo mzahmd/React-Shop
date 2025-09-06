@@ -39,13 +39,6 @@ public class UserService {
             throw new IllegalStateException("User already exists!");
         }
 
-//        User registerUser = new User(
-//                id,
-//                userRequest.email(),
-//                passwordEncoder.encode(userRequest.password()),
-//                Role.USER
-//        );
-
         User registerUser = userMapper.toUser(userRequest);
         registerUser.setId(id);
         registerUser.setPassword(passwordEncoder.encode(userRequest.password()));
