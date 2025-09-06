@@ -1,9 +1,5 @@
 package com.example.backend.User;
 
-import com.example.backend.Order.Order;
-
-import java.util.List;
-
 public class User {
     int id;
     String email;
@@ -12,12 +8,6 @@ public class User {
 
     public User(int id, String email, String password, Role role) {
         this.id = id;
-        this.email = email;
-        this.password = password;
-        this.role = role;
-    }
-
-    public User(String email, String password, Role role, List<Order> orders) {
         this.email = email;
         this.password = password;
         this.role = role;
