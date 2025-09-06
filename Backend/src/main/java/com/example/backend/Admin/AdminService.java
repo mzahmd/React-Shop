@@ -3,34 +3,33 @@ package com.example.backend.Admin;
 import com.example.backend.User.User;
 import com.example.backend.User.UserDAO;
 import com.example.backend.User.UserDTO;
+import com.example.backend.mapper.UserMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
 public class AdminService {
     private final UserDAO userDAO;
+    private final UserMapper userMapper;
 
-    public AdminService(UserDAO userDAO) {
+    public AdminService(UserDAO userDAO, UserMapper userMapper) {
         this.userDAO = userDAO;
+        this.userMapper = userMapper;
     }
 
     public List<UserDTO> getAllUsers() {
         return userDAO.getAllUsers().stream()
-                .map(user -> new UserDTO(user.getEmail(), user.getRole()))
+                .map(userMapper::toUserDTO)
                 .collect(Collectors.toList());
     }
 
     public UserDTO getUserByEmail(String email) {
-        Optional<User> user = userDAO.findUserByEmail(email);
+        User user = userDAO.findUserByEmail(email)
+                .orElseThrow(() -> new IllegalStateException("User not found"));
 
-        if (user.isEmpty()) {
-            throw new IllegalStateException("User already exists!");
-        }
-
-        return new UserDTO(user.get().getEmail(), user.get().getRole());
+    return userMapper.toUserDTO(user);
     }
 
     public void deleteUserByEmail(String email) {

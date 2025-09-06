@@ -1,5 +1,6 @@
 package com.example.backend.User;
 
+import com.example.backend.mapper.UserMapper;
 import com.example.backend.utils.SecurityContextUtils;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -14,13 +15,15 @@ import org.springframework.stereotype.Service;
 public class UserService {
     private final UserDAO userDAO;
     private final PasswordEncoder passwordEncoder;
+    private final UserMapper userMapper;
 
     private static int id = 1;
     private static final Logger logger = LoggerFactory.getLogger(UserService.class);
 
-    public UserService(UserDAO userDAO, PasswordEncoder passwordEncoder) {
+    public UserService(UserDAO userDAO, PasswordEncoder passwordEncoder,  UserMapper userMapper) {
         this.userDAO = userDAO;
         this.passwordEncoder = passwordEncoder;
+        this.userMapper = userMapper;
     }
 
     public UserDTO getAuthenticatedUser() {
@@ -36,12 +39,17 @@ public class UserService {
             throw new IllegalStateException("User already exists!");
         }
 
-        User registerUser = new User(
-                id,
-                userRequest.email(),
-                passwordEncoder.encode(userRequest.password()),
-                Role.USER
-        );
+//        User registerUser = new User(
+//                id,
+//                userRequest.email(),
+//                passwordEncoder.encode(userRequest.password()),
+//                Role.USER
+//        );
+
+        User registerUser = userMapper.toUser(userRequest);
+        registerUser.setId(id);
+        registerUser.setPassword(passwordEncoder.encode(userRequest.password()));
+        registerUser.setRole(Role.USER);
 
         userDAO.registerUser(registerUser);
 
