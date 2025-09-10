@@ -1,10 +1,21 @@
 package com.example.backend.User;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "users")
 public class User {
-    int id;
+    @Id
+    private Integer id;
     String email;
     String password;
     Role role;
+
+    public User() {
+
+    }
 
     public User(int id, String email, String password, Role role) {
         this.id = id;
