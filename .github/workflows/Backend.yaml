@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - database
   pull_request:
     branches:
       - main
