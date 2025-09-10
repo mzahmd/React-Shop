@@ -9,6 +9,20 @@ on:
     branches:
       - main
 jobs:
+  services:
+    postgres:
+      image: postgres:15
+      env:
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: 1234
+        POSTGRES_DB: shop
+      ports:
+        - 5432:5432
+      options: >-
+        --health-cmd="pg_isready -U postgres"
+        --health-interval=10s
+        --health-timeout=5s
+        --health-retries=5
   test:
     runs-on: ubuntu-latest
     steps:
@@ -21,6 +35,14 @@ jobs:
           distribution: 'temurin'
       - name: Make mvnw executable
         run: chmod +x Backend/mvnw
+
+      - name: Wait for PostgreSQL
+        run: |
+          until pg_isready -h localhost -p 5432 -U postgres; do
+            echo "Waiting for postgres..."
+            sleep 2
+          done
+
       - name: Build with Maven
         run: |
           cd Backend
