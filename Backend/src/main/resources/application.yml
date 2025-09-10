@@ -2,6 +2,18 @@ spring:
   application:
     name: "backend"
 
+  datasource:
+    url: "jdbc:postgresql://localhost:5432/shop"
+    username: "postgres"
+    password: "1234"
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+      dialect: org.hibernate.dialect.PostgreSQLDialect
+      format_sql: true
+    show-sql: true
+
 cors:
   allowed-origins: "http://localhost:5173"
   allowed-methods: "GET,POST,PUT,DELETE"

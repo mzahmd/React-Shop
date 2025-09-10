@@ -6,6 +6,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
@@ -20,7 +21,7 @@ public class UserService {
     private static int id = 1;
     private static final Logger logger = LoggerFactory.getLogger(UserService.class);
 
-    public UserService(UserDAO userDAO, PasswordEncoder passwordEncoder,  UserMapper userMapper) {
+    public UserService(@Qualifier("JPA") UserDAO userDAO, PasswordEncoder passwordEncoder, UserMapper userMapper) {
         this.userDAO = userDAO;
         this.passwordEncoder = passwordEncoder;
         this.userMapper = userMapper;
