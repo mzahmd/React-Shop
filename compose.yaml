@@ -1,5 +1,37 @@
 services:
+
+  db:
+    container_name: shop-db
+    image: postgres:17.6
+    environment:
+      - POSTGRES_DB=shop
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=1234
+    restart: unless-stopped
+    volumes:
+      - db:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres"]
+      interval: 10s
+      retries: 5
+      start_period: 30s
+      timeout: 10s
+
+  backend:
+    container_name: shop-backend
+    build: 
+      context: ./Backend
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/shop
+    ports:
+    - 8080:8080
+    depends_on:
+      db:
+        condition: service_healthy
   frontend:
+    container_name: shop-frontend
     build: 
       context: ./Frontend
     ports:
@@ -7,8 +39,5 @@ services:
     depends_on:
       - backend
 
-  backend:
-    build: 
-      context: ./Backend
-    ports:
-    - 8080:8080
+volumes:
+  db:
