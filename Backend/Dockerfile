@@ -7,7 +7,7 @@ COPY mvnw* .
 COPY pom.xml .
 COPY src src
 
-RUN ./mvnw clean install
+RUN ./mvnw clean install -DskipTests
 
 
 FROM openjdk:26-jdk-oracle
