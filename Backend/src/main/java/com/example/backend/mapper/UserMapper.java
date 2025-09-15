@@ -1,8 +1,8 @@
 package com.example.backend.mapper;
 
-import com.example.backend.User.User;
-import com.example.backend.User.UserDTO;
-import com.example.backend.User.UserRequest;
+import com.example.backend.model.User;
+import com.example.backend.dto.UserDTO;
+import com.example.backend.dto.UserRequest;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
