@@ -1,7 +1,7 @@
 package com.example.backend.service;
 
 import com.example.backend.dao.UserDAO;
-import com.example.backend.dto.UserRequest;
+import com.example.backend.dto.UserRequestDTO;
 import com.example.backend.enums.Role;
 import com.example.backend.mapper.UserMapper;
 import com.example.backend.model.User;
@@ -37,23 +37,23 @@ public class UserServiceTest {
     @Test
     void shouldRegisterUser() {
         // Given
-        UserRequest userRequest = new UserRequest("user@example.com", "password");
+        UserRequestDTO userRequestDTO = new UserRequestDTO("user@example.com", "password");
         final String encodedPassword = "encodedPassword";
 
         User returnedUser = new User(1, "user@example.com", "password", Role.USER);
 
-        when(userDAO.findUserByEmail(userRequest.getEmail())).thenReturn(Optional.empty());
-        when(passwordEncoder.encode(userRequest.getPassword())).thenReturn(encodedPassword);
-        when(usermapper.toUser(userRequest)).thenReturn(returnedUser);
+        when(userDAO.findUserByEmail(userRequestDTO.getEmail())).thenReturn(Optional.empty());
+        when(passwordEncoder.encode(userRequestDTO.getPassword())).thenReturn(encodedPassword);
+        when(usermapper.toUser(userRequestDTO)).thenReturn(returnedUser);
 
         // When
-        underTest.register(userRequest);
+        underTest.register(userRequestDTO);
 
         // Then
-        verify(userDAO, times(1)).findUserByEmail(userRequest.getEmail());
-        verify(passwordEncoder, times(1)).encode(userRequest.getPassword());
+        verify(userDAO, times(1)).findUserByEmail(userRequestDTO.getEmail());
+        verify(passwordEncoder, times(1)).encode(userRequestDTO.getPassword());
         verify(userDAO).registerUser(argThat(user ->
-                user.getEmail().equals(userRequest.getEmail()) &&
+                user.getEmail().equals(userRequestDTO.getEmail()) &&
                         user.getPassword().equals(encodedPassword) &&
                         user.getRole() == Role.USER
         ));

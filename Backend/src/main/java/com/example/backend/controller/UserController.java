@@ -1,7 +1,7 @@
 package com.example.backend.controller;
 
 import com.example.backend.dto.UserDTO;
-import com.example.backend.dto.UserRequest;
+import com.example.backend.dto.UserRequestDTO;
 import com.example.backend.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -33,8 +33,8 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public void register(@RequestBody UserRequest userRequest) {
-        userService.register(userRequest);
+    public void register(@RequestBody UserRequestDTO userRequestDTO) {
+        userService.register(userRequestDTO);
     }
 
     @DeleteMapping

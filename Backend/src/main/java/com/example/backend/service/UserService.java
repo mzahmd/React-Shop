@@ -2,7 +2,7 @@ package com.example.backend.service;
 
 import com.example.backend.dao.UserDAO;
 import com.example.backend.dto.UserDTO;
-import com.example.backend.dto.UserRequest;
+import com.example.backend.dto.UserRequestDTO;
 import com.example.backend.enums.Role;
 import com.example.backend.mapper.UserMapper;
 import com.example.backend.model.User;
@@ -40,14 +40,14 @@ public class UserService {
         return SecurityContextUtils.isUserContextAuthenticated();
     }
 
-    public void register(UserRequest userRequest) {
-        if (userDAO.findUserByEmail(userRequest.getEmail()).isPresent()) {
+    public void register(UserRequestDTO userRequestDTO) {
+        if (userDAO.findUserByEmail(userRequestDTO.getEmail()).isPresent()) {
             throw new IllegalStateException("User already exists!");
         }
 
-        User registerUser = userMapper.toUser(userRequest);
+        User registerUser = userMapper.toUser(userRequestDTO);
         registerUser.setId(id);
-        registerUser.setPassword(passwordEncoder.encode(userRequest.getPassword()));
+        registerUser.setPassword(passwordEncoder.encode(userRequestDTO.getPassword()));
         registerUser.setRole(Role.USER);
 
         userDAO.registerUser(registerUser);

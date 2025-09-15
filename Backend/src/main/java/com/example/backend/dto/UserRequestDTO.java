@@ -1,10 +1,10 @@
 package com.example.backend.dto;
 
-public class UserRequest {
+public class UserRequestDTO {
     String email;
     String password;
 
-    public UserRequest(String email, String password) {
+    public UserRequestDTO(String email, String password) {
         this.email = email;
         this.password = password;
     }

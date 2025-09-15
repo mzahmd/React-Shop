@@ -2,7 +2,7 @@ package com.example.backend.mapper;
 
 import com.example.backend.model.User;
 import com.example.backend.dto.UserDTO;
-import com.example.backend.dto.UserRequest;
+import com.example.backend.dto.UserRequestDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
@@ -15,6 +15,6 @@ public interface UserMapper {
 
     @Mapping(source = "email", target = "email")
     @Mapping(source = "password", target = "password")
-    User toUser(UserRequest user);
+    User toUser(UserRequestDTO user);
 
 }
