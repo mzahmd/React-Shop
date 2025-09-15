@@ -1,5 +1,6 @@
 package com.example.backend.Order;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -7,6 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@Qualifier("List")
 public class OrderListDataAccessService implements OrderDAO {
     private final List<Order> orders = new ArrayList<>();
 

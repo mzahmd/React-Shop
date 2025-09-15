@@ -14,7 +14,7 @@ public class OrderService {
     private final OrderDAO orderDAO;
     private final UserDAO userDAO;
 
-    public OrderService(OrderDAO orderDAO, @Qualifier("JPA") UserDAO userDAO) {
+    public OrderService(@Qualifier("JPA") OrderDAO orderDAO, @Qualifier("JPA") UserDAO userDAO) {
         this.orderDAO = orderDAO;
         this.userDAO = userDAO;
     }
@@ -33,7 +33,7 @@ public class OrderService {
                 .orElseThrow(() -> new IllegalArgumentException("User not found"));
 
         List<Order> orders = orderRequest.stream()
-                .map(order -> new Order(user, order.getProduct(), order.quantity))
+                .map(order -> new Order(user, order.getProductId(), order.quantity))
                 .toList();
 
         orderDAO.createOrder(orders);

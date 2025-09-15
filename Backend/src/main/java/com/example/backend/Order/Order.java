@@ -1,24 +1,35 @@
 package com.example.backend.Order;
 
-import com.example.backend.Product.Product;
 import com.example.backend.User.User;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
+@Entity
+@Table(name = "orders")
 public class Order {
+    @Id
     int id;
+    @ManyToOne
     User user;
-    Product product;
+    int productId;
     int quantity;
 
-    public Order(int id, User user, Product product, int quantity) {
-        this.id = id;
+    public Order() {
+
+    }
+
+    public Order(User user, int productId, int quantity) {
         this.user = user;
-        this.product = product;
+        this.productId = productId;
         this.quantity = quantity;
     }
 
-    public Order(User user, Product product,  int quantity) {
+    public Order(int id, User user, int productId, int quantity) {
+        this.id = id;
         this.user = user;
-        this.product = product;
+        this.productId = productId;
         this.quantity = quantity;
     }
 
@@ -38,12 +49,12 @@ public class Order {
         this.user = user;
     }
 
-    public Product getProduct() {
-        return product;
+    public int getProduct() {
+        return productId;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setProduct(int product) {
+        this.productId = product;
     }
 
     public int getQuantity() {
