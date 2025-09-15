@@ -16,7 +16,6 @@ public class AdminUserInitializer {
     public CommandLineRunner commandLineRunner(@Qualifier("JPA") UserDAO userDAO, PasswordEncoder passwordEncoder) {
         return args -> {
             userDAO.registerUser(new User(
-                    0,
                     "admin@example.com",
                     passwordEncoder.encode("password"),
                     Role.ADMIN

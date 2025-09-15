@@ -1,21 +1,39 @@
 package com.example.backend.model;
 
 import com.example.backend.model.types.Role;
+
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.Column;
+import jakarta.persistence.GenerationType;
 
 @Entity
 @Table(name = "users")
 public class User {
+
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
-    String email;
-    String password;
-    Role role;
+
+    @Column(name = "email", unique = true, nullable = false)
+    private String email;
+
+    @Column(name = "password", nullable = false)
+    private String password;
+
+    @Column(name = "role", nullable = false)
+    private Role role;
 
     public User() {
 
+    }
+
+    public User(String email, String password, Role role) {
+        this.email = email;
+        this.password = password;
+        this.role = role;
     }
 
     public User(int id, String email, String password, Role role) {
@@ -59,6 +77,6 @@ public class User {
 
     @Override
     public String toString() {
-        return "Customer{" + "id=" + id + ", email=" + email + ", role=" + role + "}";
+        return "User{" + "id=" + id + ", email=" + email + ", role=" + role + "}";
     }
 }
