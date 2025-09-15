@@ -1,7 +1,7 @@
 package com.example.backend.controller;
 
 import com.example.backend.model.Order;
-import com.example.backend.dto.OrderRequest;
+import com.example.backend.dto.OrderRequestDTO;
 import com.example.backend.service.OrderService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,7 +24,7 @@ public class OrderController {
     }
 
     @PostMapping("/order")
-    public void createOrder(@RequestBody List<OrderRequest> orderRequest) {
-        orderService.createOrder(orderRequest);
+    public void createOrder(@RequestBody List<OrderRequestDTO> orderRequestDTO) {
+        orderService.createOrder(orderRequestDTO);
     }
 }
