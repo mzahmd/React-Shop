@@ -1,6 +1,6 @@
 package com.example.backend.dto;
 
-import com.example.backend.enums.Role;
+import com.example.backend.model.types.Role;
 
 public class UserDTO {
     String email;

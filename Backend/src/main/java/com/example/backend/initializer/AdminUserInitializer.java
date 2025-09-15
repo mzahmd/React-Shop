@@ -1,6 +1,6 @@
 package com.example.backend.initializer;
 
-import com.example.backend.enums.Role;
+import com.example.backend.model.types.Role;
 import com.example.backend.model.User;
 import com.example.backend.dao.UserDAO;
 import org.springframework.beans.factory.annotation.Qualifier;

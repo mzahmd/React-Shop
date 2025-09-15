@@ -2,7 +2,7 @@ package com.example.backend.service;
 
 import com.example.backend.dao.UserDAO;
 import com.example.backend.dto.UserRequestDTO;
-import com.example.backend.enums.Role;
+import com.example.backend.model.types.Role;
 import com.example.backend.mapper.UserMapper;
 import com.example.backend.model.User;
 import org.junit.jupiter.api.Test;

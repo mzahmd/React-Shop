@@ -1,6 +1,6 @@
 package com.example.backend.model;
 
-import com.example.backend.enums.Role;
+import com.example.backend.model.types.Role;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
