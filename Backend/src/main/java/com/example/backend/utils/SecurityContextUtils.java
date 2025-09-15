@@ -1,7 +1,7 @@
 package com.example.backend.utils;
 
-import com.example.backend.User.UserDTO;
-import com.example.backend.User.UserDetailsImpl;
+import com.example.backend.dto.UserDTO;
+import com.example.backend.userdetails.UserDetailsImpl;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;

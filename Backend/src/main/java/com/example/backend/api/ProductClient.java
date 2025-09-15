@@ -1,6 +1,6 @@
 package com.example.backend.api;
 
-import com.example.backend.Product.Product;
+import com.example.backend.api.model.Product;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
