@@ -3,7 +3,6 @@ name: CI for Backend
 on:
   push:
     branches:
-      - main
       - database
       - docker
   pull_request:
