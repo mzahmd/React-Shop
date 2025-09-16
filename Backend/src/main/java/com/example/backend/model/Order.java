@@ -6,6 +6,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.GenerationType;
 
 @Entity
@@ -14,9 +15,10 @@ public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private int id;
+    private Integer id;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     @Column(name = "productId")
