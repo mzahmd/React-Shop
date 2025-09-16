@@ -18,11 +18,11 @@ public class OrderJPADataAccessService implements OrderDAO {
     }
     @Override
     public List<Order> getOrdersFromUser(int userId) {
-        return List.of();
+        return orderRepository.findOrderByUserId(userId);
     }
 
     @Override
     public void createOrder(List<Order> order) {
-
+        orderRepository.saveAll(order);
     }
 }

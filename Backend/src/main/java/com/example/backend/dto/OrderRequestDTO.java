@@ -1,6 +1,6 @@
 package com.example.backend.dto;
 
-public class OrderRequest {
+public class OrderRequestDTO {
     public int productId;
     public int quantity;
 

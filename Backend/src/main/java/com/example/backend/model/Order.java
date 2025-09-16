@@ -2,18 +2,30 @@ package com.example.backend.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Column;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.GenerationType;
 
 @Entity
 @Table(name = "orders")
 public class Order {
+
     @Id
-    int id;
-    @ManyToOne
-    User user;
-    int productId;
-    int quantity;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Integer id;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
+    @Column(name = "productId")
+    private int productId;
+
+    @Column(name = "quantity")
+    private int quantity;
 
     public Order() {
 
@@ -48,11 +60,11 @@ public class Order {
         this.user = user;
     }
 
-    public int getProduct() {
+    public int getProductId() {
         return productId;
     }
 
-    public void setProduct(int product) {
+    public void setProductId(int product) {
         this.productId = product;
     }
 
@@ -62,5 +74,15 @@ public class Order {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", user=" + user +
+                ", productId=" + productId +
+                ", quantity=" + quantity +
+                '}';
     }
 }

@@ -1,6 +1,6 @@
 package com.example.backend.userdetails;
 
-import com.example.backend.enums.Role;
+import com.example.backend.model.types.Role;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

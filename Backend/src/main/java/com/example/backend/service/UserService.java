@@ -2,10 +2,10 @@ package com.example.backend.service;
 
 import com.example.backend.dao.UserDAO;
 import com.example.backend.dto.UserDTO;
-import com.example.backend.dto.UserRequest;
-import com.example.backend.enums.Role;
+import com.example.backend.dto.UserRequestDTO;
 import com.example.backend.mapper.UserMapper;
 import com.example.backend.model.User;
+import com.example.backend.model.types.Role;
 import com.example.backend.utils.SecurityContextUtils;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -23,7 +23,6 @@ public class UserService {
     private final PasswordEncoder passwordEncoder;
     private final UserMapper userMapper;
 
-    private static int id = 1;
     private static final Logger logger = LoggerFactory.getLogger(UserService.class);
 
     public UserService(@Qualifier("JPA") UserDAO userDAO, PasswordEncoder passwordEncoder, UserMapper userMapper) {
@@ -40,19 +39,17 @@ public class UserService {
         return SecurityContextUtils.isUserContextAuthenticated();
     }
 
-    public void register(UserRequest userRequest) {
-        if (userDAO.findUserByEmail(userRequest.getEmail()).isPresent()) {
+    public void register(UserRequestDTO userRequestDTO) {
+        if (userDAO.findUserByEmail(userRequestDTO.getEmail()).isPresent()) {
             throw new IllegalStateException("User already exists!");
         }
 
-        User registerUser = userMapper.toUser(userRequest);
-        registerUser.setId(id);
-        registerUser.setPassword(passwordEncoder.encode(userRequest.getPassword()));
+        User registerUser = userMapper.toUser(userRequestDTO);
+        registerUser.setPassword(passwordEncoder.encode(userRequestDTO.getPassword()));
         registerUser.setRole(Role.USER);
 
         userDAO.registerUser(registerUser);
 
-        id++;
         logger.info("User registered successfully!");
     }
 

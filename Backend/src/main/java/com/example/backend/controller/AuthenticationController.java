@@ -1,6 +1,6 @@
 package com.example.backend.controller;
 
-import com.example.backend.dto.AuthenticationRequest;
+import com.example.backend.dto.AuthenticationRequestDTO;
 import com.example.backend.service.AuthenticationService;
 import com.example.backend.dto.UserDTO;
 import jakarta.servlet.http.HttpServletRequest;
@@ -22,8 +22,8 @@ public class AuthenticationController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<UserDTO> login(@RequestBody AuthenticationRequest authenticationRequest, HttpServletRequest request) {
-        UserDTO userDTO = authenticationService.login(authenticationRequest, request);
+    public ResponseEntity<UserDTO> login(@RequestBody AuthenticationRequestDTO authenticationRequestDTO, HttpServletRequest request) {
+        UserDTO userDTO = authenticationService.login(authenticationRequestDTO, request);
 
         return new ResponseEntity<>(userDTO, HttpStatus.OK);
     }

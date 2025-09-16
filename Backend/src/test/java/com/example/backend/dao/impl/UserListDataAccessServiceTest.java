@@ -1,7 +1,7 @@
 package com.example.backend.dao.impl;
 
 import com.example.backend.dto.UserDTO;
-import com.example.backend.enums.Role;
+import com.example.backend.model.types.Role;
 import com.example.backend.model.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

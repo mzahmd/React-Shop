@@ -1,6 +1,6 @@
 package com.example.backend.service;
 
-import com.example.backend.dto.AuthenticationRequest;
+import com.example.backend.dto.AuthenticationRequestDTO;
 import com.example.backend.dto.UserDTO;
 import com.example.backend.userdetails.UserDetailsImpl;
 import jakarta.servlet.http.HttpServletRequest;
@@ -23,8 +23,8 @@ public class AuthenticationService {
         this.authenticationManager = authenticationManager;
     }
 
-    public UserDTO login(AuthenticationRequest authenticationRequest, HttpServletRequest request) {
-        Authentication token = UsernamePasswordAuthenticationToken.unauthenticated(authenticationRequest.getEmail(), authenticationRequest.getPassword());
+    public UserDTO login(AuthenticationRequestDTO authenticationRequestDTO, HttpServletRequest request) {
+        Authentication token = UsernamePasswordAuthenticationToken.unauthenticated(authenticationRequestDTO.getEmail(), authenticationRequestDTO.getPassword());
         Authentication authentication = authenticationManager.authenticate(token);
 
         UserDetailsImpl loggedUser = (UserDetailsImpl) authentication.getPrincipal();
