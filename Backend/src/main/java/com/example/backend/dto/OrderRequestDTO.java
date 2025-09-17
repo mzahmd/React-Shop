@@ -1,8 +1,8 @@
 package com.example.backend.dto;
 
 public class OrderRequestDTO {
-    public int productId;
-    public int quantity;
+    private int productId;
+    private int quantity;
 
     public int getProductId() {
         return productId;

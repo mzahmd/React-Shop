@@ -1,8 +1,8 @@
 package com.example.backend.dto;
 
 public class UserRequestDTO {
-    String email;
-    String password;
+    private String email;
+    private String password;
 
     public UserRequestDTO(String email, String password) {
         this.email = email;
