@@ -22,13 +22,13 @@ public class AdminController {
         return adminService.getAllUsers();
     }
 
-    @GetMapping("/user")
-    public UserDTO getUser(@RequestParam String email) {
+    @GetMapping("/user") // ?email=
+    public UserDTO getUser(@RequestParam(name = "email") String email) {
         return adminService.getUserByEmail(email);
     }
 
     @DeleteMapping("/user")
-    public void deleteUser(@RequestParam("email") String email) {
+    public void deleteUser(@RequestParam(name = "email") String email) {
         adminService.deleteUserByEmail(email);
     }
 }

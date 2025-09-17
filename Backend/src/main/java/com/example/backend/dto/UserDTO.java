@@ -3,8 +3,8 @@ package com.example.backend.dto;
 import com.example.backend.model.types.Role;
 
 public class UserDTO {
-    String email;
-    Role role;
+    private String email;
+    private Role role;
 
     public UserDTO(String email, Role role) {
         this.email = email;
