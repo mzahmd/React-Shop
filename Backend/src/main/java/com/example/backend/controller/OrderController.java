@@ -1,6 +1,6 @@
 package com.example.backend.controller;
 
-import com.example.backend.model.Order;
+import com.example.backend.dto.OrderDTO;
 import com.example.backend.dto.OrderRequestDTO;
 import com.example.backend.service.OrderService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +21,7 @@ public class OrderController {
     }
 
     @GetMapping
-    public List<Order> getOrdersFromUser() {
+    public List<OrderDTO> getOrdersFromUser() {
         return orderService.getOrdersFromUser();
     }
 

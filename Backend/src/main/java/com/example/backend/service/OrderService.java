@@ -2,6 +2,7 @@ package com.example.backend.service;
 
 import com.example.backend.dao.OrderDAO;
 import com.example.backend.dao.UserDAO;
+import com.example.backend.dto.OrderDTO;
 import com.example.backend.dto.OrderRequestDTO;
 import com.example.backend.dto.UserDTO;
 import com.example.backend.mapper.OrderMapper;
@@ -25,12 +26,12 @@ public class OrderService {
         this.orderMapper = orderMapper;
     }
 
-    public List<Order> getOrdersFromUser() {
+    public List<OrderDTO> getOrdersFromUser() {
         UserDTO userDTO = SecurityContextUtils.getCurrentUser();
         User user = userDAO.findUserByEmail(userDTO.getEmail())
                 .orElseThrow(() -> new IllegalArgumentException("User not found"));
 
-        return orderDAO.getOrdersFromUser(user.getId());
+        return orderMapper.toOrderDTO(orderDAO.getOrdersFromUser(user.getId()));
     }
 
     public void createOrder(List<OrderRequestDTO> orderRequestDTO) {
