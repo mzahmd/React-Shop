@@ -9,9 +9,9 @@ import java.util.Collection;
 import java.util.List;
 
 public class UserDetailsImpl implements UserDetails {
-    public String email;
-    public String password;
-    public Role role;
+    private final String email;
+    private final String password;
+    private final Role role;
 
     public UserDetailsImpl(String email, String password, Role role) {
         this.email = email;
