@@ -4,9 +4,9 @@ services:
     container_name: shop-db
     image: postgres:17.6
     environment:
-      - POSTGRES_DB=shop
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=1234
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
     restart: unless-stopped
     volumes:
       - db:/var/lib/postgresql/data
@@ -24,7 +24,7 @@ services:
     build: 
       context: ./Backend
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/shop
+      SPRING_DATASOURCE_URL: ${SPRING_DATASOURCE_URL}
     ports:
     - 8080:8080
     depends_on:
