@@ -11,6 +11,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+// Implementation of UserDetailsService for Spring Security.
+// Used to retrieve user details from a data source
+// for authentication purposes in Spring Security.
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
     private final UserDAO userDAO;

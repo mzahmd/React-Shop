@@ -8,6 +8,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.List;
 
+// Implementation of UserDetails for Spring Security, representing the actual user
+// stored in the SecurityContextHolder.
 public class UserDetailsImpl implements UserDetails {
     private final String email;
     private final String password;

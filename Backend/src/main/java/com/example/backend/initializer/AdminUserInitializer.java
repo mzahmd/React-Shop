@@ -12,6 +12,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 public class AdminUserInitializer {
 
+    // save admin user when program started
     @Bean
     public CommandLineRunner commandLineRunner(@Qualifier("JPA") UserDAO userDAO, PasswordEncoder passwordEncoder) {
         return args -> {

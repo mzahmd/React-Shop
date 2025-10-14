@@ -24,11 +24,14 @@ public class AuthenticationService {
     }
 
     public UserDTO login(AuthenticationRequestDTO authenticationRequestDTO, HttpServletRequest request) {
+        // Created a authenticationToken with given email and password
         Authentication token = UsernamePasswordAuthenticationToken.unauthenticated(authenticationRequestDTO.getEmail(), authenticationRequestDTO.getPassword());
+        // authenticationManager checks if the token is valid
         Authentication authentication = authenticationManager.authenticate(token);
-
+        // if the authentication is valid then it gives back the userDetails
         UserDetailsImpl loggedUser = (UserDetailsImpl) authentication.getPrincipal();
 
+        // SecurityContext used for managing the current user, provides the information about the user
         SecurityContext context = SecurityContextHolder.createEmptyContext();
         context.setAuthentication(authentication);
         SecurityContextHolder.setContext(context);
